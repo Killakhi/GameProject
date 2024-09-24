@@ -36,6 +36,8 @@ public class GameObject extends AnimatedSprite {
 
 	protected boolean affectedByTriggers = false;
 
+	protected HealthBar healthBar = null;
+
 	public GameObject(SpriteSheet spriteSheet, float x, float y, String startingAnimation) {
 		super(spriteSheet, x, y, startingAnimation);
 		this.startPositionX = x;
@@ -295,6 +297,16 @@ public class GameObject extends AnimatedSprite {
 
 	@Override
 	public void draw(GraphicsHandler graphicsHandler) {
+		if (healthBar != null) {
+			healthBar.draw(
+				graphicsHandler, 
+				Math.round(getCalibratedXLocation()) - 100,
+				Math.round(getCalibratedYLocation()) - 50,
+				200,
+				25
+			);
+		}
+
 		if (map != null) {
 			graphicsHandler.drawImage(
 				currentFrame.getImage(),
@@ -318,5 +330,13 @@ public class GameObject extends AnimatedSprite {
 		} else {
 			super.drawBounds(graphicsHandler, color);
 		}
+	}
+
+	public HealthBar getHealthBar() {
+		return healthBar;
+	}
+
+	public void setHealthBar(HealthBar healthBar) {
+		this.healthBar = healthBar;
 	}
 }
