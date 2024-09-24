@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Builders.FrameBuilder;
 import Builders.MapTileBuilder;
+import Game.ScreenCoordinator;
 import GameObject.Frame;
 import Level.*;
 import ScriptActions.*;
@@ -22,6 +23,16 @@ public class DinoScript extends Script {
         ArrayList<ScriptAction> scriptActions = new ArrayList<>();
         scriptActions.add(new LockPlayerScriptAction());
         scriptActions.add(new TextboxScriptAction("Isn't my garden so lovely?"));
+
+        scriptActions.add(new ScriptAction() {
+            @Override
+            public ScriptState execute() {
+                // test script to demonstrate health bar
+                getPlayer().getHealthBar().setVisible(true);
+
+                return ScriptState.COMPLETED;
+            }
+        });
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{

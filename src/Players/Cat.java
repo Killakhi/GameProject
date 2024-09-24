@@ -4,6 +4,7 @@ import Builders.FrameBuilder;
 import Engine.GraphicsHandler;
 import Engine.ImageLoader;
 import GameObject.Frame;
+import GameObject.HealthBar;
 import GameObject.ImageEffect;
 import GameObject.SpriteSheet;
 import Level.Player;
@@ -17,6 +18,9 @@ public class Cat extends Player {
     public Cat(float x, float y) {
         super(new SpriteSheet(ImageLoader.load("Cat.png"), 24, 24), x, y, "STAND_RIGHT");
         walkSpeed = 2.3f;
+
+        this.healthBar = new HealthBar(100, 100);
+        this.healthBar.setVisible(false);
     }
 
     public void update() {

@@ -66,6 +66,10 @@ public abstract class Player extends GameObject {
             lastAmountMovedX = super.moveXHandleCollision(moveAmountX);
         }
 
+        if (Keyboard.isKeyDown(Key.Z) && this.healthBar != null) {
+            this.healthBar.damage(4);
+        }
+
         handlePlayerAnimation();
 
         updateLockedKeys();
