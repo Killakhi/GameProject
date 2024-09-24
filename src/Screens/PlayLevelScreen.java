@@ -1,6 +1,9 @@
 package Screens;
 
 import Engine.GraphicsHandler;
+import Engine.Key;
+import Engine.KeyLocker;
+import Engine.Keyboard;
 import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
@@ -17,7 +20,9 @@ public class PlayLevelScreen extends Screen {
     protected Player player;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
+    protected BattleScreen battleScreen;
     protected FlagManager flagManager;
+    protected KeyLocker keyLocker = new KeyLocker();
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
@@ -30,6 +35,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasTalkedToWalrus", false);
         flagManager.addFlag("hasTalkedToDinosaur", false);
         flagManager.addFlag("hasFoundBall", false);
+        flagManager.addFlag("hasFoughtNPC", false);
 
         // define/setup map
         map = new TestMap();
@@ -51,10 +57,24 @@ public class PlayLevelScreen extends Screen {
         map.preloadScripts();
 
         winScreen = new WinScreen(this);
+        battleScreen = new BattleScreen(screenCoordinator);
+        battleScreen.addGameLevel(this);
+
+        // add a keyLocker to track when the battle button is pressed
+        keyLocker.lockKey(Key.B);
     }
 
     public void update() {
         // based on screen state, perform specific actions
+        if (Keyboard.isKeyDown(Key.B) && !keyLocker.isKeyLocked(Key.B)) {
+            keyLocker.lockKey(Key.B);
+        }
+        else if (Keyboard.isKeyDown(Key.B) && keyLocker.isKeyLocked(Key.B)) {
+            keyLocker.unlockKey(Key.B);
+        }
+        if (!keyLocker.isKeyLocked(Key.B)) {
+            playLevelScreenState = PlayLevelScreenState.BATTLING;
+        } 
         switch (playLevelScreenState) {
             // if level is "running" update player and map to keep game logic for the platformer level going
             case RUNNING:
@@ -65,12 +85,20 @@ public class PlayLevelScreen extends Screen {
             case LEVEL_COMPLETED:
                 winScreen.update();
                 break;
+            case BATTLING:
+                battleScreen.initialize();
+                battleScreen.update();
+                break;
         }
 
         // if flag is set at any point during gameplay, game is "won"
-        if (map.getFlagManager().isFlagSet("hasFoundBall")) {
+        if (map.getFlagManager().isFlagSet("hasFoundBall") || map.getFlagManager().isFlagSet("hasFoughtNPC")) {
             playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
         }
+    }
+
+    public void stopBattle() {
+        playLevelScreenState = PlayLevelScreenState.RUNNING;
     }
 
     public void draw(GraphicsHandler graphicsHandler) {
@@ -82,6 +110,9 @@ public class PlayLevelScreen extends Screen {
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);
                 break;
+            case BATTLING:
+                battleScreen.draw(graphicsHandler);
+                break;
         }
     }
 
@@ -89,7 +120,10 @@ public class PlayLevelScreen extends Screen {
         return playLevelScreenState;
     }
 
-
+    public void finish() {
+        flagManager.setFlag("hasFoughtNPC");
+    }
+     
     public void resetLevel() {
         initialize();
     }
@@ -100,6 +134,6 @@ public class PlayLevelScreen extends Screen {
 
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
-        RUNNING, LEVEL_COMPLETED
+        RUNNING, LEVEL_COMPLETED, BATTLING
     }
 }
