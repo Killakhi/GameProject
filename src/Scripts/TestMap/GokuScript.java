@@ -18,9 +18,9 @@ public class GokuScript extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToWalrus", false));
+                addRequirement(new FlagRequirement("hasTalkedToGoku", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("I am a ghost");
+                    addText("There are plenty of great foods here at this festival!");
                     addText("Press B to battle");
                     
                 }});
