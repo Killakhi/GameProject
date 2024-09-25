@@ -301,9 +301,7 @@ public class GameObject extends AnimatedSprite {
 			healthBar.draw(
 				graphicsHandler, 
 				Math.round(getCalibratedXLocation()) - 100,
-				Math.round(getCalibratedYLocation()) - 50,
-				200,
-				25
+				Math.round(getCalibratedYLocation()) - 50
 			);
 		}
 
