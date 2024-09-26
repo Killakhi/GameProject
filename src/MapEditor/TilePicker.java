@@ -6,8 +6,6 @@ import Level.Map;
 import Level.MapTile;
 import Level.Tileset;
 import Utils.Colors;
-
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -15,14 +13,15 @@ import java.awt.event.MouseMotionAdapter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import javax.swing.*;
 
 public class TilePicker extends JPanel {
 
     private Tileset tileset;
-    private GraphicsHandler graphicsHandler = new GraphicsHandler();
-    private HashMap<Integer, MapTile> mapTiles = new HashMap<>();
+    private final GraphicsHandler graphicsHandler = new GraphicsHandler();
+    private final HashMap<Integer, MapTile> mapTiles = new HashMap<>();
     private int selectedTileIndex = 0;
-    private SelectedTileIndexHolder selectedTileIndexHolder;
+    private final SelectedTileIndexHolder selectedTileIndexHolder;
 
     public TilePicker(SelectedTileIndexHolder selectedTileIndexHolder) {
         setBackground(Colors.MAGENTA);
@@ -60,7 +59,8 @@ public class TilePicker extends JPanel {
         }
         setPreferredSize(new Dimension(Math.max(144, width * tileset.getScaledSpriteWidth()), Math.max(391, height * tileset.getScaledSpriteHeight() + (6 * height))));
 
-        Integer[] tileKeys = mapTileBuilders.keySet().toArray(new Integer[mapTileBuilders.keySet().size()]);
+        int size = mapTileBuilders.keySet().size();
+        Integer[] tileKeys = mapTileBuilders.keySet().toArray(new Integer[size]);
         Arrays.sort(tileKeys);
         int currentKeyIndex = 0;
         outerLoop: for (int i = 0; i < height; i++) {
@@ -109,10 +109,10 @@ public class TilePicker extends JPanel {
     }
 
     protected void tileSelected(Point clickedPoint) {
-        int selectedTileIndex = getClickedTileIndex(clickedPoint);
-        if (selectedTileIndex >= 0) {
-            this.selectedTileIndex = selectedTileIndex;
-            selectedTileIndexHolder.setSelectedTileIndex(selectedTileIndex);
+        int selectedTileIndexTemp = getClickedTileIndex(clickedPoint);
+        if (selectedTileIndexTemp >= 0) {
+            this.selectedTileIndex = selectedTileIndexTemp;
+            selectedTileIndexHolder.setSelectedTileIndex(selectedTileIndexTemp);
             repaint();
         }
     }
