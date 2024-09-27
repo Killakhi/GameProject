@@ -136,11 +136,13 @@ public abstract class Player extends GameObject {
             moveAmountY -= walkSpeed;
             currentWalkingYDirection = Direction.UP;
             lastWalkingYDirection = Direction.UP;
+            facingDirection = Direction.UP;
         }
         else if (Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
             moveAmountY += walkSpeed;
             currentWalkingYDirection = Direction.DOWN;
             lastWalkingYDirection = Direction.DOWN;
+            facingDirection = Direction.DOWN;
         }
         else {
             currentWalkingYDirection = Direction.NONE;
@@ -174,7 +176,23 @@ public abstract class Player extends GameObject {
         }
         else if (playerState == PlayerState.WALKING) {
             // sets animation to a WALK animation based on which way player is facing
-            this.currentAnimationName = facingDirection == Direction.RIGHT ? "WALK_RIGHT" : "WALK_LEFT";
+            switch (facingDirection) {
+                case DOWN:
+                    this.currentAnimationName = "WALK_DOWN";
+                    break;
+                case LEFT:
+                    this.currentAnimationName = "WALK_LEFT";
+                    break;
+                case RIGHT:
+                    this.currentAnimationName = "WALK_RIGHT";
+                    break;
+                case UP:
+                    this.currentAnimationName = "WALK_UP";
+                    break;
+                case NONE:
+                    this.currentAnimationName = "WALK_DOWN";
+                    break;
+            }
         }
     }
 
