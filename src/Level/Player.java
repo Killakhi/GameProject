@@ -1,8 +1,5 @@
 package Level;
 
-import java.awt.Color;
-
-import Engine.GraphicsHandler;
 import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
@@ -29,6 +26,7 @@ public abstract class Player extends GameObject {
     protected PlayerState playerState;
     protected PlayerState previousPlayerState;
     protected Direction facingDirection;
+    protected Direction upDown;
     protected Direction lastMovementDirection;
 
     // define keys
@@ -45,6 +43,8 @@ public abstract class Player extends GameObject {
         super(spriteSheet, x, y, startingAnimationName);
         facingDirection = Direction.RIGHT;
         playerState = PlayerState.STANDING;
+        upDown = Direction.DOWN;
+        
         previousPlayerState = playerState;
         this.affectedByTriggers = true;
     }
@@ -103,6 +103,9 @@ public abstract class Player extends GameObject {
         }
     }
 
+    
+
+
     // player WALKING state logic
     protected void playerWalking() {
         if (!keyLocker.isKeyLocked(INTERACT_KEY) && Keyboard.isKeyDown(INTERACT_KEY)) {
@@ -142,6 +145,7 @@ public abstract class Player extends GameObject {
         else {
             currentWalkingYDirection = Direction.NONE;
         }
+
 
         if ((currentWalkingXDirection == Direction.RIGHT || currentWalkingXDirection == Direction.LEFT) && currentWalkingYDirection == Direction.NONE) {
             lastWalkingYDirection = Direction.NONE;
@@ -233,6 +237,7 @@ public abstract class Player extends GameObject {
         else if (direction == Direction.LEFT) {
             this.currentAnimationName = "STAND_LEFT";
         }
+        
     }
 
     // used by other files or scripts to force player to walk
@@ -245,11 +250,14 @@ public abstract class Player extends GameObject {
         else if (direction == Direction.LEFT) {
             this.currentAnimationName = "WALK_LEFT";
         }
-        if (direction == Direction.UP) {
-            moveY(-speed);
+
+       else if (direction == Direction.UP) {
+            this.currentAnimationName = "WALK_UP";
+            moveY(speed);
         }
         else if (direction == Direction.DOWN) {
-            moveY(speed);
+            this.currentAnimationName = "WALK_DOWN";
+            moveY(-speed);
         }
         else if (direction == Direction.LEFT) {
             moveX(-speed);
@@ -257,6 +265,15 @@ public abstract class Player extends GameObject {
         else if (direction == Direction.RIGHT) {
             moveX(speed);
         }
+
+    /* 
+        else if (direction == Direction.DOWN) {
+            moveY(-speed);
+        }
+        else if (direction == Direction.UP) {
+            moveY(speed);
+        }
+            */
     }
 
     // Uncomment this to have game draw player's bounds to make it easier to visualize
