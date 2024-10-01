@@ -1,8 +1,11 @@
 package GameObject;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.image.BufferedImage;
 
 import Engine.GraphicsHandler;
+import Engine.ImageLoader;
 /*
  * This class contains health logic - things that have an HP have one of these attached.
  * Things that don't have health have their HealthBar set to null in their GameObject.
@@ -61,14 +64,46 @@ public class HealthBar {
         this.visible = visible;
     }
 
-    public void draw(GraphicsHandler graphicsHandler, int x, int y, int width, int height) {
+    protected static SpriteSheet heartSpriteSheet = getHeartSpriteSheet();
+
+    protected static SpriteSheet getHeartSpriteSheet() {
+        BufferedImage image = ImageLoader.load("Hearts.png");
+
+        return new SpriteSheet(image, 607, 512);
+    }
+
+    protected Color getHealthColor() {
+        float scalar = Math.max(0.0f, Math.min(1.0f, this.currentHealth * 1.0f / this.maxHealth));
+
+        float[] lowColor = Color.RED.getRGBColorComponents(null);
+        float[] hiColor = Color.GREEN.getRGBColorComponents(null);
+
+        // linearly interpolate the values
+
+        return new Color(
+            lowColor[0] + scalar * (hiColor[0] - lowColor[0]),
+            lowColor[1] + scalar * (hiColor[1] - lowColor[1]),
+            lowColor[2] + scalar * (hiColor[2] - lowColor[2])
+        );
+    }
+
+    public void draw(GraphicsHandler graphicsHandler, int x, int y) {
         if (!this.visible) return;
 
-        float percentageLeft = this.currentHealth * 1.0f / this.maxHealth;
+        // evenly change the heart depending on which third of the health region we are in
 
-        int aliveWidth = Math.round(percentageLeft * width);
+        float ratio = this.currentHealth * 1.0f / this.maxHealth;
+        int column;
 
-        graphicsHandler.drawFilledRectangle(x, y, width, height, Color.RED);
-        graphicsHandler.drawFilledRectangle(x, y, aliveWidth, height, Color.GREEN);
+        if (ratio > 0.67f) {
+            column = 0;
+        } else if (ratio > 0.33f) {
+            column = 1;
+        } else {
+            column = 2;
+        }
+
+        graphicsHandler.drawImage(heartSpriteSheet.getSubImage(0, column), x, y, 19 * 3, 16 * 3);
+        graphicsHandler.drawStringWithOutline(String.valueOf(this.currentHealth), x + 80, y + 30, Font.decode("Monospaced 40"), this.getHealthColor(), Color.BLACK, 1.0f);
     }
 }

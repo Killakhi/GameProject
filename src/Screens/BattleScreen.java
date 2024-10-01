@@ -24,8 +24,8 @@ public class BattleScreen extends Screen {
 
     @Override
     public void initialize() {
-        battleDescription = new SpriteFont("Welcome to battle!", 150, 239, "Arial", 30, Color.white);
-        instructions = new SpriteFont("Press B to go back to the game", 120, 279,"Arial", 20, Color.white);
+        battleDescription = new SpriteFont("Welcome to the placeholder battle!", 170, 239, "Arial", 30, Color.white);
+        instructions = new SpriteFont("Press B to go back to the game", 240, 279,"Arial", 20, Color.white);
         keyLocker.lockKey(Key.SPACE);
         keyLocker.lockKey(Key.UP);
         keyLocker.lockKey(Key.DOWN);
