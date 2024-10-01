@@ -5,6 +5,7 @@ import Level.*;
 import NPCs.Bug;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
+import NPCs.Goku;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.*;
 import Tilesets.CommonTileset;
@@ -45,6 +46,12 @@ public class TestMap extends Map {
         Bug bug = new Bug(3, getMapTile(7, 12).getLocation().subtractX(20));
         bug.setInteractScript(new BugScript());
         npcs.add(bug);
+
+        Goku goku = new Goku(4, getMapTile(10, 10).getLocation().subtractY(40));
+        goku.setInteractScript(new GokuScript());
+        npcs.add(goku);
+
+        
 
         return npcs;
     }

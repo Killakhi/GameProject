@@ -1,8 +1,5 @@
 package Level;
 
-import java.awt.Color;
-
-import Engine.GraphicsHandler;
 import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
@@ -29,6 +26,7 @@ public abstract class Player extends GameObject {
     protected PlayerState playerState;
     protected PlayerState previousPlayerState;
     protected Direction facingDirection;
+    protected Direction upDown;
     protected Direction lastMovementDirection;
 
     // define keys
@@ -45,6 +43,8 @@ public abstract class Player extends GameObject {
         super(spriteSheet, x, y, startingAnimationName);
         facingDirection = Direction.RIGHT;
         playerState = PlayerState.STANDING;
+        upDown = Direction.DOWN;
+        
         previousPlayerState = playerState;
         this.affectedByTriggers = true;
     }
@@ -103,6 +103,9 @@ public abstract class Player extends GameObject {
         }
     }
 
+    
+
+
     // player WALKING state logic
     protected void playerWalking() {
         if (!keyLocker.isKeyLocked(INTERACT_KEY) && Keyboard.isKeyDown(INTERACT_KEY)) {
@@ -133,15 +136,18 @@ public abstract class Player extends GameObject {
             moveAmountY -= walkSpeed;
             currentWalkingYDirection = Direction.UP;
             lastWalkingYDirection = Direction.UP;
+            facingDirection = Direction.UP;
         }
         else if (Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
             moveAmountY += walkSpeed;
             currentWalkingYDirection = Direction.DOWN;
             lastWalkingYDirection = Direction.DOWN;
+            facingDirection = Direction.DOWN;
         }
         else {
             currentWalkingYDirection = Direction.NONE;
         }
+
 
         if ((currentWalkingXDirection == Direction.RIGHT || currentWalkingXDirection == Direction.LEFT) && currentWalkingYDirection == Direction.NONE) {
             lastWalkingYDirection = Direction.NONE;
@@ -170,7 +176,23 @@ public abstract class Player extends GameObject {
         }
         else if (playerState == PlayerState.WALKING) {
             // sets animation to a WALK animation based on which way player is facing
-            this.currentAnimationName = facingDirection == Direction.RIGHT ? "WALK_RIGHT" : "WALK_LEFT";
+            switch (facingDirection) {
+                case DOWN:
+                    this.currentAnimationName = "WALK_DOWN";
+                    break;
+                case LEFT:
+                    this.currentAnimationName = "WALK_LEFT";
+                    break;
+                case RIGHT:
+                    this.currentAnimationName = "WALK_RIGHT";
+                    break;
+                case UP:
+                    this.currentAnimationName = "WALK_UP";
+                    break;
+                case NONE:
+                    this.currentAnimationName = "WALK_DOWN";
+                    break;
+            }
         }
     }
 
@@ -233,6 +255,7 @@ public abstract class Player extends GameObject {
         else if (direction == Direction.LEFT) {
             this.currentAnimationName = "STAND_LEFT";
         }
+        
     }
 
     // used by other files or scripts to force player to walk
@@ -245,11 +268,14 @@ public abstract class Player extends GameObject {
         else if (direction == Direction.LEFT) {
             this.currentAnimationName = "WALK_LEFT";
         }
-        if (direction == Direction.UP) {
-            moveY(-speed);
+
+       else if (direction == Direction.UP) {
+            this.currentAnimationName = "WALK_UP";
+            moveY(speed);
         }
         else if (direction == Direction.DOWN) {
-            moveY(speed);
+            this.currentAnimationName = "WALK_DOWN";
+            moveY(-speed);
         }
         else if (direction == Direction.LEFT) {
             moveX(-speed);
@@ -257,6 +283,15 @@ public abstract class Player extends GameObject {
         else if (direction == Direction.RIGHT) {
             moveX(speed);
         }
+
+    /* 
+        else if (direction == Direction.DOWN) {
+            moveY(-speed);
+        }
+        else if (direction == Direction.UP) {
+            moveY(speed);
+        }
+            */
     }
 
     // Uncomment this to have game draw player's bounds to make it easier to visualize
