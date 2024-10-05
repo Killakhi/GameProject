@@ -1,5 +1,6 @@
 package Maps;
 
+import EnhancedMapTiles.Coin;
 import EnhancedMapTiles.PushableRock;
 import Level.*;
 import NPCs.Bug;
@@ -26,6 +27,12 @@ public class TestMap extends Map {
 
         PushableRock pushableRock = new PushableRock(getMapTile(2, 7).getLocation());
         enhancedMapTiles.add(pushableRock);
+
+        Coin coin1 = new Coin(getMapTile(4, 7).getLocation());
+        enhancedMapTiles.add(coin1);
+
+        Coin coin2 = new Coin(getMapTile(7, 9).getLocation());
+        enhancedMapTiles.add(coin2);
 
         return enhancedMapTiles;
     }
