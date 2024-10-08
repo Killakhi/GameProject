@@ -7,6 +7,7 @@ import Engine.Keyboard;
 import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
+import GameObject.Money;
 import Level.*;
 import Maps.TestMap;
 import Players.Cat;
@@ -120,6 +121,8 @@ public class PlayLevelScreen extends Screen {
                 battleScreen.draw(graphicsHandler);
                 break;
         }
+
+        Money.INSTANCE.draw(graphicsHandler);
     }
 
     public PlayLevelScreenState getPlayLevelScreenState() {
