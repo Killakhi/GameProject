@@ -3,6 +3,7 @@ package Screens;
 import Engine.*;
 import Game.ScreenCoordinator;
 import Level.FlagManager;
+import GameObject.HealthBar;
 import SpriteFont.SpriteFont;
 import java.awt.*;
 
@@ -16,6 +17,7 @@ public class BattleScreen extends Screen {
     protected SpriteFont intro;
     protected SpriteFont battle;
     protected SpriteFont attacks;
+    protected HealthBar playerHealth = new HealthBar(100, 100);
     protected KeyLocker keyLocker = new KeyLocker();
     protected int keyPressTimer;
     protected PlayLevelScreen playLevelScreen;
@@ -102,6 +104,15 @@ public class BattleScreen extends Screen {
             flagManager.unsetFlag("Attacking");
         }
 
+        // if up or down is pressed, the health goes up or down
+        if (Keyboard.isKeyDown(Key.UP)) {
+            //Code for the health system
+            this.playerHealth.heal(1);
+        } else if (Keyboard.isKeyDown(Key.DOWN)) {
+            //Code for the health system
+            this.playerHealth.damage(1);
+        }
+
     }
     public void draw(GraphicsHandler graphicsHandler) {
         graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
@@ -113,5 +124,7 @@ public class BattleScreen extends Screen {
         }
         physicalAttack.draw(graphicsHandler);
         magicAttack.draw(graphicsHandler);
+        this.playerHealth.setVisible(true);
+        this.playerHealth.draw(graphicsHandler, 30, 30);
     }
 }
