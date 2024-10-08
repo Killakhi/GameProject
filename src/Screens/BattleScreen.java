@@ -38,7 +38,6 @@ public class BattleScreen extends Screen {
         flagManager.addFlag("Attacking", false);
         physicalAttack = new SpriteFont("Physical Attack                                     " , 90, 500, "Arial", 30, Color.white );
         magicAttack = new SpriteFont("                                       Magic Attack               " , 90, 500, "Arial", 30, Color.white );
-        //battleOptions = new SpriteFont("Physical Attack                      Magic Attack               " , 90, 500, "Arial", 30, Color.white );
         keyLocker.lockKey(Key.SPACE);
         keyLocker.lockKey(Key.B);
         keyLocker.lockKey(Key.UP);
