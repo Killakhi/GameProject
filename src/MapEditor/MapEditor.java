@@ -5,4 +5,4 @@ public class MapEditor {
         EditorWindow jcatch = new EditorWindow();
         System.out.println(jcatch);
     }
-}
+} 
