@@ -1,9 +1,9 @@
 package Scripts.TestMap;
 
-import java.util.ArrayList;
-
 import Level.Script;
 import ScriptActions.*;
+import Utils.Visibility;
+import java.util.ArrayList;
 
 // script for talking to bug npc
 // checkout the documentation website for a detailed guide on how this script works
@@ -25,6 +25,7 @@ public class BugScript extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("hasTalkedToBug", false));
                 addRequirement(new CustomRequirement() {
                     @Override
                     public boolean isRequirementMet() {
@@ -37,6 +38,9 @@ public class BugScript extends Script {
                     addText("I knew you were a cool cat!");
                     addText("I'm going to let you in on a little secret...\nYou can push some rocks out of the way.");
                 }});
+
+                addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
+                addScriptAction(new ChangeFlagScriptAction("hasTalkedToBug", true));
             }});
 
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
@@ -49,6 +53,8 @@ public class BugScript extends Script {
                 });
                 
                 addScriptAction(new TextboxScriptAction("Oh...uh...awkward..."));
+                addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
+                addScriptAction(new ChangeFlagScriptAction("hasTalkedToBug", true));
             }});
         }});
 

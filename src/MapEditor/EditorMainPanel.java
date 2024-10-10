@@ -1,11 +1,11 @@
 package MapEditor;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class EditorMainPanel extends JPanel {
-    private EditorControlPanel editorControlPanel;
-    private MapBuilder mapBuilder;
+    private final EditorControlPanel editorControlPanel;
+    private final MapBuilder mapBuilder;
 
     public EditorMainPanel(JFrame parent) {
         setLayout(new BorderLayout());

@@ -3,14 +3,10 @@ package Maps;
 import EnhancedMapTiles.Coin;
 import EnhancedMapTiles.PushableRock;
 import Level.*;
-import NPCs.Bug;
-import NPCs.Dinosaur;
-import NPCs.Walrus;
-import NPCs.Goku;
+import NPCs.*;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.*;
 import Tilesets.CommonTileset;
-
 import java.util.ArrayList;
 
 // Represents a test map to be used in a level
@@ -58,6 +54,18 @@ public class TestMap extends Map {
         goku.setInteractScript(new GokuScript());
         npcs.add(goku);
 
+        Bat bat = new Bat(1, getMapTile(21, 20).getLocation().subtractY(40));
+        bat.setInteractScript(new BatScript());
+        npcs.add(bat);
+
+        Sword sword = new Sword(1, getMapTile(14, 13).getLocation().subtractY(40));
+        sword.setInteractScript(new SwordScript());
+        npcs.add(sword);
+
+        Wand wand = new Wand(1, getMapTile(6, 19).getLocation().subtractY(40));
+        wand.setInteractScript(new WandScript());
+        npcs.add(wand);
+
         
 
         return npcs;
@@ -79,6 +87,12 @@ public class TestMap extends Map {
         getMapTile(7, 26).setInteractScript(new SimpleTextScript("Walrus's house"));
 
         getMapTile(20, 4).setInteractScript(new SimpleTextScript("Dino's house"));
+
+        getMapTile(7, 28).setInteractScript(new SimpleTextScript("Bat's house"));
+
+        getMapTile(13, 28).setInteractScript(new SimpleTextScript("Sword's house"));
+        
+        getMapTile(18, 28).setInteractScript(new SimpleTextScript("Wand's house"));
 
         getMapTile(2, 6).setInteractScript(new TreeScript());
     }

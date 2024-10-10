@@ -1,9 +1,9 @@
 package Scripts.TestMap;
 
-import java.util.ArrayList;
-
 import Level.Script;
 import ScriptActions.*;
+import Utils.Visibility;
+import java.util.ArrayList;
 
 // script for talking to new Custom npc
 // checkout the documentation website for a detailed guide on how this script works
@@ -21,6 +21,7 @@ public class GokuScript extends Script {
                 addRequirement(new FlagRequirement("hasTalkedToGoku", false));
                 addScriptAction(new TextboxScriptAction() {{
                     addText("There are plenty of great foods here at this festival!");
+                    addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
                     addText("Press B to battle");
                     
                 }});

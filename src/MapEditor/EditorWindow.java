@@ -1,11 +1,11 @@
 package MapEditor;
 
+import java.awt.Dimension;
 import javax.swing.*;
-import java.awt.*;
 
 public class EditorWindow {
-    private JFrame editorWindow;
-    private EditorMainPanel editorMainPanel;
+    private final JFrame editorWindow;
+    private final EditorMainPanel editorMainPanel;
 
     public EditorWindow() {
         editorWindow = new JFrame("Map Editor");

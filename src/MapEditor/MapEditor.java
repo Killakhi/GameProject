@@ -2,6 +2,7 @@ package MapEditor;
 
 public class MapEditor {
     public static void main(String[] args) {
-        new EditorWindow();
+        EditorWindow jcatch = new EditorWindow();
+        System.out.println(jcatch);
     }
 }

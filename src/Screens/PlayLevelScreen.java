@@ -12,7 +12,7 @@ import Level.*;
 import Maps.TestMap;
 import Players.Cat;
 import Utils.Direction;
-import Utils.Point;
+import java.util.ArrayList;
 
 // This class is for when the RPG game is actually being played
 public class PlayLevelScreen extends Screen {
@@ -25,6 +25,7 @@ public class PlayLevelScreen extends Screen {
     protected FlagManager flagManager;
     protected int keyPressTimer;
     protected KeyLocker keyLocker = new KeyLocker();
+    protected ArrayList<String> obtainableItems = new ArrayList<>();
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
@@ -36,6 +37,11 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasLostBall", false);
         flagManager.addFlag("hasTalkedToWalrus", false);
         flagManager.addFlag("hasTalkedToDinosaur", false);
+        flagManager.addFlag("hasTalkedToBat", false);
+        flagManager.addFlag("hasTalkedToBug", false);
+        flagManager.addFlag("hasTalkedToGoku", false);
+        flagManager.addFlag("hasTalkedToSword", false);
+        flagManager.addFlag("hasTalkedToWand", false);
         flagManager.addFlag("hasFoundBall", false);
         flagManager.addFlag("hasFoughtNPC", false);
 
@@ -93,6 +99,35 @@ public class PlayLevelScreen extends Screen {
             case BATTLING:
                 battleScreen.initialize();
                 break;
+        }
+
+        if (map.getFlagManager().isFlagSet("hasTalkedToWalrus") && !obtainableItems.contains("Walrus")) {
+            obtainableItems.add("Walrus");
+            System.out.println(obtainableItems);
+        }
+        if (map.getFlagManager().isFlagSet("hasTalkedToDinosaur") && !obtainableItems.contains("Dinosaur")) {
+            obtainableItems.add("Dinosaur");
+            System.out.println(obtainableItems);
+        }
+        if (map.getFlagManager().isFlagSet("hasTalkedToBat") && !obtainableItems.contains("Bat")) {
+            obtainableItems.add("Bat");
+            System.out.println(obtainableItems);
+        }
+        if (map.getFlagManager().isFlagSet("hasTalkedToBug") && !obtainableItems.contains("Bug")) {
+            obtainableItems.add("Bug");
+            System.out.println(obtainableItems);
+        }
+        if (map.getFlagManager().isFlagSet("hasTalkedToGoku") && !obtainableItems.contains("Ghost")) {
+            obtainableItems.add("Ghost");
+            System.out.println(obtainableItems);
+        }
+        if (map.getFlagManager().isFlagSet("hasTalkedToSword") && !obtainableItems.contains("Sword")) {
+            obtainableItems.add("Sword");
+            System.out.println(obtainableItems);
+        }
+        if (map.getFlagManager().isFlagSet("hasTalkedToWand") && !obtainableItems.contains("Wand")) {
+            obtainableItems.add("Wand");
+            System.out.println(obtainableItems);
         }
 
         // if flag is set at any point during gameplay, game is "won"
