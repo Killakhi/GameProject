@@ -14,7 +14,7 @@ public class TestMap extends Map {
 
     public TestMap() {
         super("test_map.txt", new CommonTileset());
-        this.playerStartPosition = getMapTile(17, 20).getLocation();
+        this.playerStartPosition = getMapTile(5, 3).getLocation();
     }
 
     @Override
@@ -37,7 +37,7 @@ public class TestMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        Walrus walrus = new Walrus(1, getMapTile(4, 28).getLocation().subtractY(40));
+        Walrus walrus = new Walrus(1, getMapTile(4, 19).getLocation().subtractY(40));
         walrus.setInteractScript(new WalrusScript());
         npcs.add(walrus);
 
@@ -54,7 +54,7 @@ public class TestMap extends Map {
         goku.setInteractScript(new GokuScript());
         npcs.add(goku);
 
-        Bat bat = new Bat(1, getMapTile(21, 20).getLocation().subtractY(40));
+        Bat bat = new Bat(1, getMapTile(11, 15).getLocation().subtractY(40));
         bat.setInteractScript(new BatScript());
         npcs.add(bat);
 
@@ -82,17 +82,17 @@ public class TestMap extends Map {
 
     @Override
     public void loadScripts() {
-        getMapTile(21, 19).setInteractScript(new SimpleTextScript("Cat's house"));
+        getMapTile(15, 16).setInteractScript(new SimpleTextScript("Cat's house"));
 
-        getMapTile(7, 26).setInteractScript(new SimpleTextScript("Walrus's house"));
+        getMapTile(7, 15).setInteractScript(new SimpleTextScript("Walrus's house"));
 
-        getMapTile(20, 4).setInteractScript(new SimpleTextScript("Dino's house"));
+        getMapTile(9, 5).setInteractScript(new SimpleTextScript("Dino's house"));
 
-        getMapTile(7, 28).setInteractScript(new SimpleTextScript("Bat's house"));
+        getMapTile(7, 18).setInteractScript(new SimpleTextScript("Bat's house"));
 
-        getMapTile(13, 28).setInteractScript(new SimpleTextScript("Sword's house"));
+        getMapTile(13, 9).setInteractScript(new SimpleTextScript("Sword's house"));
         
-        getMapTile(18, 28).setInteractScript(new SimpleTextScript("Wand's house"));
+        getMapTile(10, 10).setInteractScript(new SimpleTextScript("Wand's house"));
 
         getMapTile(2, 6).setInteractScript(new TreeScript());
     }
