@@ -2,17 +2,26 @@ package Screens;
 
 import Engine.*;
 import Game.ScreenCoordinator;
+import Level.FlagManager;
+import GameObject.HealthBar;
 import SpriteFont.SpriteFont;
 import java.awt.*;
 
 // This class is for the win level screen
 public class BattleScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
-    protected SpriteFont battleDescription;
-    protected SpriteFont instructions;
+    protected int currentMenuItemHovered = 0; // current menu item being "hovered" over
+    protected SpriteFont magicAttack;
+    protected SpriteFont physicalAttack;
     protected SpriteFont health;
+    protected SpriteFont intro;
+    protected SpriteFont battle;
+    protected SpriteFont attacks;
+    protected HealthBar playerHealth = new HealthBar(100, 100);
     protected KeyLocker keyLocker = new KeyLocker();
+    protected int keyPressTimer;
     protected PlayLevelScreen playLevelScreen;
+    protected FlagManager flagManager;
 
     public BattleScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
@@ -24,9 +33,15 @@ public class BattleScreen extends Screen {
 
     @Override
     public void initialize() {
-        battleDescription = new SpriteFont("Welcome to battle!", 150, 239, "Arial", 30, Color.white);
-        instructions = new SpriteFont("Press B to go back to the game or Up and down to change health", 120, 279,"Arial", 20, Color.white);
+        keyPressTimer = 0;
+        flagManager = new FlagManager();
+        intro = new SpriteFont("A nefarious ghost approaches!", 200, 50, "Arial", 30, Color.white);
+        battle = new SpriteFont("You hit for some damage!", 240, 279,"Arial", 20, Color.white);
+        flagManager.addFlag("Attacking", false);
+        physicalAttack = new SpriteFont("Physical Attack                                     " , 90, 500, "Arial", 30, Color.white );
+        magicAttack = new SpriteFont("                                       Magic Attack               " , 90, 500, "Arial", 30, Color.white );
         keyLocker.lockKey(Key.SPACE);
+        keyLocker.lockKey(Key.B);
         keyLocker.lockKey(Key.UP);
         keyLocker.lockKey(Key.DOWN);
         update();
@@ -34,27 +49,82 @@ public class BattleScreen extends Screen {
 
     @Override
     public void update() {
-        if (Keyboard.isKeyDown(Key.B)) {
+        if (Keyboard.isKeyDown(Key.B) && keyPressTimer == 0) {
             playLevelScreen.stopBattle();
+            keyPressTimer = 60;
         }
-        if (Keyboard.isKeyUp(Key.UP)) {
-            keyLocker.unlockKey(Key.UP);
+        if(Keyboard.isKeyDown(Key.LEFT)){
+            keyLocker.unlockKey(Key.LEFT);
         }
-        if (Keyboard.isKeyUp(Key.DOWN)) {
-            keyLocker.unlockKey(Key.DOWN);
+        if(Keyboard.isKeyDown(Key.RIGHT)){
+            keyLocker.unlockKey(Key.RIGHT);
+        }
+        // if left or right is pressed, change menu item "hovered" over
+        if (Keyboard.isKeyDown(Key.LEFT) && keyPressTimer == 0) {
+            keyPressTimer = 60;
+            currentMenuItemHovered++;
+        } else if (Keyboard.isKeyDown(Key.RIGHT) && keyPressTimer == 0) {
+            keyPressTimer = 60;
+            currentMenuItemHovered--;
+        } else {
+            if (keyPressTimer > 0) {
+                keyPressTimer--;
+            }
+        }
+        
+        if (currentMenuItemHovered > 1) {
+            currentMenuItemHovered = 0;
+        } else if (currentMenuItemHovered < 0) {
+            currentMenuItemHovered = 1;
+        }
+
+        if (currentMenuItemHovered == 0) {
+            physicalAttack.setColor(new Color(255, 215, 0));
+        } else if (currentMenuItemHovered == 1) {
+            physicalAttack.setColor(new Color(49, 207, 240));
+           
+        }
+        if (currentMenuItemHovered == 0) {
+            magicAttack.setColor(new Color(49, 207, 240));
+        } else if (currentMenuItemHovered == 1) {
+            magicAttack.setColor(new Color(255, 215, 0));
+           
+        }
+        
+        // 
+        if (Keyboard.isKeyDown(Key.SPACE) && currentMenuItemHovered == 0) {
+            flagManager.setFlag("Attacking");
+            battle.setText("You hit for 30 melee damage!");
+        }
+        else if (Keyboard.isKeyDown(Key.SPACE) && currentMenuItemHovered == 1) {
+            flagManager.setFlag("Attacking");
+            battle.setText("You hit for 40 magic damage!");
+        }
+        else {
+            flagManager.unsetFlag("Attacking");
         }
 
         // if up or down is pressed, the health goes up or down
-        if (Keyboard.isKeyDown(Key.UP) && !keyLocker.isKeyLocked(Key.UP)) {
+        if (Keyboard.isKeyDown(Key.UP)) {
             //Code for the health system
-        } else if (Keyboard.isKeyDown(Key.UP) && !keyLocker.isKeyLocked(Key.UP)) {
+            this.playerHealth.heal(1);
+        } else if (Keyboard.isKeyDown(Key.DOWN)) {
             //Code for the health system
+            this.playerHealth.damage(1);
         }
-    }
 
+    }
     public void draw(GraphicsHandler graphicsHandler) {
         graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
-        battleDescription.draw(graphicsHandler);
-        instructions.draw(graphicsHandler);
+        if(flagManager.isFlagSet("Attacking")) {
+            battle.draw(graphicsHandler);
+        }
+        else {
+            intro.draw(graphicsHandler);
+        }
+        physicalAttack.draw(graphicsHandler);
+        magicAttack.draw(graphicsHandler);
+        this.playerHealth.setVisible(true);
+        this.playerHealth.draw(graphicsHandler, 30, 30);
     }
 }

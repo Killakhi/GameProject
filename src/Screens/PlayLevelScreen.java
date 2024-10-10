@@ -7,6 +7,7 @@ import Engine.Keyboard;
 import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
+import GameObject.Money;
 import Level.*;
 import Maps.TestMap;
 import Players.Cat;
@@ -22,6 +23,7 @@ public class PlayLevelScreen extends Screen {
     protected WinScreen winScreen;
     protected BattleScreen battleScreen;
     protected FlagManager flagManager;
+    protected int keyPressTimer;
     protected KeyLocker keyLocker = new KeyLocker();
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
@@ -62,15 +64,18 @@ public class PlayLevelScreen extends Screen {
 
         // add a keyLocker to track when the battle button is pressed
         keyLocker.lockKey(Key.B);
+        keyPressTimer = 0;
     }
 
     public void update() {
         // based on screen state, perform specific actions
-        if (Keyboard.isKeyDown(Key.B) && !keyLocker.isKeyLocked(Key.B)) {
+        if (Keyboard.isKeyDown(Key.B) && !keyLocker.isKeyLocked(Key.B) && keyPressTimer == 0) {
             keyLocker.lockKey(Key.B);
+            keyPressTimer = 20;
         }
-        else if (Keyboard.isKeyDown(Key.B) && keyLocker.isKeyLocked(Key.B)) {
+        else if (Keyboard.isKeyDown(Key.B) && keyLocker.isKeyLocked(Key.B) && keyPressTimer == 0) {
             keyLocker.unlockKey(Key.B);
+            keyPressTimer = 20;
         }
         if (!keyLocker.isKeyLocked(Key.B)) {
             playLevelScreenState = PlayLevelScreenState.BATTLING;
@@ -87,13 +92,15 @@ public class PlayLevelScreen extends Screen {
                 break;
             case BATTLING:
                 battleScreen.initialize();
-                battleScreen.update();
                 break;
         }
 
         // if flag is set at any point during gameplay, game is "won"
         if (map.getFlagManager().isFlagSet("hasFoundBall") || map.getFlagManager().isFlagSet("hasFoughtNPC")) {
             playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
+        }
+        if(keyPressTimer > 0) {
+            keyPressTimer--;
         }
     }
 
@@ -114,6 +121,8 @@ public class PlayLevelScreen extends Screen {
                 battleScreen.draw(graphicsHandler);
                 break;
         }
+
+        Money.INSTANCE.draw(graphicsHandler);
     }
 
     public PlayLevelScreenState getPlayLevelScreenState() {

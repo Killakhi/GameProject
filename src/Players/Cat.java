@@ -35,30 +35,30 @@ public class Cat extends Player {
             put("STAND_RIGHT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
                             .withScale(3)
-                            .withBounds(0, 0, 32, 36)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(0, 1), 14)
                             .withScale(3)
-                            .withBounds(0,0,32,36)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(0, 2), 14)
                             .withScale(3)
-                            .withBounds(0,0,32,36)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
             });
 
             put("STAND_LEFT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
                         .withScale(3)
-                        .withBounds(0, 0, 32, 36)
-                .build(),
+                        .withBounds(6, 12, 12, 7)
+                        .build(),
                 new FrameBuilder(spriteSheet.getSprite(0, 1), 14)
                         .withScale(3)
-                        .withBounds(0,0,32,36)
+                        .withBounds(6, 12, 12, 7)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(0, 2), 14)
                         .withScale(3)
-                        .withBounds(0,0,32,36)
+                        .withBounds(6, 12, 12, 7)
                         .build(),
             });
 
