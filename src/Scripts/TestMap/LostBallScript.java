@@ -1,9 +1,8 @@
 package Scripts.TestMap;
 
-import java.util.ArrayList;
-
 import Level.Script;
 import ScriptActions.*;
+import java.util.ArrayList;
 
 
 // trigger script at beginning of game to set that heavy emotional plot
