@@ -1,13 +1,12 @@
 package Level;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-
-import GameObject.Rectangle;
 import ScriptActions.ConditionalScriptAction;
 import ScriptActions.ConditionalScriptActionGroup;
 import ScriptActions.ScriptAction;
 import ScriptActions.ScriptActionOutputManager;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+
 
 // This class is a base class for all scripts in the game -- all scripts should extend from it
 // Scripts can be used to interact with map entities
@@ -56,7 +55,7 @@ public abstract class Script {
         // load script actions from subclass
         scriptActions = loadScriptActions();
 
-        // recursively iterate through all script actiohns and set the necessary properties on them
+        // recursively iterate through all script actions and set the necessary properties on them
         // the recursive part is needed due to conditionals having nested script actions, and those conditionals can have nested conditionals, etc.
         Queue<ScriptAction> scriptActionsToInitialize = new LinkedList<>();
         for (ScriptAction scriptAction : scriptActions) {

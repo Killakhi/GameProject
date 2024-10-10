@@ -5,9 +5,9 @@ import ScriptActions.*;
 import Utils.Visibility;
 import java.util.ArrayList;
 
-// script for talking to walrus npc
+// script for talking to Wand npc
 // checkout the documentation website for a detailed guide on how this script works
-public class WalrusScript extends Script {
+public class WandScript extends Script {
 
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
@@ -18,16 +18,13 @@ public class WalrusScript extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToWalrus", false));
+                addRequirement(new FlagRequirement("hasTalkedToWand", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("Hi Cat!");
-                    addText("...oh, you lost your ball?");
-                    addText("Hmmm...my walrus brain remembers seeing Dino with\nit last. Maybe you can check with him?");
+                    addText("You found a wand!");
                 }});
-                addScriptAction(new TextboxScriptAction("I sure love doing walrus things!"));
-                //walrus to disappear
+                addScriptAction(new ChangeFlagScriptAction("hasTalkedToWand", true));
+                //Wand to disappear
                 addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
-                addScriptAction(new ChangeFlagScriptAction("hasTalkedToWalrus", true));
             }});
         }});
 
