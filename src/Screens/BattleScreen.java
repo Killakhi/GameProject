@@ -40,25 +40,16 @@ public class BattleScreen extends Screen {
         flagManager.addFlag("Attacking", false);
         physicalAttack = new SpriteFont("Physical Attack                                     " , 90, 500, "Arial", 30, Color.white );
         magicAttack = new SpriteFont("                                       Magic Attack               " , 90, 500, "Arial", 30, Color.white );
-        keyLocker.lockKey(Key.SPACE);
-        keyLocker.lockKey(Key.B);
-        keyLocker.lockKey(Key.UP);
-        keyLocker.lockKey(Key.DOWN);
+        keyLocker.unlockKey(Key.SPACE);
+        keyLocker.unlockKey(Key.B);
+        keyLocker.unlockKey(Key.UP);
+        keyLocker.unlockKey(Key.DOWN);
         update();
     }
 
     @Override
     public void update() {
-        if (Keyboard.isKeyDown(Key.B) && keyPressTimer == 0) {
-            playLevelScreen.stopBattle();
-            keyPressTimer = 60;
-        }
-        if(Keyboard.isKeyDown(Key.LEFT)){
-            keyLocker.unlockKey(Key.LEFT);
-        }
-        if(Keyboard.isKeyDown(Key.RIGHT)){
-            keyLocker.unlockKey(Key.RIGHT);
-        }
+        
         // if left or right is pressed, change menu item "hovered" over
         if (Keyboard.isKeyDown(Key.LEFT) && keyPressTimer == 0) {
             keyPressTimer = 60;
@@ -66,7 +57,14 @@ public class BattleScreen extends Screen {
         } else if (Keyboard.isKeyDown(Key.RIGHT) && keyPressTimer == 0) {
             keyPressTimer = 60;
             currentMenuItemHovered--;
-        } else {
+        } else if (Keyboard.isKeyDown(Key.SPACE)){
+                keyLocker.lockKey(Key.SPACE);
+            keyPressTimer = 60;
+        } else if (Keyboard.isKeyDown(Key.B) && keyPressTimer == 0) {
+            playLevelScreen.stopBattle();
+            keyPressTimer = 60;
+        }
+         else { 
             if (keyPressTimer > 0) {
                 keyPressTimer--;
             }
@@ -90,13 +88,13 @@ public class BattleScreen extends Screen {
             magicAttack.setColor(new Color(255, 215, 0));
            
         }
-        
+        System.out.println(keyPressTimer);
         // 
-        if (Keyboard.isKeyDown(Key.SPACE) && currentMenuItemHovered == 0) {
+        if (keyLocker.isKeyLocked(Key.SPACE) && currentMenuItemHovered == 0) {
             flagManager.setFlag("Attacking");
             battle.setText("You hit for 30 melee damage!");
         }
-        else if (Keyboard.isKeyDown(Key.SPACE) && currentMenuItemHovered == 1) {
+        else if (keyLocker.isKeyLocked(Key.SPACE) && currentMenuItemHovered == 1) {
             flagManager.setFlag("Attacking");
             battle.setText("You hit for 40 magic damage!");
         }
