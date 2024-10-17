@@ -47,52 +47,121 @@ public class BattleScreen extends Screen {
         update();
     }
 
+    private enum BattleState {
+        CHOOSE_ATTACK, APPLY_PLAYER_DAMAGE, SHOW_PLAYER_DAMAGE, APPLY_ENEMY_DAMAGE, SHOW_ENEMY_DAMAGE
+    }
+    int hit = 0;
+    int damage = 0;
+    int timer = 0; 
+    BattleState currentBattleState = BattleState.CHOOSE_ATTACK;
     @Override
     public void update() {
-        
-        // if left or right is pressed, change menu item "hovered" over
-        if (Keyboard.isKeyDown(Key.LEFT) && keyPressTimer == 0) {
-            keyPressTimer = 60;
-            currentMenuItemHovered++;
-        } else if (Keyboard.isKeyDown(Key.RIGHT) && keyPressTimer == 0) {
-            keyPressTimer = 60;
-            currentMenuItemHovered--;
-        } else if (Keyboard.isKeyDown(Key.SPACE)){
+        if (currentBattleState == BattleState.CHOOSE_ATTACK) {
+            // if left or right is pressed, change menu item "hovered" over
+            if (Keyboard.isKeyDown(Key.LEFT) && keyPressTimer == 0) {
+                keyPressTimer = 60;
+                currentMenuItemHovered++;
+            } else if (Keyboard.isKeyDown(Key.RIGHT) && keyPressTimer == 0) {
+                keyPressTimer = 60;
+                currentMenuItemHovered--;
+            } else if (Keyboard.isKeyDown(Key.SPACE) && keyPressTimer == 0){
                 keyLocker.lockKey(Key.SPACE);
-            keyPressTimer = 60;
-        } else if (Keyboard.isKeyDown(Key.B) && keyPressTimer == 0) {
-            playLevelScreen.stopBattle();
-            keyPressTimer = 60;
-        }
-         else { 
-            if (keyPressTimer > 0) {
-                keyPressTimer--;
+                keyPressTimer = 60;
+                currentBattleState = BattleState.APPLY_PLAYER_DAMAGE;
+            }
+            else if (Keyboard.isKeyDown(Key.B) && keyPressTimer == 0) {
+                playLevelScreen.stopBattle();
+                keyPressTimer = 60;
+            }
+            else { 
+                if (keyPressTimer > 0) {
+                    keyPressTimer--;
+                }
+            }
+
+            if (currentMenuItemHovered > 1) {
+                currentMenuItemHovered = 0;
+            } else if (currentMenuItemHovered < 0) {
+                currentMenuItemHovered = 1;
+            }
+
+            if (currentMenuItemHovered == 0) {
+                physicalAttack.setColor(new Color(255, 215, 0));
+            } else if (currentMenuItemHovered == 1) {
+                physicalAttack.setColor(new Color(49, 207, 240));
+            
+            }
+            if (currentMenuItemHovered == 0) {
+                magicAttack.setColor(new Color(49, 207, 240));
+            } else if (currentMenuItemHovered == 1) {
+                magicAttack.setColor(new Color(255, 215, 0));
+            
             }
         }
-        
-        if (currentMenuItemHovered > 1) {
-            currentMenuItemHovered = 0;
-        } else if (currentMenuItemHovered < 0) {
-            currentMenuItemHovered = 1;
-        }
-
-        if (currentMenuItemHovered == 0) {
-            physicalAttack.setColor(new Color(255, 215, 0));
-        } else if (currentMenuItemHovered == 1) {
-            physicalAttack.setColor(new Color(49, 207, 240));
-           
-        }
-        if (currentMenuItemHovered == 0) {
-            magicAttack.setColor(new Color(49, 207, 240));
-        } else if (currentMenuItemHovered == 1) {
-            magicAttack.setColor(new Color(255, 215, 0));
-           
-        }
-        System.out.println(keyPressTimer);
-        // 
-        if (keyLocker.isKeyLocked(Key.SPACE) && currentMenuItemHovered == 0) {
+        else if (currentBattleState == BattleState.APPLY_PLAYER_DAMAGE) {
+            if(currentMenuItemHovered == 0) {
+                hit = ((int)(Math.random() * (40))) + 20 ;
+                battle.setText("You hit for " + hit + " melee damage!"); 
+            } else if(currentMenuItemHovered == 1) {
+                hit = ((int)(Math.random() * (10))) + 45 ;
+                battle.setText("You hit for " + hit + " magic damage!"); 
+            }
+                       
             flagManager.setFlag("Attacking");
-            battle.setText("You hit for 30 melee damage!");
+            currentBattleState = BattleState.SHOW_PLAYER_DAMAGE;
+        }
+        else if (currentBattleState == BattleState.SHOW_PLAYER_DAMAGE) {
+            if(currentMenuItemHovered == 0) {
+                battle.setText("You hit for " + hit + " melee damage!"); 
+            } else if(currentMenuItemHovered == 1) {
+                battle.setText("You hit for " + hit + " magic damage!"); 
+            }
+            flagManager.setFlag("Attacking");
+            timer++;
+            if(timer > 90) {
+                currentBattleState = BattleState.APPLY_ENEMY_DAMAGE;
+            }
+
+        }
+        else if (currentBattleState == BattleState.APPLY_ENEMY_DAMAGE) {
+            damage = ((int)(Math.random() * (10))) + 10;
+            battle.setText("You were hit for " + damage + " damage!");
+            flagManager.setFlag("Attacking");
+            currentBattleState = BattleState.SHOW_ENEMY_DAMAGE;
+
+        }
+        else if (currentBattleState == BattleState.SHOW_ENEMY_DAMAGE) {
+            battle.setText("You were hit for " + damage + " damage!");
+            flagManager.setFlag("Attacking");
+            timer--;
+            if(timer == 0) {
+                currentBattleState = BattleState.CHOOSE_ATTACK;
+                flagManager.unsetFlag("Attacking");
+                this.playerHealth.damage(damage);
+            }
+            
+        }
+        
+        
+        //
+        
+        /*if (keyLocker.isKeyLocked(Key.SPACE) && currentMenuItemHovered == 0) {
+            int hit = ((int)(Math.random() * (30))) + 20 ;
+            int damage = ((int)(Math.random() * (10))) + 10;
+            int animation = 20000;
+            battle.setText("You hit for " + hit + " melee damage!");
+            flagManager.setFlag("Attacking");
+            while(animation > 10000) {
+                animation--;
+                System.out.println(animation);
+            }
+            battle.setText("You were hit for " + damage + " damage!");
+            while(animation > 0) {
+                animation--;
+                System.out.println(animation);
+            } 
+            this.playerHealth.damage(damage);
+            keyLocker.unlockKey(Key.SPACE);
         }
         else if (keyLocker.isKeyLocked(Key.SPACE) && currentMenuItemHovered == 1) {
             flagManager.setFlag("Attacking");
@@ -100,7 +169,7 @@ public class BattleScreen extends Screen {
         }
         else {
             flagManager.unsetFlag("Attacking");
-        }
+        }*/
 
         // if up or down is pressed, the health goes up or down
         if (Keyboard.isKeyDown(Key.UP)) {
