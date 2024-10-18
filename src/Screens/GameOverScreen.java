@@ -1,6 +1,7 @@
 package Screens;
 
 import Engine.*;
+import Game.ScreenCoordinator;
 import SpriteFont.SpriteFont;
 import java.awt.*;
 
@@ -9,11 +10,17 @@ public class GameOverScreen extends Screen {
     protected SpriteFont winMessage;
     protected SpriteFont instructions;
     protected KeyLocker keyLocker = new KeyLocker();
-    protected BattleScreen battleScreen;
+    protected PlayLevelScreen playLevelScreen;
+    protected ScreenCoordinator screenCoordinator;
 
-    public GameOverScreen(BattleScreen battleScreen) {
-        this.battleScreen = battleScreen;
+    public GameOverScreen(ScreenCoordinator screenCoordinator) {
+        this.screenCoordinator = screenCoordinator;
         initialize();
+
+    }
+
+    public void addGameLevel(PlayLevelScreen playLevelScreen) {
+        this.playLevelScreen = playLevelScreen;
     }
 
     @Override
@@ -21,6 +28,7 @@ public class GameOverScreen extends Screen {
         winMessage = new SpriteFont("Game Over!", 350, 239, "Arial", 30, Color.red);
         instructions = new SpriteFont("Press Space to go back to the main menu", 120, 279,"Arial", 20, Color.white);
         keyLocker.lockKey(Key.SPACE);
+        System.out.println("It got here?");
     }
 
     @Override
@@ -34,13 +42,8 @@ public class GameOverScreen extends Screen {
 
         // if space is pressed, reset level. if escape is pressed, go back to main menu
         if (Keyboard.isKeyDown(Key.SPACE) && !keyLocker.isKeyLocked(Key.SPACE)) {
-            battleScreen.goBackToMenu();
+            playLevelScreen.goBackToMenu();
         } 
-       /*  
-        else if (Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)) {
-            battleScreen.goBackToMenu();
-        }
-        */
     }
 
     public void draw(GraphicsHandler graphicsHandler) {

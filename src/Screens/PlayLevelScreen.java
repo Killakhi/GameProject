@@ -11,7 +11,6 @@ import GameObject.Money;
 import Level.*;
 import Maps.TestMap;
 import Players.Cat;
-import Screens.PlayLevelScreen.PlayLevelScreenState;
 import Utils.Direction;
 import java.util.ArrayList;
 
@@ -68,7 +67,9 @@ public class PlayLevelScreen extends Screen {
 
         winScreen = new WinScreen(this);
         battleScreen = new BattleScreen(screenCoordinator);
+        gameOverScreen = new GameOverScreen(screenCoordinator);
         battleScreen.addGameLevel(this);
+        gameOverScreen.addGameLevel(this);
 
         // add a keyLocker to track when the battle button is pressed
         keyLocker.lockKey(Key.B);
@@ -77,22 +78,25 @@ public class PlayLevelScreen extends Screen {
 
     public void update() {
         // based on screen state, perform specific actions
-        if (Keyboard.isKeyDown(Key.B) && !keyLocker.isKeyLocked(Key.B) && keyPressTimer == 0) {
-            keyLocker.lockKey(Key.B);
-            keyPressTimer = 20;
-        }
-        else if (Keyboard.isKeyDown(Key.B) && keyLocker.isKeyLocked(Key.B) && keyPressTimer == 0) {
-            keyLocker.unlockKey(Key.B);
-            keyPressTimer = 20;
-        }
-        if (!keyLocker.isKeyLocked(Key.B)) {
-            playLevelScreenState = PlayLevelScreenState.BATTLING;
-        } 
+        
         switch (playLevelScreenState) {
             // if level is "running" update player and map to keep game logic for the platformer level going
             case RUNNING:
                 player.update();
                 map.update(player);
+
+                if (Keyboard.isKeyDown(Key.B) && !keyLocker.isKeyLocked(Key.B) && keyPressTimer == 0) {
+                    keyLocker.lockKey(Key.B);
+                    keyPressTimer = 20;
+                }
+                else if (Keyboard.isKeyDown(Key.B) && keyLocker.isKeyLocked(Key.B) && keyPressTimer == 0) {
+                    keyLocker.unlockKey(Key.B);
+                    keyPressTimer = 20;
+                }
+                if (!keyLocker.isKeyLocked(Key.B)) {
+                    playLevelScreenState = PlayLevelScreenState.BATTLING;
+                } 
+
                 break;
             // if level has been completed, bring up level cleared screen
             case LEVEL_COMPLETED:
@@ -102,7 +106,7 @@ public class PlayLevelScreen extends Screen {
                 battleScreen.initialize();
                 break;
             case GAME_OVER:
-                gameOverScreen.initialize();
+                gameOverScreen.update();
                 break;
         }
 
@@ -163,6 +167,9 @@ public class PlayLevelScreen extends Screen {
                 break;
             case BATTLING:
                 battleScreen.draw(graphicsHandler);
+                break;
+            case GAME_OVER:
+                gameOverScreen.draw(graphicsHandler);
                 break;
         }
 

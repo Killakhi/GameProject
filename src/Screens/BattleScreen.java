@@ -146,8 +146,10 @@ public class BattleScreen extends Screen {
                 currentBattleState = BattleState.CHOOSE_ATTACK;
                 flagManager.unsetFlag("Attacking");
                 this.playerHealth.damage(damage);
-                if(!this.playerHealth.isAlive()) {
-                    this.playLevelScreen.gameOver();
+                if(this.playerHealth.isDead()) {
+                    playLevelScreen.stopBattle();
+                    playLevelScreen.gameOver();
+                    
                 }
             }
             

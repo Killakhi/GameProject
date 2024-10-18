@@ -37,8 +37,8 @@ public class HealthBar {
         this.maxHealth = maxHealth;
     }
 
-    public boolean isAlive() {
-        return currentHealth > 0;
+    public boolean isDead() {
+        return currentHealth <= 0;
     }
 
     
