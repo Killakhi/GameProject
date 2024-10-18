@@ -3,14 +3,10 @@ package Maps;
 import EnhancedMapTiles.Coin;
 import EnhancedMapTiles.PushableRock;
 import Level.*;
-import NPCs.Bug;
-import NPCs.Dinosaur;
-import NPCs.Walrus;
-import NPCs.Goku;
+import NPCs.*;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.*;
 import Tilesets.CommonTileset;
-
 import java.util.ArrayList;
 
 // Represents a test map to be used in a level
@@ -18,7 +14,7 @@ public class TestMap extends Map {
 
     public TestMap() {
         super("test_map.txt", new CommonTileset());
-        this.playerStartPosition = getMapTile(17, 20).getLocation();
+        this.playerStartPosition = getMapTile(5, 3).getLocation();
     }
 
     @Override
@@ -41,7 +37,7 @@ public class TestMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        Walrus walrus = new Walrus(1, getMapTile(4, 28).getLocation().subtractY(40));
+        Walrus walrus = new Walrus(1, getMapTile(4, 19).getLocation().subtractY(40));
         walrus.setInteractScript(new WalrusScript());
         npcs.add(walrus);
 
@@ -57,6 +53,18 @@ public class TestMap extends Map {
         Goku goku = new Goku(4, getMapTile(10, 10).getLocation().subtractY(40));
         goku.setInteractScript(new GokuScript());
         npcs.add(goku);
+
+        Bat bat = new Bat(1, getMapTile(11, 15).getLocation().subtractY(40));
+        bat.setInteractScript(new BatScript());
+        npcs.add(bat);
+
+        Sword sword = new Sword(1, getMapTile(14, 13).getLocation().subtractY(40));
+        sword.setInteractScript(new SwordScript());
+        npcs.add(sword);
+
+        Wand wand = new Wand(1, getMapTile(6, 19).getLocation().subtractY(40));
+        wand.setInteractScript(new WandScript());
+        npcs.add(wand);
 
         
 
@@ -74,11 +82,17 @@ public class TestMap extends Map {
 
     @Override
     public void loadScripts() {
-        getMapTile(21, 19).setInteractScript(new SimpleTextScript("Cat's house"));
+        getMapTile(15, 16).setInteractScript(new SimpleTextScript("Cat's house"));
 
-        getMapTile(7, 26).setInteractScript(new SimpleTextScript("Walrus's house"));
+        getMapTile(7, 15).setInteractScript(new SimpleTextScript("Walrus's house"));
 
-        getMapTile(20, 4).setInteractScript(new SimpleTextScript("Dino's house"));
+        getMapTile(9, 5).setInteractScript(new SimpleTextScript("Dino's house"));
+
+        getMapTile(7, 18).setInteractScript(new SimpleTextScript("Bat's house"));
+
+        getMapTile(13, 9).setInteractScript(new SimpleTextScript("Sword's house"));
+        
+        getMapTile(10, 10).setInteractScript(new SimpleTextScript("Wand's house"));
 
         getMapTile(2, 6).setInteractScript(new TreeScript());
     }

@@ -1,17 +1,14 @@
 package Scripts.TestMap;
 
-import java.util.ArrayList;
-
 import Builders.FrameBuilder;
 import Builders.MapTileBuilder;
-import Game.ScreenCoordinator;
 import GameObject.Frame;
 import Level.*;
 import ScriptActions.*;
-
 import Utils.Direction;
 import Utils.Point;
 import Utils.Visibility;
+import java.util.ArrayList;
 
 // script for talking to dino npc
 // checkout the documentation website for a detailed guide on how this script works
@@ -36,7 +33,7 @@ public class DinoScript extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToWalrus", true));
+                // addRequirement(new FlagRequirement("hasTalkedToWalrus", true));
                 addRequirement(new FlagRequirement("hasTalkedToDinosaur", false));
 
                 addScriptAction(new WaitScriptAction(70));
@@ -49,6 +46,7 @@ public class DinoScript extends Script {
                     addText("Now, if you'll excuse me, I have to go.");
                 }});
                 addScriptAction(new NPCStandScriptAction(Direction.RIGHT));
+                addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
 
                 addScriptAction(new NPCWalkScriptAction(Direction.DOWN, 36, 2));
                 addScriptAction(new NPCWalkScriptAction(Direction.RIGHT, 196, 2));
@@ -97,7 +95,6 @@ public class DinoScript extends Script {
                 addScriptAction(new ChangeFlagScriptAction("hasTalkedToDinosaur", true));
             }});
         }});
-
 
         scriptActions.add(new UnlockPlayerScriptAction());
         return scriptActions;

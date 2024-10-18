@@ -1,11 +1,10 @@
 package GameObject;
 
+import Engine.GraphicsHandler;
+import Engine.ImageLoader;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.image.BufferedImage;
-
-import Engine.GraphicsHandler;
-import Engine.ImageLoader;
 /*
  * This class contains health logic - things that have an HP have one of these attached.
  * Things that don't have health have their HealthBar set to null in their GameObject.
@@ -42,11 +41,14 @@ public class HealthBar {
         return currentHealth > 0;
     }
 
+    
     /*
      * Reduces the HP by the specified amount
      */
     public void damage(int amount) {
-        this.currentHealth -= amount;
+        //this.currentHealth -= amount;
+        this.currentHealth -= Math.min(this.currentHealth, amount); //Makes the health unable to go past 0
+        
     }
 
     /*

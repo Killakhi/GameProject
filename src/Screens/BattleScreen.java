@@ -3,12 +3,15 @@ package Screens;
 import Engine.*;
 import Game.ScreenCoordinator;
 import Level.FlagManager;
+import Level.NPC;
+import NPCs.*;
 import GameObject.HealthBar;
 import SpriteFont.SpriteFont;
 import java.awt.*;
 
 // This class is for the win level screen
 public class BattleScreen extends Screen {
+    protected NPC enemy1;
     protected ScreenCoordinator screenCoordinator;
     protected int currentMenuItemHovered = 0; // current menu item being "hovered" over
     protected SpriteFont magicAttack;
@@ -48,7 +51,7 @@ public class BattleScreen extends Screen {
     }
 
     private enum BattleState {
-        CHOOSE_ATTACK, APPLY_PLAYER_DAMAGE, SHOW_PLAYER_DAMAGE, APPLY_ENEMY_DAMAGE, SHOW_ENEMY_DAMAGE
+        CHOOSE_ATTACK, APPLY_PLAYER_DAMAGE, SHOW_PLAYER_DAMAGE, APPLY_ENEMY_DAMAGE, SHOW_ENEMY_DAMAGE, VICTORY
     }
     int hit = 0;
     int damage = 0;
@@ -120,6 +123,11 @@ public class BattleScreen extends Screen {
             timer++;
             if(timer > 90) {
                 currentBattleState = BattleState.APPLY_ENEMY_DAMAGE;
+                /*if(enemy health <= 0) {
+                    currentBattleState = BattleState.VICTORY;
+                } else {
+                    currentBattleState = BattleState.APPLY_ENEMY_DAMAGE;
+                }*/
             }
 
         }
@@ -138,38 +146,16 @@ public class BattleScreen extends Screen {
                 currentBattleState = BattleState.CHOOSE_ATTACK;
                 flagManager.unsetFlag("Attacking");
                 this.playerHealth.damage(damage);
+                if(!this.playerHealth.isAlive()) {
+                    this.playLevelScreen.gameOver();
+                }
             }
             
+        } 
+        else if(currentBattleState == BattleState.VICTORY) {
+            intro.setText("You defeated the enemy! Nice work");
+            
         }
-        
-        
-        //
-        
-        /*if (keyLocker.isKeyLocked(Key.SPACE) && currentMenuItemHovered == 0) {
-            int hit = ((int)(Math.random() * (30))) + 20 ;
-            int damage = ((int)(Math.random() * (10))) + 10;
-            int animation = 20000;
-            battle.setText("You hit for " + hit + " melee damage!");
-            flagManager.setFlag("Attacking");
-            while(animation > 10000) {
-                animation--;
-                System.out.println(animation);
-            }
-            battle.setText("You were hit for " + damage + " damage!");
-            while(animation > 0) {
-                animation--;
-                System.out.println(animation);
-            } 
-            this.playerHealth.damage(damage);
-            keyLocker.unlockKey(Key.SPACE);
-        }
-        else if (keyLocker.isKeyLocked(Key.SPACE) && currentMenuItemHovered == 1) {
-            flagManager.setFlag("Attacking");
-            battle.setText("You hit for 40 magic damage!");
-        }
-        else {
-            flagManager.unsetFlag("Attacking");
-        }*/
 
         // if up or down is pressed, the health goes up or down
         if (Keyboard.isKeyDown(Key.UP)) {
