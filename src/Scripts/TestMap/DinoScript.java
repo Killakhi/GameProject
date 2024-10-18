@@ -59,7 +59,7 @@ public class DinoScript extends Script {
                             .withScale(map.getTileset().getTileScale())
                             .build();
 
-                        Point location = map.getMapTile(17, 4).getLocation();
+                        Point location = map.getMapTile(5, 4).getLocation();
 
                         MapTile mapTile = new MapTileBuilder(openDoorFrame)
                             .withTileType(TileType.NOT_PASSABLE)
@@ -71,7 +71,7 @@ public class DinoScript extends Script {
                 });
 
                 addScriptAction(new NPCWalkScriptAction(Direction.UP, 50, 2));
-                addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
+                
 
                 addScriptAction(new ScriptAction() {
                     @Override
@@ -81,7 +81,7 @@ public class DinoScript extends Script {
                             .withScale(map.getTileset().getTileScale())
                             .build();
 
-                        Point location = map.getMapTile(17, 4).getLocation();
+                        Point location = map.getMapTile(5, 4).getLocation();
 
                         MapTile mapTile = new MapTileBuilder(doorFrame)
                             .withTileType(TileType.NOT_PASSABLE)
@@ -91,7 +91,7 @@ public class DinoScript extends Script {
                         return ScriptState.COMPLETED;
                     }
                 });
-
+                addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
                 addScriptAction(new ChangeFlagScriptAction("hasTalkedToDinosaur", true));
             }});
         }});
