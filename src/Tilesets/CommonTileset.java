@@ -4,6 +4,7 @@ import Builders.FrameBuilder;
 import Builders.MapTileBuilder;
 import Engine.ImageLoader;
 import GameObject.Frame;
+import Level.TileType;
 import Level.Tileset;
 import java.util.ArrayList;
 
@@ -33,8 +34,8 @@ public class CommonTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder lightGrass2Tile = new MapTileBuilder(lightGrass2Frame);
-
+        MapTileBuilder lightGrass2Tile = new MapTileBuilder(lightGrass2Frame)
+        .withTileType(TileType.PASSABLE);
         mapTiles.add(lightGrass2Tile);
 
         // Tile 3: lightGrass3
@@ -43,8 +44,8 @@ public class CommonTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder lightGrass3Tile = new MapTileBuilder(lightGrass3Frame);
-
+        MapTileBuilder lightGrass3Tile = new MapTileBuilder(lightGrass3Frame)
+        .withTileType(TileType.PASSABLE);
         mapTiles.add(lightGrass3Tile);
 
         // Tile 4: lightGrass4
@@ -53,8 +54,8 @@ public class CommonTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder lightGrass4Tile = new MapTileBuilder(lightGrass4Frame);
-
+        MapTileBuilder lightGrass4Tile = new MapTileBuilder(lightGrass4Frame)
+        .withTileType(TileType.PASSABLE);
         mapTiles.add(lightGrass4Tile);
 
         // Tile 5: darkGrass1
@@ -63,8 +64,8 @@ public class CommonTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder darkGrass1Tile = new MapTileBuilder(darkGrass1Frame);
-
+        MapTileBuilder darkGrass1Tile = new MapTileBuilder(darkGrass1Frame)
+        .withTileType(TileType.PASSABLE);
         mapTiles.add(darkGrass1Tile);
 
         // Tile 6: darkGrass2
@@ -73,8 +74,8 @@ public class CommonTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder darkGrass2Tile = new MapTileBuilder(darkGrass2Frame);
-
+        MapTileBuilder darkGrass2Tile = new MapTileBuilder(darkGrass2Frame)
+        .withTileType(TileType.PASSABLE);
         mapTiles.add(darkGrass2Tile);
 
          // Tile 7: darkGrass3
@@ -83,8 +84,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
          .build();
 
-        MapTileBuilder darkGrass3Tile = new MapTileBuilder(darkGrass3Frame);
-
+        MapTileBuilder darkGrass3Tile = new MapTileBuilder(darkGrass3Frame)
+        .withTileType(TileType.PASSABLE);
         mapTiles.add(darkGrass3Tile);
 
         // Tile 8: darkGrass4
@@ -93,8 +94,8 @@ public class CommonTileset extends Tileset {
         .withScale(tileScale)
         .build();
 
-       MapTileBuilder darkGrass4Tile = new MapTileBuilder(darkGrass4Frame);
-
+       MapTileBuilder darkGrass4Tile = new MapTileBuilder(darkGrass4Frame)
+       .withTileType(TileType.NOT_PASSABLE);
        mapTiles.add(darkGrass4Tile);
 
        // Tile 9: upsideDownpathway
@@ -103,8 +104,8 @@ public class CommonTileset extends Tileset {
        .withScale(tileScale)
        .build();
 
-      MapTileBuilder upsideDownpathwayTile = new MapTileBuilder(upsideDownpathwayFrame);
-
+      MapTileBuilder upsideDownpathwayTile = new MapTileBuilder(upsideDownpathwayFrame)
+      .withTileType(TileType.PASSABLE);
       mapTiles.add(upsideDownpathwayTile);
 
       // Tile 10: rightPathway
@@ -113,8 +114,8 @@ public class CommonTileset extends Tileset {
       .withScale(tileScale)
       .build();
 
-     MapTileBuilder rightPathwayTile = new MapTileBuilder(rightPathwayFrame);
-
+     MapTileBuilder rightPathwayTile = new MapTileBuilder(rightPathwayFrame)
+     .withTileType(TileType.PASSABLE);
      mapTiles.add(rightPathwayTile);
 
      // Tile 11: leftPathway
@@ -123,8 +124,8 @@ public class CommonTileset extends Tileset {
      .withScale(tileScale)
      .build();
 
-    MapTileBuilder leftPathwayTile = new MapTileBuilder(leftPathwayFrame);
-
+    MapTileBuilder leftPathwayTile = new MapTileBuilder(leftPathwayFrame)
+    .withTileType(TileType.PASSABLE);
     mapTiles.add(leftPathwayTile);
 
     // Tile 12: downPathway
@@ -133,8 +134,8 @@ public class CommonTileset extends Tileset {
     .withScale(tileScale)
     .build();
 
-   MapTileBuilder downPathwayTile = new MapTileBuilder(downPathwayFrame);
-
+   MapTileBuilder downPathwayTile = new MapTileBuilder(downPathwayFrame)
+   .withTileType(TileType.PASSABLE);
    mapTiles.add(downPathwayTile);
 
         // Tile 13: downDarkpathway
@@ -143,8 +144,8 @@ public class CommonTileset extends Tileset {
         .withScale(tileScale)
         .build();
 
-        MapTileBuilder downDarkpathwayTile = new MapTileBuilder(downDarkpathwayFrame);
-
+        MapTileBuilder downDarkpathwayTile = new MapTileBuilder(downDarkpathwayFrame)
+        .withTileType(TileType.PASSABLE);
         mapTiles.add(downDarkpathwayTile);
 
         // Tile 14: leftDarkpathway
@@ -153,8 +154,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
         .build();
 
-        MapTileBuilder leftDarkpathwayTile = new MapTileBuilder(leftDarkpathwayFrame);
-
+        MapTileBuilder leftDarkpathwayTile = new MapTileBuilder(leftDarkpathwayFrame)
+        .withTileType(TileType.PASSABLE);
         mapTiles.add(leftDarkpathwayTile);
 
         // Tile 15: rightDarkpathway
@@ -163,8 +164,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
         .build();
 
-        MapTileBuilder rightDarkpathwayTile = new MapTileBuilder(rightDarkpathwayFrame);
-
+        MapTileBuilder rightDarkpathwayTile = new MapTileBuilder(rightDarkpathwayFrame)
+        .withTileType(TileType.PASSABLE);
         mapTiles.add(rightDarkpathwayTile);
 
         // Tile 16: upsidedownDarkpathway
@@ -173,8 +174,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
         .build();
 
-        MapTileBuilder upsidedownDarkpathwayTile = new MapTileBuilder(upsidedownDarkpathwayFrame);
-
+        MapTileBuilder upsidedownDarkpathwayTile = new MapTileBuilder(upsidedownDarkpathwayFrame)
+        .withTileType(TileType.PASSABLE);
         mapTiles.add(upsidedownDarkpathwayTile);
 
         // Tile 17: darkBigleaves
@@ -183,8 +184,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
         .build();
 
-        MapTileBuilder darkBigleavesTile = new MapTileBuilder(darkBigleavesFrame);
-
+        MapTileBuilder darkBigleavesTile = new MapTileBuilder(darkBigleavesFrame)
+        .withTileType(TileType.PASSABLE);
         mapTiles.add(darkBigleavesTile);
 
         // Tile 18: lightBigleaves
@@ -193,8 +194,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
         .build();
 
-        MapTileBuilder lightBigleavesTile = new MapTileBuilder(lightBigleavesFrame);
-
+        MapTileBuilder lightBigleavesTile = new MapTileBuilder(lightBigleavesFrame)
+        .withTileType(TileType.PASSABLE);
         mapTiles.add(lightBigleavesTile);
 
         // Tile 19: downlightCurvepath
@@ -203,8 +204,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
         .build();
 
-        MapTileBuilder downlightCurvepathTile = new MapTileBuilder(downlightCurvepathFrame);
-
+        MapTileBuilder downlightCurvepathTile = new MapTileBuilder(downlightCurvepathFrame)
+        .withTileType(TileType.PASSABLE);
         mapTiles.add(downlightCurvepathTile);
 
         // Tile 20: rightlightCurvepath
@@ -213,8 +214,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
         .build();
 
-        MapTileBuilder rightlightCurvepathTile = new MapTileBuilder(rightlightCurvepathFrame);
-
+        MapTileBuilder rightlightCurvepathTile = new MapTileBuilder(rightlightCurvepathFrame)
+        .withTileType(TileType.PASSABLE);
         mapTiles.add(rightlightCurvepathTile);
 
         // Tile 21: leftlightCurvepath
@@ -223,8 +224,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
         .build();
 
-        MapTileBuilder leftlightCurvepathTile = new MapTileBuilder(leftlightCurvepathFrame);
-
+        MapTileBuilder leftlightCurvepathTile = new MapTileBuilder(leftlightCurvepathFrame)
+        .withTileType(TileType.PASSABLE);
         mapTiles.add(leftlightCurvepathTile);
 
         // Tile 22: upsideDownlightcurvepath
@@ -233,8 +234,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
         .build();
 
-        MapTileBuilder upsideDownlightcurvepathTile = new MapTileBuilder(upsideDownlightcurvepathFrame);
-
+        MapTileBuilder upsideDownlightcurvepathTile = new MapTileBuilder(upsideDownlightcurvepathFrame)
+        .withTileType(TileType.PASSABLE);
         mapTiles.add(upsideDownlightcurvepathTile);
 
          // Tile 23: downdarkCurvepath
@@ -243,8 +244,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
         .build();
 
-        MapTileBuilder downdarkCurvepathTile = new MapTileBuilder(downdarkCurvepathFrame);
-
+        MapTileBuilder downdarkCurvepathTile = new MapTileBuilder(downdarkCurvepathFrame)
+        .withTileType(TileType.PASSABLE);
         mapTiles.add(downdarkCurvepathTile);
 
         // Tile 24: rightdarkCurvepath
@@ -253,8 +254,8 @@ public class CommonTileset extends Tileset {
         .withScale(tileScale)
        .build();
 
-       MapTileBuilder rightdarkCurvepathTile = new MapTileBuilder(rightdarkCurvepathFrame);
-
+       MapTileBuilder rightdarkCurvepathTile = new MapTileBuilder(rightdarkCurvepathFrame)
+       .withTileType(TileType.PASSABLE);
        mapTiles.add(rightdarkCurvepathTile);
 
        // Tile 25: leftdarkCurvepath
@@ -263,8 +264,8 @@ public class CommonTileset extends Tileset {
        .withScale(tileScale)
       .build();
 
-      MapTileBuilder leftdarkCurvepathTile = new MapTileBuilder(leftdarkCurvepathFrame);
-
+      MapTileBuilder leftdarkCurvepathTile = new MapTileBuilder(leftdarkCurvepathFrame)
+      .withTileType(TileType.PASSABLE);
       mapTiles.add(leftdarkCurvepathTile);
 
       // Tile 26:upsidedowndarkCurvepath
@@ -273,8 +274,8 @@ public class CommonTileset extends Tileset {
         .withScale(tileScale)
         .build();
 
-        MapTileBuilder upsidedowndarkCurvepathTile = new MapTileBuilder(upsidedowndarkCurvepathFrame);
-
+        MapTileBuilder upsidedowndarkCurvepathTile = new MapTileBuilder(upsidedowndarkCurvepathFrame)
+        .withTileType(TileType.PASSABLE);
         mapTiles.add(upsidedowndarkCurvepathTile);
 
         // Tile 27:wood
@@ -283,8 +284,8 @@ public class CommonTileset extends Tileset {
         .withScale(tileScale)
         .build();
 
-        MapTileBuilder woodTile = new MapTileBuilder(woodFrame);
-
+        MapTileBuilder woodTile = new MapTileBuilder(woodFrame)
+        .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(woodTile);
 
         // Tile 28: bannerWithwood
@@ -293,8 +294,8 @@ public class CommonTileset extends Tileset {
         .withScale(tileScale)
         .build();
 
-        MapTileBuilder bannerWithwoodTile = new MapTileBuilder(bannerWithwoodFrame);
-
+        MapTileBuilder bannerWithwoodTile = new MapTileBuilder(bannerWithwoodFrame)
+        .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(bannerWithwoodTile);
 
         // Tile 29: treeWood
@@ -303,8 +304,8 @@ public class CommonTileset extends Tileset {
         .withScale(tileScale)
         .build();
 
-        MapTileBuilder treeWoodTile = new MapTileBuilder(treeWoodFrame);
-
+        MapTileBuilder treeWoodTile = new MapTileBuilder(treeWoodFrame)
+        .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(treeWoodTile);
 
         // Tile 30: balloon
@@ -313,8 +314,8 @@ public class CommonTileset extends Tileset {
         .withScale(tileScale)
         .build();
 
-        MapTileBuilder balloonTile = new MapTileBuilder(balloonFrame);
-
+        MapTileBuilder balloonTile = new MapTileBuilder(balloonFrame)
+        .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(balloonTile);
 
         // Tile 31: window
@@ -323,8 +324,8 @@ public class CommonTileset extends Tileset {
         .withScale(tileScale)
         .build();
 
-        MapTileBuilder windowTile = new MapTileBuilder(windowFrame);
-
+        MapTileBuilder windowTile = new MapTileBuilder(windowFrame)
+        .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(windowTile);
 
         // Tile 32: windowPanel
@@ -333,8 +334,8 @@ public class CommonTileset extends Tileset {
         .withScale(tileScale)
         .build();
 
-        MapTileBuilder windowPanelTile = new MapTileBuilder(windowPanelFrame);
-
+        MapTileBuilder windowPanelTile = new MapTileBuilder(windowPanelFrame)
+        .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(windowPanelTile);
 
         // Tile 33: pathway1
@@ -343,8 +344,8 @@ public class CommonTileset extends Tileset {
         .withScale(tileScale)
         .build();
 
-        MapTileBuilder pathway1Tile = new MapTileBuilder(pathway1Frame);
-
+        MapTileBuilder pathway1Tile = new MapTileBuilder(pathway1Frame)
+        .withTileType(TileType.PASSABLE);
         mapTiles.add(pathway1Tile);
 
          // Tile 34: pathway2
@@ -353,8 +354,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder pathway2Tile = new MapTileBuilder(pathway2Frame);
- 
+         MapTileBuilder pathway2Tile = new MapTileBuilder(pathway2Frame)
+         .withTileType(TileType.PASSABLE);
          mapTiles.add(pathway2Tile);
 
          // Tile 35: bottomDoor
@@ -363,8 +364,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder bottomDoorTile = new MapTileBuilder(bottomDoorFrame);
- 
+         MapTileBuilder bottomDoorTile = new MapTileBuilder(bottomDoorFrame)
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(bottomDoorTile);
 
          // Tile 36: upperDoor
@@ -373,8 +374,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder upperDoorTile = new MapTileBuilder(upperDoorFrame);
- 
+         MapTileBuilder upperDoorTile = new MapTileBuilder(upperDoorFrame)
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(upperDoorTile);
 
          // Tile 37: rightRoof
@@ -383,8 +384,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder rightRoofTile = new MapTileBuilder(rightRoofFrame);
- 
+         MapTileBuilder rightRoofTile = new MapTileBuilder(rightRoofFrame)
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(rightRoofTile);
 
          // Tile 38: leftRoof
@@ -393,8 +394,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder leftRoofTile = new MapTileBuilder(leftRoofFrame);
- 
+         MapTileBuilder leftRoofTile = new MapTileBuilder(leftRoofFrame)
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(leftRoofTile);
 
          // Tile 39: leftmiddleRoof
@@ -403,8 +404,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder leftmiddleRoofTile = new MapTileBuilder(leftmiddleRoofFrame);
- 
+         MapTileBuilder leftmiddleRoofTile = new MapTileBuilder(leftmiddleRoofFrame)
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(leftmiddleRoofTile);
 
          // Tile 40: leftpointRoof
@@ -413,8 +414,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder leftpointRoofTile = new MapTileBuilder(leftpointRoofFrame);
- 
+         MapTileBuilder leftpointRoofTile = new MapTileBuilder(leftpointRoofFrame)
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(leftpointRoofTile);
 
          // Tile 41: roofTiles1
@@ -423,8 +424,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder roofTiles1Tile = new MapTileBuilder(roofTiles1Frame);
- 
+         MapTileBuilder roofTiles1Tile = new MapTileBuilder(roofTiles1Frame)
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(roofTiles1Tile);
 
          // Tile 42: roofTiles2
@@ -433,8 +434,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder roofTiles2Tile = new MapTileBuilder(roofTiles2Frame);
- 
+         MapTileBuilder roofTiles2Tile = new MapTileBuilder(roofTiles2Frame)
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(roofTiles2Tile);
 
          // Tile 43: topRightroof
@@ -443,8 +444,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder topRightroofTile = new MapTileBuilder(topRightroofFrame);
- 
+         MapTileBuilder topRightroofTile = new MapTileBuilder(topRightroofFrame)
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(topRightroofTile);
 
          // Tile 44: topRightroof2
@@ -453,8 +454,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder topRightroof2Tile = new MapTileBuilder(topRightroof2Frame);
- 
+         MapTileBuilder topRightroof2Tile = new MapTileBuilder(topRightroof2Frame)
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(topRightroof2Tile);
 
          // Tile 45: rightPointroof
@@ -463,8 +464,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder rightPointroofTile = new MapTileBuilder(rightPointroofFrame);
- 
+         MapTileBuilder rightPointroofTile = new MapTileBuilder(rightPointroofFrame)
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(rightPointroofTile);
 
          // Tile 46: rightmiddleRoof
@@ -473,8 +474,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder rightmiddleRoofTile = new MapTileBuilder(rightmiddleRoofFrame);
- 
+         MapTileBuilder rightmiddleRoofTile = new MapTileBuilder(rightmiddleRoofFrame)
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(rightmiddleRoofTile);
 
          // Tile 47: topLeftroof2
@@ -483,8 +484,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder topLeftroof2Tile = new MapTileBuilder(topLeftroof2Frame);
- 
+         MapTileBuilder topLeftroof2Tile = new MapTileBuilder(topLeftroof2Frame)
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(topLeftroof2Tile);
 
          // Tile 48: topLeftroof
@@ -493,8 +494,8 @@ public class CommonTileset extends Tileset {
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder topLeftroofTile = new MapTileBuilder(topLeftroofFrame);
- 
+         MapTileBuilder topLeftroofTile = new MapTileBuilder(topLeftroofFrame)
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(topLeftroofTile);
 
 

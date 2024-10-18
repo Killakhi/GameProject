@@ -11,6 +11,7 @@ import GameObject.Money;
 import Level.*;
 import Maps.TestMap;
 import Players.Cat;
+import Screens.PlayLevelScreen.PlayLevelScreenState;
 import Utils.Direction;
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ public class PlayLevelScreen extends Screen {
     protected Player player;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
+    protected GameOverScreen gameOverScreen;
     protected BattleScreen battleScreen;
     protected FlagManager flagManager;
     protected int keyPressTimer;
@@ -99,6 +101,9 @@ public class PlayLevelScreen extends Screen {
             case BATTLING:
                 battleScreen.initialize();
                 break;
+            case GAME_OVER:
+                gameOverScreen.initialize();
+                break;
         }
 
         if (map.getFlagManager().isFlagSet("hasTalkedToWalrus") && !obtainableItems.contains("Walrus")) {
@@ -143,6 +148,10 @@ public class PlayLevelScreen extends Screen {
         playLevelScreenState = PlayLevelScreenState.RUNNING;
     }
 
+    public void gameOver() {
+        playLevelScreenState = PlayLevelScreenState.GAME_OVER;
+    }
+
     public void draw(GraphicsHandler graphicsHandler) {
         // based on screen state, draw appropriate graphics
         switch (playLevelScreenState) {
@@ -178,6 +187,6 @@ public class PlayLevelScreen extends Screen {
 
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
-        RUNNING, LEVEL_COMPLETED, BATTLING
+        RUNNING, LEVEL_COMPLETED, BATTLING, GAME_OVER
     }
 }
