@@ -1,6 +1,7 @@
 package Engine;
 
 import java.awt.Point;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,7 +32,7 @@ public class Route {
 
     // get the last point in this route
     public Point getLastStop() {
-        return this.points.isEmpty() ? this.start : this.points.getLast();
+        return this.points.isEmpty() ? this.start : this.points.get(this.points.size() - 1);
     }
 
     // the naive best case distance from the last point to the destination
@@ -57,10 +58,12 @@ public class Route {
 
         reversedRoute.start = this.getLastStop();
 
-        reversedRoute.points = this.points.reversed().stream().collect(Collectors.toList());
-        reversedRoute.points.addLast(this.start);
+        reversedRoute.points = this.points.stream().collect(Collectors.toList());
+        Collections.reverse(reversedRoute.points);
+
+        reversedRoute.points.add(this.start);
         // get rid of the first reversed point, since it should actually be in reversedRoute.start
-        reversedRoute.points.removeFirst();
+        reversedRoute.points.remove(0);
 
         return reversedRoute;
     }
@@ -70,7 +73,7 @@ public class Route {
             return new Point(0, 0);
         }
 
-        Point next = this.points.getFirst();
+        Point next = this.points.get(0);
 
         return new Point(
             next.x - this.start.x,
