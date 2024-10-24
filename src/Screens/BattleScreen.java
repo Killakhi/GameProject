@@ -21,6 +21,7 @@ public class BattleScreen extends Screen {
     protected SpriteFont battle;
     protected SpriteFont attacks;
     protected HealthBar playerHealth = new HealthBar(100, 100);
+    protected HealthBar enemyHealth = new HealthBar(200, 200);
     protected KeyLocker keyLocker = new KeyLocker();
     protected int keyPressTimer;
     protected PlayLevelScreen playLevelScreen;
@@ -121,9 +122,12 @@ public class BattleScreen extends Screen {
             }
             flagManager.setFlag("Attacking");
             timer++;
+            if(timer == 45) {
+                enemyHealth.damage(hit);
+            }
             if(timer > 90) {
                 currentBattleState = BattleState.APPLY_ENEMY_DAMAGE;
-                if(Keyboard.isKeyDown(Key.A)) {
+                if(enemyHealth.isDead()) {
                     currentBattleState = BattleState.VICTORY;
                 } else {
                     currentBattleState = BattleState.APPLY_ENEMY_DAMAGE;
@@ -156,7 +160,7 @@ public class BattleScreen extends Screen {
         else if(currentBattleState == BattleState.VICTORY) {
             intro.setText("You defeated the enemy! Nice work");
             timer--;
-            if(timer == 0) {            
+            if(timer <= 0) {            
                 this.playLevelScreen.stopBattle();
             }
         }
