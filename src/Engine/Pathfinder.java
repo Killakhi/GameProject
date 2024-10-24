@@ -112,8 +112,6 @@ public class Pathfinder {
             }
         }
 
-        System.out.println(optimal.size());
-
         return optimal;
     }
 
