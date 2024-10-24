@@ -515,10 +515,12 @@ public abstract class Map {
             for (NPC npc : this.npcs) {
                 Route routeToPlayer = this.pathfinder.getBestRoute(player, npc.getLocation());
                 
-                java.awt.Point direction = routeToPlayer.getDirectionToMove();
+                if (routeToPlayer != null) {
+                    java.awt.Point direction = routeToPlayer.getDirectionToMove();
 
-                npc.moveX(direction.x);
-                npc.moveY(direction.y);
+                    npc.moveX(direction.x * 2);
+                    npc.moveY(direction.y * 2);
+                }
             }
         }
 
