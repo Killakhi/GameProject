@@ -84,7 +84,7 @@ public class PlayLevelScreen extends Screen {
             case RUNNING:
                 player.update();
                 map.update(player);
-
+                
                 if (Keyboard.isKeyDown(Key.B) && !keyLocker.isKeyLocked(Key.B) && keyPressTimer == 0) {
                     keyLocker.lockKey(Key.B);
                     keyPressTimer = 20;
@@ -93,8 +93,9 @@ public class PlayLevelScreen extends Screen {
                     keyLocker.unlockKey(Key.B);
                     keyPressTimer = 20;
                 }
-                if (!keyLocker.isKeyLocked(Key.B)) {
+                if (!keyLocker.isKeyLocked(Key.B) && playLevelScreenState != PlayLevelScreenState.BATTLING) {
                     playLevelScreenState = PlayLevelScreenState.BATTLING;
+                    keyLocker.unlockKey(Key.B);
                 } 
 
                 break;

@@ -28,7 +28,6 @@ public class GameOverScreen extends Screen {
         gameOverMessage = new SpriteFont("Game Over!", 320, 239, "Arial", 30, Color.red);
         instructions = new SpriteFont("Press Space to go back to the main menu", 215, 279,"Arial", 20, Color.white);
         keyLocker.lockKey(Key.SPACE);
-        System.out.println("It got here?");
     }
 
     @Override

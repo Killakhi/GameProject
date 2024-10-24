@@ -2,6 +2,10 @@ package Level;
 
 import Engine.Config;
 import Engine.GraphicsHandler;
+import Engine.Key;
+import Engine.Keyboard;
+import Engine.Pathfinder;
+import Engine.Route;
 import Engine.ScreenManager;
 import GameObject.Rectangle;
 import Utils.Direction;
@@ -76,6 +80,8 @@ public abstract class Map {
     // reference to current player
     protected Player player;
 
+    protected Pathfinder pathfinder;
+
     public Map(String mapFileName, Tileset tileset) {
         this.mapFileName = mapFileName;
         this.tileset = tileset;
@@ -87,6 +93,7 @@ public abstract class Map {
         this.xMidPoint = ScreenManager.getScreenWidth() / 2;
         this.yMidPoint = (ScreenManager.getScreenHeight() / 2);
         this.playerStartPosition = new Point(0, 0);
+        this.pathfinder = new Pathfinder(this);
     }
 
     // sets up map by reading in the map file to create the tile map
@@ -502,6 +509,19 @@ public abstract class Map {
     }
 
     public void update(Player player) {
+        // test stuff
+        if (Keyboard.isKeyDown(Key.SEVEN)) {
+            // this is going to be absolutely terrifying
+            for (NPC npc : this.npcs) {
+                Route routeToPlayer = this.pathfinder.getBestRoute(player, npc.getLocation());
+                
+                java.awt.Point direction = routeToPlayer.getDirectionToMove();
+
+                npc.moveX(direction.x);
+                npc.moveY(direction.y);
+            }
+        }
+
         if (adjustCamera) {
             adjustMovementY(player);
             adjustMovementX(player);

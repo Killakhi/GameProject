@@ -71,7 +71,7 @@ public class HealthBar {
     protected static SpriteSheet getHeartSpriteSheet() {
         BufferedImage image = ImageLoader.load("Hearts.png");
 
-        return new SpriteSheet(image, 607, 512);
+        return new SpriteSheet(image, 127, 128);
     }
 
     protected Color getHealthColor() {
@@ -101,11 +101,13 @@ public class HealthBar {
             column = 0;
         } else if (ratio > 0.33f) {
             column = 1;
-        } else {
+        } else if (ratio > 0.00f) {
             column = 2;
+        } else {
+            column = 3;
         }
 
-        graphicsHandler.drawImage(heartSpriteSheet.getSubImage(0, column), x, y, 19 * 3, 16 * 3);
-        graphicsHandler.drawStringWithOutline(String.valueOf(this.currentHealth), x + 80, y + 30, Font.decode("Monospaced 40"), this.getHealthColor(), Color.BLACK, 1.0f);
+        graphicsHandler.drawImage(heartSpriteSheet.getSubImage(0, column), x, y, 80, 80);
+        graphicsHandler.drawStringWithOutline(String.valueOf(this.currentHealth), x + 80, y + 50, Font.decode("Monospaced 40"), this.getHealthColor(), Color.BLACK, 1.0f);
     }
 }
