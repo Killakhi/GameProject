@@ -4,7 +4,6 @@ import Engine.*;
 import Game.ScreenCoordinator;
 import Level.FlagManager;
 import Level.NPC;
-import NPCs.*;
 import GameObject.HealthBar;
 import SpriteFont.SpriteFont;
 import java.awt.*;
