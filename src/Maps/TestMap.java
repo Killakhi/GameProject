@@ -2,8 +2,10 @@ package Maps;
 
 import EnhancedMapTiles.Coin;
 import EnhancedMapTiles.PushableRock;
+import Game.ScreenCoordinator;
 import Level.*;
 import NPCs.*;
+import Screens.BattleScreen;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.*;
 import Tilesets.CommonTileset;
@@ -14,7 +16,7 @@ public class TestMap extends Map {
 
     public TestMap() {
         super("test_map.txt", new CommonTileset());
-        this.playerStartPosition = getMapTile(5, 3).getLocation();
+        this.playerStartPosition = getMapTile(8, 10).getLocation();
     }
 
     @Override
@@ -65,6 +67,10 @@ public class TestMap extends Map {
         Wand wand = new Wand(1, getMapTile(6, 19).getLocation().subtractY(40));
         wand.setInteractScript(new WandScript());
         npcs.add(wand);
+
+        Townsfolk townsfolk = new Townsfolk(4, getMapTile(6, 10).getLocation().subtractY(40));
+        townsfolk.setInteractScript(new TownsfolkScript());
+        npcs.add(townsfolk);
 
         
 

@@ -19,7 +19,7 @@ public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
     protected Player player;
-    protected PlayLevelScreenState playLevelScreenState;
+    public static PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
     protected BattleScreen battleScreen;
     protected FlagManager flagManager;
@@ -75,16 +75,16 @@ public class PlayLevelScreen extends Screen {
 
     public void update() {
         // based on screen state, perform specific actions
-        if (Keyboard.isKeyDown(Key.B) && !keyLocker.isKeyLocked(Key.B) && keyPressTimer == 0) {
-            keyLocker.lockKey(Key.B);
-            keyPressTimer = 20;
-        }
-        else if (Keyboard.isKeyDown(Key.B) && keyLocker.isKeyLocked(Key.B) && keyPressTimer == 0) {
-            keyLocker.unlockKey(Key.B);
-            keyPressTimer = 20;
-        }
-        if (!keyLocker.isKeyLocked(Key.B)) {
-            playLevelScreenState = PlayLevelScreenState.BATTLING;
+         if (Keyboard.isKeyDown(Key.B) && !keyLocker.isKeyLocked(Key.B) && keyPressTimer == 0) {
+             keyLocker.lockKey(Key.B);
+             keyPressTimer = 20;
+         }
+         else if (Keyboard.isKeyDown(Key.B) && keyLocker.isKeyLocked(Key.B) && keyPressTimer == 0) {
+             keyLocker.unlockKey(Key.B);
+             keyPressTimer = 20;
+         }
+         if (!keyLocker.isKeyLocked(Key.B)) {
+             playLevelScreenState = PlayLevelScreenState.BATTLING;
         } 
         switch (playLevelScreenState) {
             // if level is "running" update player and map to keep game logic for the platformer level going
@@ -177,7 +177,7 @@ public class PlayLevelScreen extends Screen {
     }
 
     // This enum represents the different states this screen can be in
-    private enum PlayLevelScreenState {
+    public enum PlayLevelScreenState {
         RUNNING, LEVEL_COMPLETED, BATTLING
     }
 }

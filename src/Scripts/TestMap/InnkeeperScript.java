@@ -7,28 +7,29 @@ import java.util.ArrayList;
 
 // script for talking to new Custom npc
 // checkout the documentation website for a detailed guide on how this script works
-public class GokuScript extends Script {
+public class InnkeeperScript extends Script {
 
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
         ArrayList<ScriptAction> scriptActions = new ArrayList<>();
         scriptActions.add(new LockPlayerScriptAction());
+
         scriptActions.add(new NPCFacePlayerScriptAction());
+
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToGoku", false));
+                addRequirement(new FlagRequirement("hasTalkedToInnkeeper", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("Im a spooky ghost");
-                    addText("get ready to fight");
+                    addText("L+ ratio");
                     
                     
                 }});
-                addScriptAction(new ChangeFlagScriptAction("hasTalkedToGoku", true));
+                addScriptAction(new ChangeFlagScriptAction("hasTalkedToInnkeeper", true));
             }});
 
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToGoku", true));
-                addScriptAction(new TextboxScriptAction(""));
+                addRequirement(new FlagRequirement("hasTalkedToInnkeeper", true));
+                addScriptAction(new TextboxScriptAction("Go away"));
             }});
         }});
 
