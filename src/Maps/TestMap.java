@@ -39,20 +39,20 @@ public class TestMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        Walrus walrus = new Walrus(1, getMapTile(4, 19).getLocation().subtractY(40));
-        walrus.setInteractScript(new WalrusScript());
-        npcs.add(walrus);
+       // Walrus walrus = new Walrus(1, getMapTile(4, 19).getLocation().subtractY(40));
+        //walrus.setInteractScript(new WalrusScript());
+        //npcs.add(walrus);
 
-        Dinosaur dinosaur = new Dinosaur(2, getMapTile(5, 4).getLocation());
-        dinosaur.setExistenceFlag("hasTalkedToDinosaur");
-        dinosaur.setInteractScript(new DinoScript());
-        npcs.add(dinosaur);
+       // Dinosaur dinosaur = new Dinosaur(2, getMapTile(5, 4).getLocation());
+        //dinosaur.setExistenceFlag("hasTalkedToDinosaur");
+        //dinosaur.setInteractScript(new DinoScript());
+        //npcs.add(dinosaur);
         
-        Bug bug = new Bug(3, getMapTile(7, 12).getLocation().subtractX(20));
-        bug.setInteractScript(new BugScript());
-        npcs.add(bug);
+        //Bug bug = new Bug(3, getMapTile(7, 12).getLocation().subtractX(20));
+        //bug.setInteractScript(new BugScript());
+        //npcs.add(bug);
 
-        Goku goku = new Goku(4, getMapTile(10, 10).getLocation().subtractY(40));
+        Goku goku = new Goku(4, getMapTile(3, 1).getLocation().subtractY(40));
         goku.setInteractScript(new GokuScript());
         npcs.add(goku);
         this.enemies.add(goku);
@@ -69,9 +69,19 @@ public class TestMap extends Map {
         wand.setInteractScript(new WandScript());
         npcs.add(wand);
 
-        Townsfolk townsfolk = new Townsfolk(4, getMapTile(6, 10).getLocation().subtractY(40));
+        Townsfolk townsfolk = new Townsfolk(4, getMapTile(6, 13).getLocation().subtractY(40));
         townsfolk.setInteractScript(new TownsfolkScript());
         npcs.add(townsfolk);
+
+        TownGuy1 townguy1 = new TownGuy1(4, getMapTile(6, 15).getLocation().subtractY(40));
+        townguy1.setInteractScript(new TownGuy1Script());
+        npcs.add(townguy1);
+
+        Innkeeper innkeeper = new Innkeeper(4, getMapTile(8, 17).getLocation().subtractY(40));
+        innkeeper.setInteractScript(new InnkeeperScript());
+        npcs.add(innkeeper);
+
+
 
         
 

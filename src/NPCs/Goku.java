@@ -32,7 +32,7 @@ public class Goku extends NPC {
             PlayLevelScreen.playLevelScreenState = PlayLevelScreenState.ENTERING_BATTLE;
             
             
-            System.out.println("HEY TREY");
+            //System.out.println("WHY DID YOU KILL ME");
             //delete npc once touched?
             this.setLocation(999999,99999);
         }
