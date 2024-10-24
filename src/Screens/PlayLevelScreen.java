@@ -19,7 +19,7 @@ public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
     protected Player player;
-    public static PlayLevelScreenState playLevelScreenState;
+    public static PlayLevelScreenState playLevelScreenState = PlayLevelScreenState.RUNNING;
     protected WinScreen winScreen;
     protected GameOverScreen gameOverScreen;
     protected BattleScreen battleScreen;
@@ -93,17 +93,6 @@ public class PlayLevelScreen extends Screen {
                 playLevelScreenState = PlayLevelScreenState.BATTLING;
                 // fallthrough to next case
             case BATTLING:
-                if (Keyboard.isKeyDown(Key.B) && !keyLocker.isKeyLocked(Key.B) && keyPressTimer == 0) {
-                    keyLocker.lockKey(Key.B);
-                    keyPressTimer = 20;
-                }
-                else if (Keyboard.isKeyDown(Key.B) && keyLocker.isKeyLocked(Key.B) && keyPressTimer == 0) {
-                    keyLocker.unlockKey(Key.B);
-                    keyPressTimer = 20;
-                }
-                if (!keyLocker.isKeyLocked(Key.B)) {
-                    playLevelScreenState = PlayLevelScreenState.BATTLING;
-                }
                 battleScreen.update();
                 break;
             case GAME_OVER:

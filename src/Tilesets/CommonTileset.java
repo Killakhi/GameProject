@@ -90,7 +90,7 @@ public class CommonTileset extends Tileset {
 
         // Tile 8: darkGrass4
 
-        Frame darkGrass4Frame = new FrameBuilder(getSubImage(1, 0))
+        Frame darkGrass4Frame = new FrameBuilder(getSubImage(0, 7))
         .withScale(tileScale)
         .build();
 
@@ -98,49 +98,49 @@ public class CommonTileset extends Tileset {
        .withTileType(TileType.NOT_PASSABLE);
        mapTiles.add(darkGrass4Tile);
 
-       // Tile 9: upsideDownpathway
+       // Tile 9: lightupsideDownpathway
 
-       Frame upsideDownpathwayFrame = new FrameBuilder(getSubImage(1, 1))
+       Frame lightupsideDownpathwayFrame = new FrameBuilder(getSubImage(0, 8))
        .withScale(tileScale)
        .build();
 
-      MapTileBuilder upsideDownpathwayTile = new MapTileBuilder(upsideDownpathwayFrame)
+      MapTileBuilder lightupsideDownpathwayTile = new MapTileBuilder(lightupsideDownpathwayFrame)
       .withTileType(TileType.PASSABLE);
-      mapTiles.add(upsideDownpathwayTile);
+      mapTiles.add(lightupsideDownpathwayTile);
 
-      // Tile 10: rightPathway
+      // Tile 10: lightrightPathway
 
-      Frame rightPathwayFrame = new FrameBuilder(getSubImage(1, 2))
+      Frame lightrightPathwayFrame = new FrameBuilder(getSubImage(1, 0))
       .withScale(tileScale)
       .build();
 
-     MapTileBuilder rightPathwayTile = new MapTileBuilder(rightPathwayFrame)
+     MapTileBuilder lightrightPathwayTile = new MapTileBuilder(lightrightPathwayFrame)
      .withTileType(TileType.PASSABLE);
-     mapTiles.add(rightPathwayTile);
+     mapTiles.add(lightrightPathwayTile);
 
-     // Tile 11: leftPathway
+     // Tile 11: lightleftPathway
 
-     Frame leftPathwayFrame = new FrameBuilder(getSubImage(1, 3))
+     Frame lightleftPathwayFrame = new FrameBuilder(getSubImage(1, 1))
      .withScale(tileScale)
      .build();
 
-    MapTileBuilder leftPathwayTile = new MapTileBuilder(leftPathwayFrame)
+    MapTileBuilder lightleftPathwayTile = new MapTileBuilder(lightleftPathwayFrame)
     .withTileType(TileType.PASSABLE);
-    mapTiles.add(leftPathwayTile);
+    mapTiles.add(lightleftPathwayTile);
 
-    // Tile 12: downPathway
+    // Tile 12: lightdownPathway
 
-    Frame downPathwayFrame = new FrameBuilder(getSubImage(1, 4))
+    Frame lightdownPathwayFrame = new FrameBuilder(getSubImage(1, 2))
     .withScale(tileScale)
     .build();
 
-   MapTileBuilder downPathwayTile = new MapTileBuilder(downPathwayFrame)
+   MapTileBuilder lightdownPathwayTile = new MapTileBuilder(lightdownPathwayFrame)
    .withTileType(TileType.PASSABLE);
-   mapTiles.add(downPathwayTile);
+   mapTiles.add(lightdownPathwayTile);
 
         // Tile 13: downDarkpathway
 
-        Frame downDarkpathwayFrame = new FrameBuilder(getSubImage(1, 5))
+        Frame downDarkpathwayFrame = new FrameBuilder(getSubImage(1, 3))
         .withScale(tileScale)
         .build();
 
@@ -148,19 +148,9 @@ public class CommonTileset extends Tileset {
         .withTileType(TileType.PASSABLE);
         mapTiles.add(downDarkpathwayTile);
 
-        // Tile 14: leftDarkpathway
+        // Tile 14: rightDarkpathway
 
-        Frame leftDarkpathwayFrame = new FrameBuilder(getSubImage(1, 6))
-         .withScale(tileScale)
-        .build();
-
-        MapTileBuilder leftDarkpathwayTile = new MapTileBuilder(leftDarkpathwayFrame)
-        .withTileType(TileType.PASSABLE);
-        mapTiles.add(leftDarkpathwayTile);
-
-        // Tile 15: rightDarkpathway
-
-        Frame rightDarkpathwayFrame = new FrameBuilder(getSubImage(2, 0))
+        Frame rightDarkpathwayFrame = new FrameBuilder(getSubImage(1, 4))
          .withScale(tileScale)
         .build();
 
@@ -168,9 +158,19 @@ public class CommonTileset extends Tileset {
         .withTileType(TileType.PASSABLE);
         mapTiles.add(rightDarkpathwayTile);
 
+        // Tile 15: leftDarkpathway
+
+        Frame leftDarkpathwayFrame = new FrameBuilder(getSubImage(1, 5))
+         .withScale(tileScale)
+        .build();
+
+        MapTileBuilder leftDarkpathwayTile = new MapTileBuilder(leftDarkpathwayFrame)
+        .withTileType(TileType.PASSABLE);
+        mapTiles.add(leftDarkpathwayTile);
+
         // Tile 16: upsidedownDarkpathway
 
-        Frame upsidedownDarkpathwayFrame = new FrameBuilder(getSubImage(2, 1))
+        Frame upsidedownDarkpathwayFrame = new FrameBuilder(getSubImage(1, 6))
          .withScale(tileScale)
         .build();
 
@@ -180,7 +180,7 @@ public class CommonTileset extends Tileset {
 
         // Tile 17: darkBigleaves
 
-        Frame darkBigleavesFrame = new FrameBuilder(getSubImage(2, 2))
+        Frame darkBigleavesFrame = new FrameBuilder(getSubImage(1, 7))
          .withScale(tileScale)
         .build();
 
@@ -190,7 +190,7 @@ public class CommonTileset extends Tileset {
 
         // Tile 18: lightBigleaves
 
-        Frame lightBigleavesFrame = new FrameBuilder(getSubImage(2, 3))
+        Frame lightBigleavesFrame = new FrameBuilder(getSubImage(1, 8))
          .withScale(tileScale)
         .build();
 
@@ -198,299 +198,439 @@ public class CommonTileset extends Tileset {
         .withTileType(TileType.PASSABLE);
         mapTiles.add(lightBigleavesTile);
 
-        // Tile 19: downlightCurvepath
+        // Tile 19: bottomleftlightCornerpath
 
-        Frame downlightCurvepathFrame = new FrameBuilder(getSubImage(2, 4))
+        Frame bottomleftlightCornerpathFrame = new FrameBuilder(getSubImage(2, 0))
          .withScale(tileScale)
         .build();
 
-        MapTileBuilder downlightCurvepathTile = new MapTileBuilder(downlightCurvepathFrame)
+        MapTileBuilder bottomleftlightCornerpathTile = new MapTileBuilder(bottomleftlightCornerpathFrame)
         .withTileType(TileType.PASSABLE);
-        mapTiles.add(downlightCurvepathTile);
+        mapTiles.add(bottomleftlightCornerpathTile);
 
-        // Tile 20: rightlightCurvepath
+        // Tile 20: topleftlightCornerpath
 
-        Frame rightlightCurvepathFrame = new FrameBuilder(getSubImage(2, 5))
+        Frame topleftlightCornerpathFrame = new FrameBuilder(getSubImage(2, 1))
          .withScale(tileScale)
         .build();
 
-        MapTileBuilder rightlightCurvepathTile = new MapTileBuilder(rightlightCurvepathFrame)
+        MapTileBuilder topleftlightCornerpathTile = new MapTileBuilder(topleftlightCornerpathFrame)
         .withTileType(TileType.PASSABLE);
-        mapTiles.add(rightlightCurvepathTile);
+        mapTiles.add(topleftlightCornerpathTile);
 
-        // Tile 21: leftlightCurvepath
+        // Tile 21: lightopRightcornerpath
 
-        Frame leftlightCurvepathFrame = new FrameBuilder(getSubImage(2, 6))
+        Frame lightopRightcornerpathFrame = new FrameBuilder(getSubImage(2, 2))
          .withScale(tileScale)
         .build();
 
-        MapTileBuilder leftlightCurvepathTile = new MapTileBuilder(leftlightCurvepathFrame)
+        MapTileBuilder lightopRightcornerpathTile = new MapTileBuilder(lightopRightcornerpathFrame)
         .withTileType(TileType.PASSABLE);
-        mapTiles.add(leftlightCurvepathTile);
+        mapTiles.add(lightopRightcornerpathTile);
 
-        // Tile 22: upsideDownlightcurvepath
+        // Tile 22: smalltopleftlightCornerpath
 
-        Frame upsideDownlightcurvepathFrame = new FrameBuilder(getSubImage(3, 0))
+        Frame smalltopleftlightCornerpathFrame = new FrameBuilder(getSubImage(2, 3))
          .withScale(tileScale)
         .build();
 
-        MapTileBuilder upsideDownlightcurvepathTile = new MapTileBuilder(upsideDownlightcurvepathFrame)
+        MapTileBuilder smalltopleftlightCornerpathTile = new MapTileBuilder(smalltopleftlightCornerpathFrame)
         .withTileType(TileType.PASSABLE);
-        mapTiles.add(upsideDownlightcurvepathTile);
+        mapTiles.add(smalltopleftlightCornerpathTile);
 
-         // Tile 23: downdarkCurvepath
+        // Tile 23: smalltoprightlightCornerpath
 
-         Frame downdarkCurvepathFrame = new FrameBuilder(getSubImage(3, 1))
+        Frame smalltoprightlightCornerpathFrame = new FrameBuilder(getSubImage(2, 4))
          .withScale(tileScale)
         .build();
 
-        MapTileBuilder downdarkCurvepathTile = new MapTileBuilder(downdarkCurvepathFrame)
+        MapTileBuilder smalltoprightlightCornerpathTile = new MapTileBuilder(smalltoprightlightCornerpathFrame)
         .withTileType(TileType.PASSABLE);
-        mapTiles.add(downdarkCurvepathTile);
+        mapTiles.add(smalltoprightlightCornerpathTile);
 
-        // Tile 24: rightdarkCurvepath
+         // Tile 24: bottomrightlightCornerpath
 
-        Frame rightdarkCurvepathFrame = new FrameBuilder(getSubImage(3, 2))
+         Frame bottomrightlightCornerpathFrame = new FrameBuilder(getSubImage(2, 5))
+         .withScale(tileScale)
+        .build();
+
+        MapTileBuilder bottomrightlightCornerpathTile = new MapTileBuilder(bottomrightlightCornerpathFrame)
+        .withTileType(TileType.PASSABLE);
+        mapTiles.add(bottomrightlightCornerpathTile);
+
+        // Tile 25: smallbottomrightlightCornerpath
+
+        Frame smallbottomrightlightCornerpathFrame = new FrameBuilder(getSubImage(2, 6))
         .withScale(tileScale)
        .build();
 
-       MapTileBuilder rightdarkCurvepathTile = new MapTileBuilder(rightdarkCurvepathFrame)
+       MapTileBuilder smallbottomrightlightCornerpathTile = new MapTileBuilder(smallbottomrightlightCornerpathFrame)
        .withTileType(TileType.PASSABLE);
-       mapTiles.add(rightdarkCurvepathTile);
+       mapTiles.add(smallbottomrightlightCornerpathTile);
 
-       // Tile 25: leftdarkCurvepath
+       // Tile 26: bottomleftdarkCornerpath
 
-       Frame leftdarkCurvepathFrame = new FrameBuilder(getSubImage(3, 3))
+       Frame bottomleftdarkCornerpathFrame = new FrameBuilder(getSubImage(2, 7))
        .withScale(tileScale)
       .build();
 
-      MapTileBuilder leftdarkCurvepathTile = new MapTileBuilder(leftdarkCurvepathFrame)
+      MapTileBuilder bottomleftdarkCornerpathTile = new MapTileBuilder(bottomleftdarkCornerpathFrame)
       .withTileType(TileType.PASSABLE);
-      mapTiles.add(leftdarkCurvepathTile);
+      mapTiles.add(bottomleftdarkCornerpathTile);
 
-      // Tile 26:upsidedowndarkCurvepath
+      // Tile 27: topleftdarkCornerpath
 
-        Frame upsidedowndarkCurvepathFrame = new FrameBuilder(getSubImage(3, 4))
+        Frame topleftdarkCornerpathFrame = new FrameBuilder(getSubImage(2, 8))
         .withScale(tileScale)
         .build();
 
-        MapTileBuilder upsidedowndarkCurvepathTile = new MapTileBuilder(upsidedowndarkCurvepathFrame)
+        MapTileBuilder topleftdarkCornerpathTile = new MapTileBuilder(topleftdarkCornerpathFrame)
         .withTileType(TileType.PASSABLE);
-        mapTiles.add(upsidedowndarkCurvepathTile);
+        mapTiles.add(topleftdarkCornerpathTile);
 
-        // Tile 27:wood
+        // Tile 28: toprighttdarkCornerpath
 
-        Frame woodFrame = new FrameBuilder(getSubImage(3, 5))
+        Frame toprighttdarkCornerpathFrame = new FrameBuilder(getSubImage(3, 0))
         .withScale(tileScale)
         .build();
 
-        MapTileBuilder woodTile = new MapTileBuilder(woodFrame)
-        .withTileType(TileType.NOT_PASSABLE);
-        mapTiles.add(woodTile);
-
-        // Tile 28: bannerWithwood
-
-        Frame bannerWithwoodFrame = new FrameBuilder(getSubImage(3, 6))
-        .withScale(tileScale)
-        .build();
-
-        MapTileBuilder bannerWithwoodTile = new MapTileBuilder(bannerWithwoodFrame)
-        .withTileType(TileType.NOT_PASSABLE);
-        mapTiles.add(bannerWithwoodTile);
-
-        // Tile 29: treeWood
-
-        Frame treeWoodFrame = new FrameBuilder(getSubImage(4, 0))
-        .withScale(tileScale)
-        .build();
-
-        MapTileBuilder treeWoodTile = new MapTileBuilder(treeWoodFrame)
-        .withTileType(TileType.NOT_PASSABLE);
-        mapTiles.add(treeWoodTile);
-
-        // Tile 30: balloon
-
-        Frame balloonFrame = new FrameBuilder(getSubImage(4, 1))
-        .withScale(tileScale)
-        .build();
-
-        MapTileBuilder balloonTile = new MapTileBuilder(balloonFrame)
-        .withTileType(TileType.NOT_PASSABLE);
-        mapTiles.add(balloonTile);
-
-        // Tile 31: window
-
-        Frame windowFrame = new FrameBuilder(getSubImage(4, 2))
-        .withScale(tileScale)
-        .build();
-
-        MapTileBuilder windowTile = new MapTileBuilder(windowFrame)
-        .withTileType(TileType.NOT_PASSABLE);
-        mapTiles.add(windowTile);
-
-        // Tile 32: windowPanel
-
-        Frame windowPanelFrame = new FrameBuilder(getSubImage(4, 3))
-        .withScale(tileScale)
-        .build();
-
-        MapTileBuilder windowPanelTile = new MapTileBuilder(windowPanelFrame)
-        .withTileType(TileType.NOT_PASSABLE);
-        mapTiles.add(windowPanelTile);
-
-        // Tile 33: pathway1
-
-        Frame pathway1Frame = new FrameBuilder(getSubImage(4, 4))
-        .withScale(tileScale)
-        .build();
-
-        MapTileBuilder pathway1Tile = new MapTileBuilder(pathway1Frame)
+        MapTileBuilder toprighttdarkCornerpathTile = new MapTileBuilder(toprighttdarkCornerpathFrame)
         .withTileType(TileType.PASSABLE);
-        mapTiles.add(pathway1Tile);
+        mapTiles.add(toprighttdarkCornerpathTile);
 
-         // Tile 34: pathway2
+        // Tile 29: smalltopleftdarkCornerpath
 
-         Frame pathway2Frame = new FrameBuilder(getSubImage(4, 5))
+        Frame smalltopleftdarkCornerpathFrame = new FrameBuilder(getSubImage(3, 1))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder smalltopleftdarkCornerpathTile = new MapTileBuilder(smalltopleftdarkCornerpathFrame)
+        .withTileType(TileType.PASSABLE);
+        mapTiles.add(smalltopleftdarkCornerpathTile);
+
+        // Tile 30: smalltoprightdarkCornerpath
+
+        Frame smalltoprightdarkCornerpathFrame = new FrameBuilder(getSubImage(3, 2))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder smalltoprightdarkCornerpathTile = new MapTileBuilder(smalltoprightdarkCornerpathFrame)
+        .withTileType(TileType.PASSABLE);
+        mapTiles.add(smalltoprightdarkCornerpathTile);
+
+        // Tile 31: bottomrightdarkCornerpath
+
+        Frame bottomrightdarkCornerpathFrame = new FrameBuilder(getSubImage(3, 3))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder bottomrightdarkCornerpathTile = new MapTileBuilder(bottomrightdarkCornerpathFrame)
+        .withTileType(TileType.PASSABLE);
+        mapTiles.add(bottomrightdarkCornerpathTile);
+
+        // Tile 32: smallbottomrightdarkCornerpath
+
+        Frame smallbottomrightdarkCornerpathFrame = new FrameBuilder(getSubImage(3, 4))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder smallbottomrightdarkCornerpathTile = new MapTileBuilder(smallbottomrightdarkCornerpathFrame)
+        .withTileType(TileType.PASSABLE);
+        mapTiles.add(smallbottomrightdarkCornerpathTile);
+
+        // Tile 33: bottomleftdarkandlightCornerpath
+
+        Frame bottomleftdarkandlightCornerpathFrame = new FrameBuilder(getSubImage(3, 5))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder bottomleftdarkandlightCornerpathTile = new MapTileBuilder(bottomleftdarkandlightCornerpathFrame)
+        .withTileType(TileType.PASSABLE);
+        mapTiles.add(bottomleftdarkandlightCornerpathTile);
+
+        // Tile 34: topdarkleftCornerpath
+
+        Frame topdarkleftCornerpathFrame = new FrameBuilder(getSubImage(3, 6))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder topdarkleftCornerpathTile = new MapTileBuilder(topdarkleftCornerpathFrame)
+        .withTileType(TileType.PASSABLE);
+        mapTiles.add(topdarkleftCornerpathTile);
+
+        // Tile 35: topdarkrightCornerpath
+
+        Frame topdarkrightCornerpathFrame = new FrameBuilder(getSubImage(3, 7))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder topdarkrightCornerpathTile = new MapTileBuilder(topdarkrightCornerpathFrame)
+        .withTileType(TileType.PASSABLE);
+        mapTiles.add(topdarkrightCornerpathTile);
+
+        // Tile 36: smalltopdarkleftCornerpath
+
+        Frame smalltopdarkleftCornerpathFrame = new FrameBuilder(getSubImage(3, 8))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder smalltopdarkleftCornerpathTile = new MapTileBuilder(smalltopdarkleftCornerpathFrame)
+        .withTileType(TileType.PASSABLE);
+        mapTiles.add(smalltopdarkleftCornerpathTile);
+
+         // Tile 37: smalltopdarkrightCornerpath
+
+         Frame smalltopdarkrightCornerpathFrame = new FrameBuilder(getSubImage(4, 0))
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder pathway2Tile = new MapTileBuilder(pathway2Frame)
+         MapTileBuilder smalltopdarkrightCornerpathTile = new MapTileBuilder(smalltopdarkrightCornerpathFrame)
          .withTileType(TileType.PASSABLE);
-         mapTiles.add(pathway2Tile);
+         mapTiles.add(smalltopdarkrightCornerpathTile);
 
-         // Tile 35: bottomDoor
+         // Tile 38: bottomdarkrightCornerpath
 
-         Frame bottomDoorFrame = new FrameBuilder(getSubImage(4, 6))
+         Frame bottomdarkrightCornerpathFrame = new FrameBuilder(getSubImage(4, 1))
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder bottomDoorTile = new MapTileBuilder(bottomDoorFrame)
-         .withTileType(TileType.NOT_PASSABLE);
-         mapTiles.add(bottomDoorTile);
+         MapTileBuilder bottomdarkrightCornerpathTile = new MapTileBuilder(bottomdarkrightCornerpathFrame)
+         .withTileType(TileType.PASSABLE);
+         mapTiles.add(bottomdarkrightCornerpathTile);
 
-         // Tile 36: upperDoor
+         // Tile 39: bottomdarksmallrightCornerpath
 
-         Frame upperDoorFrame = new FrameBuilder(getSubImage(5, 0))
+         Frame bottomdarksmallrightCornerpathFrame = new FrameBuilder(getSubImage(4, 2))
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder upperDoorTile = new MapTileBuilder(upperDoorFrame)
-         .withTileType(TileType.NOT_PASSABLE);
-         mapTiles.add(upperDoorTile);
+         MapTileBuilder bottomdarksmallrightCornerpathTile = new MapTileBuilder(bottomdarksmallrightCornerpathFrame)
+         .withTileType(TileType.PASSABLE);
+         mapTiles.add(bottomdarksmallrightCornerpathTile);
 
-         // Tile 37: rightRoof
+         // Tile 40: Wood
 
-         Frame rightRoofFrame = new FrameBuilder(getSubImage(5, 1))
+         Frame WoodFrame = new FrameBuilder(getSubImage(4, 3))
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder rightRoofTile = new MapTileBuilder(rightRoofFrame)
+         MapTileBuilder WoodTile = new MapTileBuilder(WoodFrame)
          .withTileType(TileType.NOT_PASSABLE);
-         mapTiles.add(rightRoofTile);
+         mapTiles.add(WoodTile);
 
-         // Tile 38: leftRoof
+         // Tile 41: Woodwithbanners
 
-         Frame leftRoofFrame = new FrameBuilder(getSubImage(5, 2))
+         Frame WoodwithbannersFrame = new FrameBuilder(getSubImage(4, 4))
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder leftRoofTile = new MapTileBuilder(leftRoofFrame)
+         MapTileBuilder WoodwithbannersTile = new MapTileBuilder(WoodwithbannersFrame)
          .withTileType(TileType.NOT_PASSABLE);
-         mapTiles.add(leftRoofTile);
+         mapTiles.add(WoodwithbannersTile);
 
-         // Tile 39: leftmiddleRoof
+         // Tile 42: treeWood
 
-         Frame leftmiddleRoofFrame = new FrameBuilder(getSubImage(5, 3))
+         Frame treeWoodFrame = new FrameBuilder(getSubImage(4, 5))
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder leftmiddleRoofTile = new MapTileBuilder(leftmiddleRoofFrame)
+         MapTileBuilder treeWoodTile = new MapTileBuilder(treeWoodFrame)
          .withTileType(TileType.NOT_PASSABLE);
-         mapTiles.add(leftmiddleRoofTile);
+         mapTiles.add(treeWoodTile);
 
-         // Tile 40: leftpointRoof
+         // Tile 43: regularGrass
 
-         Frame leftpointRoofFrame = new FrameBuilder(getSubImage(5, 4))
+         Frame regularGrassFrame = new FrameBuilder(getSubImage(4, 6))
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder leftpointRoofTile = new MapTileBuilder(leftpointRoofFrame)
-         .withTileType(TileType.NOT_PASSABLE);
-         mapTiles.add(leftpointRoofTile);
+         MapTileBuilder regularGrassTile = new MapTileBuilder(regularGrassFrame)
+         .withTileType(TileType.PASSABLE);
+         mapTiles.add(regularGrassTile);
 
-         // Tile 41: roofTiles1
+         // Tile 44: leftroundregularGrass
 
-         Frame roofTiles1Frame = new FrameBuilder(getSubImage(5, 5))
+         Frame leftroundregularGrassFrame = new FrameBuilder(getSubImage(4, 7))
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder roofTiles1Tile = new MapTileBuilder(roofTiles1Frame)
-         .withTileType(TileType.NOT_PASSABLE);
-         mapTiles.add(roofTiles1Tile);
+         MapTileBuilder leftroundregularGrassTile = new MapTileBuilder(leftroundregularGrassFrame)
+         .withTileType(TileType.PASSABLE);
+         mapTiles.add(leftroundregularGrassTile);
 
-         // Tile 42: roofTiles2
+         // Tile 45: rightroundregularGrass
 
-         Frame roofTiles2Frame = new FrameBuilder(getSubImage(5, 6))
+         Frame rightroundregularGrassFrame = new FrameBuilder(getSubImage(4, 8))
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder roofTiles2Tile = new MapTileBuilder(roofTiles2Frame)
-         .withTileType(TileType.NOT_PASSABLE);
-         mapTiles.add(roofTiles2Tile);
+         MapTileBuilder rightroundregularGrassTile = new MapTileBuilder(rightroundregularGrassFrame)
+         .withTileType(TileType.PASSABLE);
+         mapTiles.add(rightroundregularGrassTile);
 
-         // Tile 43: topRightroof
+         // Tile 46: toprightcornerregularGrass
 
-         Frame topRightroofFrame = new FrameBuilder(getSubImage(6, 0))
+         Frame toprightcornerregularGrassFrame = new FrameBuilder(getSubImage(5, 0))
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder topRightroofTile = new MapTileBuilder(topRightroofFrame)
-         .withTileType(TileType.NOT_PASSABLE);
-         mapTiles.add(topRightroofTile);
+         MapTileBuilder toprightcornerregularGrassTile = new MapTileBuilder(toprightcornerregularGrassFrame)
+         .withTileType(TileType.PASSABLE);
+         mapTiles.add(toprightcornerregularGrassTile);
 
-         // Tile 44: topRightroof2
+         // Tile 47: topleftcornerregularGrass
 
-         Frame topRightroof2Frame = new FrameBuilder(getSubImage(6, 1))
+         Frame topleftcornerregularGrassFrame = new FrameBuilder(getSubImage(5, 1))
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder topRightroof2Tile = new MapTileBuilder(topRightroof2Frame)
-         .withTileType(TileType.NOT_PASSABLE);
-         mapTiles.add(topRightroof2Tile);
+         MapTileBuilder topleftcornerregularGrassTile = new MapTileBuilder(topleftcornerregularGrassFrame)
+         .withTileType(TileType.PASSABLE);
+         mapTiles.add(topleftcornerregularGrassTile);
 
-         // Tile 45: rightPointroof
+         // Tile 48: bottomrightcornerregularGrass
 
-         Frame rightPointroofFrame = new FrameBuilder(getSubImage(6, 2))
+         Frame bottomrightcornerregularGrassFrame = new FrameBuilder(getSubImage(5, 2))
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder rightPointroofTile = new MapTileBuilder(rightPointroofFrame)
-         .withTileType(TileType.NOT_PASSABLE);
-         mapTiles.add(rightPointroofTile);
+         MapTileBuilder bottomrightcornerregularGrassTile = new MapTileBuilder(bottomrightcornerregularGrassFrame)
+         .withTileType(TileType.PASSABLE);
+         mapTiles.add(bottomrightcornerregularGrassTile);
 
-         // Tile 46: rightmiddleRoof
+         // Tile 49: bottomleftcornerregularGrass
 
-         Frame rightmiddleRoofFrame = new FrameBuilder(getSubImage(6, 3))
+         Frame bottomleftcornerregularGrassFrame = new FrameBuilder(getSubImage(5, 3))
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder rightmiddleRoofTile = new MapTileBuilder(rightmiddleRoofFrame)
-         .withTileType(TileType.NOT_PASSABLE);
-         mapTiles.add(rightmiddleRoofTile);
+         MapTileBuilder bottomleftcornerregularGrassTile = new MapTileBuilder(bottomleftcornerregularGrassFrame)
+         .withTileType(TileType.PASSABLE);
+         mapTiles.add(bottomleftcornerregularGrassTile);
 
-         // Tile 47: topLeftroof2
+         // Tile 50: bottomregularGrass1
 
-         Frame topLeftroof2Frame = new FrameBuilder(getSubImage(6, 4))
+         Frame bottomregularGrass1Frame = new FrameBuilder(getSubImage(5, 4))
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder topLeftroof2Tile = new MapTileBuilder(topLeftroof2Frame)
+         MapTileBuilder bottomregularGrass1Tile = new MapTileBuilder(bottomregularGrass1Frame)
+         .withTileType(TileType.PASSABLE);
+         mapTiles.add(bottomregularGrass1Tile);
+
+         // Tile 51: bottomregularGrass2
+
+         Frame bottomregularGrass2Frame = new FrameBuilder(getSubImage(5, 5))
+         .withScale(tileScale)
+         .build();
+ 
+         MapTileBuilder bottomregularGrass2Tile = new MapTileBuilder(bottomregularGrass2Frame)
+         .withTileType(TileType.PASSABLE);
+         mapTiles.add(bottomregularGrass2Tile);
+
+         // Tile 52: Treewood2
+
+         Frame Treewood2Frame = new FrameBuilder(getSubImage(5, 6))
+         .withScale(tileScale)
+         .build();
+ 
+         MapTileBuilder Treewood2Tile = new MapTileBuilder(Treewood2Frame)
          .withTileType(TileType.NOT_PASSABLE);
-         mapTiles.add(topLeftroof2Tile);
+         mapTiles.add(Treewood2Tile);
 
-         // Tile 48: topLeftroof
+         // Tile 53: balloons
 
-         Frame topLeftroofFrame = new FrameBuilder(getSubImage(6, 5))
+         Frame balloonsFrame = new FrameBuilder(getSubImage(5, 7))
+         .withScale(tileScale)
+         .build();
+ 
+         MapTileBuilder balloonsTile = new MapTileBuilder(balloonsFrame)
+         .withTileType(TileType.PASSABLE);
+         mapTiles.add(balloonsTile);
+
+         // Tile 54: window
+
+         Frame windowFrame = new FrameBuilder(getSubImage(5, 8))
+         .withScale(tileScale)
+         .build();
+ 
+         MapTileBuilder windowTile = new MapTileBuilder(windowFrame)
+         .withTileType(TileType.NOT_PASSABLE);
+         mapTiles.add(windowTile);
+
+         // Tile 55: windowPanel
+
+         Frame windowPanelFrame = new FrameBuilder(getSubImage(6, 0))
+         .withScale(tileScale)
+         .build();
+ 
+         MapTileBuilder windowPanelTile = new MapTileBuilder(windowPanelFrame)
+         .withTileType(TileType.NOT_PASSABLE);
+         mapTiles.add(windowPanelTile);
+
+         // Tile 56: sand1
+
+         Frame sand1Frame = new FrameBuilder(getSubImage(6, 1))
+         .withScale(tileScale)
+         .build();
+ 
+         MapTileBuilder sand1Tile = new MapTileBuilder(sand1Frame)
+         .withTileType(TileType.PASSABLE);
+         mapTiles.add(sand1Tile);
+
+         // Tile 57: sand2
+
+         Frame sand2Frame = new FrameBuilder(getSubImage(6, 2))
+         .withScale(tileScale)
+         .build();
+ 
+         MapTileBuilder sand2Tile = new MapTileBuilder(sand2Frame)
+         .withTileType(TileType.PASSABLE);
+         mapTiles.add(sand2Tile);
+
+         // Tile 58: door
+
+         Frame doorFrame = new FrameBuilder(getSubImage(6, 3))
+         .withScale(tileScale)
+         .build();
+ 
+         MapTileBuilder doorTile = new MapTileBuilder(doorFrame)
+         .withTileType(TileType.NOT_PASSABLE);
+         mapTiles.add(doorTile);
+
+         // Tile 59: rightroofEdge
+
+         Frame rightroofEdgeFrame = new FrameBuilder(getSubImage(6, 4))
+         .withScale(tileScale)
+         .build();
+ 
+         MapTileBuilder rightroofEdgeTile = new MapTileBuilder(rightroofEdgeFrame)
+         .withTileType(TileType.NOT_PASSABLE);
+         mapTiles.add(rightroofEdgeTile);
+
+         // Tile 60: leftroofEdge
+
+         Frame leftroofEdgeFrame = new FrameBuilder(getSubImage(6, 5))
+         .withScale(tileScale)
+         .build();
+ 
+         MapTileBuilder leftroofEdgeTile = new MapTileBuilder(leftroofEdgeFrame)
+         .withTileType(TileType.NOT_PASSABLE);
+         mapTiles.add(leftroofEdgeTile);
+
+         // Tile 61: leftroofAndhouse
+
+         Frame leftroofAndhouseFrame = new FrameBuilder(getSubImage(6, 6))
+         .withScale(tileScale)
+         .build();
+ 
+         MapTileBuilder leftroofAndhouseTile = new MapTileBuilder(leftroofAndhouseFrame)
+         .withTileType(TileType.NOT_PASSABLE);
+         mapTiles.add(leftroofAndhouseTile);
+
+         // Tile 62: topLeftroof
+
+         Frame topLeftroofFrame = new FrameBuilder(getSubImage(6, 7))
          .withScale(tileScale)
          .build();
  
@@ -498,7 +638,116 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(topLeftroofTile);
 
+         // Tile 63: leftRoof
 
-        return mapTiles;
-    }
+         Frame leftRoofFrame = new FrameBuilder(getSubImage(6, 8))
+         .withScale(tileScale)
+         .build();
+ 
+         MapTileBuilder leftRoofTile = new MapTileBuilder(leftRoofFrame)
+         .withTileType(TileType.NOT_PASSABLE);
+         mapTiles.add(leftRoofTile);
+
+         // Tile 64: rightRoof
+
+         Frame rightRoofFrame = new FrameBuilder(getSubImage(7, 0))
+         .withScale(tileScale)
+         .build();
+ 
+         MapTileBuilder rightRoofTile = new MapTileBuilder(rightRoofFrame)
+         .withTileType(TileType.NOT_PASSABLE);
+         mapTiles.add(rightRoofTile);
+
+         // Tile 65: rightRoof2
+
+         Frame rightRoof2Frame = new FrameBuilder(getSubImage(7, 1))
+         .withScale(tileScale)
+         .build();
+ 
+         MapTileBuilder rightRoof2Tile = new MapTileBuilder(rightRoof2Frame)
+         .withTileType(TileType.NOT_PASSABLE);
+         mapTiles.add(rightRoof2Tile);
+
+         // Tile 66: tophouseAndrightroof
+
+         Frame tophouseAndrightroofFrame = new FrameBuilder(getSubImage(7, 2))
+         .withScale(tileScale)
+         .build();
+ 
+         MapTileBuilder tophouseAndrightroofTile = new MapTileBuilder(tophouseAndrightroofFrame)
+         .withTileType(TileType.NOT_PASSABLE);
+         mapTiles.add(tophouseAndrightroofTile);
+
+         // Tile 67: topRightroof
+
+         Frame topRightroofFrame = new FrameBuilder(getSubImage(7, 3))
+         .withScale(tileScale)
+         .build();
+ 
+         MapTileBuilder topRightroofTile = new MapTileBuilder(topRightroofFrame)
+         .withTileType(TileType.NOT_PASSABLE);
+         mapTiles.add(topRightroofTile);
+
+         // Tile 68: rightroofAndhouse
+
+         Frame rightroofAndhouseFrame = new FrameBuilder(getSubImage(7, 4))
+         .withScale(tileScale)
+         .build();
+ 
+         MapTileBuilder rightroofAndhouseTile = new MapTileBuilder(rightroofAndhouseFrame)
+         .withTileType(TileType.NOT_PASSABLE);
+         mapTiles.add(rightroofAndhouseTile);
+
+         // Tile 69: tophouseAndleftroof
+
+         Frame tophouseAndleftroofFrame = new FrameBuilder(getSubImage(7, 5))
+         .withScale(tileScale)
+         .build();
+ 
+         MapTileBuilder tophouseAndleftroofTile = new MapTileBuilder(tophouseAndleftroofFrame)
+         .withTileType(TileType.NOT_PASSABLE);
+         mapTiles.add(tophouseAndleftroofTile);
+
+         // Tile 70: leftRoof2
+
+         Frame leftRoof2Frame = new FrameBuilder(getSubImage(7, 6))
+         .withScale(tileScale)
+         .build();
+ 
+         MapTileBuilder leftRoof2Tile = new MapTileBuilder(leftRoof2Frame)
+         .withTileType(TileType.NOT_PASSABLE);
+         mapTiles.add(leftRoof2Tile);
+
+        // Tile 71: rightroofandhouse
+
+        Frame rightroofandhouseFrame = new FrameBuilder(getSubImage(7, 7))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder rightroofandhouseTile = new MapTileBuilder(rightroofandhouseFrame)
+        .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(rightroofandhouseTile);
+
+        // Tile 72: tophouseandleftroof
+
+        Frame tophouseandleftroofFrame = new FrameBuilder(getSubImage(7, 8))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder tophouseandleftroofTile = new MapTileBuilder(tophouseandleftroofFrame)
+        .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(tophouseandleftroofTile);
+/* 
+        // Tile 73: leftroof2
+
+        Frame leftroof2Frame = new FrameBuilder(getSubImage(8, 0))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder leftroof2Tile = new MapTileBuilder(leftroof2Frame)
+        .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(leftroof2Tile);
+*/
+                return mapTiles;
+        }
 }

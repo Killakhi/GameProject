@@ -20,7 +20,7 @@ public class TownsfolkScript extends Script {
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasTalkedToTownsfolk", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("L+ ratio");
+                    addText("Don't you love it here?");
                     
                     
                 }});

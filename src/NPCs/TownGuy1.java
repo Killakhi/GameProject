@@ -12,10 +12,10 @@ import Utils.Point;
 import java.util.HashMap;
 
 // This class is for the new custom NPC
-public class Innkeeper extends NPC {
+public class TownGuy1 extends NPC {
 
-    public Innkeeper(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("LittleGuy_1.png"), 30, 30), "STAND_LEFT");
+    public TownGuy1(int id, Point location) {
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("LittleGuy_2.png"), 30, 30), "STAND_LEFT");
     }
 
     @Override

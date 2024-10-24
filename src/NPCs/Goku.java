@@ -4,14 +4,11 @@ import Builders.FrameBuilder;
 import Engine.GraphicsHandler;
 import Engine.ImageLoader;
 import GameObject.Frame;
-import GameObject.HealthBar;
 import GameObject.ImageEffect;
 import GameObject.SpriteSheet;
 import Level.NPC;
 import Level.Player;
 import Utils.Point;
-//import Screens.PlayLevelScreen;
-import Screens.BattleScreen;
 import Screens.PlayLevelScreen;
 import Screens.PlayLevelScreen.PlayLevelScreenState;
 
@@ -35,9 +32,9 @@ public class Goku extends NPC {
             PlayLevelScreen.playLevelScreenState = PlayLevelScreenState.ENTERING_BATTLE;
             
             
-            System.out.println("HEY TREY");
+            //System.out.println("WHY DID YOU KILL ME");
             //delete npc once touched?
-              
+            this.setLocation(999999,99999);
         }
 
 //not working rn
