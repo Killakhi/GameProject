@@ -42,7 +42,7 @@ public class BattleScreen extends Screen {
         keyPressTimer = 0;
         flagManager = new FlagManager();
         intro = new SpriteFont("A nefarious ghost approaches!", 200, 50, "Arial", 30, Color.white);
-        battle = new SpriteFont("You hit for some damage!", 240, 279,"Arial", 20, Color.white);
+        battle = new SpriteFont("You hit for some damage!", 240, 50,"Arial", 20, Color.white);
         flagManager.addFlag("Attacking", false);
         physicalAttack = new SpriteFont("Physical Attack                                     " , 90, 500, "Arial", 30, Color.white );
         magicAttack = new SpriteFont("                                       Magic Attack               " , 90, 500, "Arial", 30, Color.white );
@@ -50,7 +50,7 @@ public class BattleScreen extends Screen {
         keyLocker.unlockKey(Key.B);
         keyLocker.unlockKey(Key.UP);
         keyLocker.unlockKey(Key.DOWN);
-        enemy1 = ImageLoader.load("Ghost.png");
+        enemy1 = ImageLoader.load("Ghost_Battle.png");
         update();
     }
 
@@ -186,7 +186,7 @@ public class BattleScreen extends Screen {
         else {
             intro.draw(graphicsHandler);
         }
-        graphicsHandler.drawImage(enemy1, 10, 10);
+        graphicsHandler.drawImage(enemy1, 270, 180);
         physicalAttack.draw(graphicsHandler);
         magicAttack.draw(graphicsHandler);
         this.playerHealth.setVisible(true);

@@ -34,7 +34,7 @@ public class Goku extends NPC {
             
             System.out.println("HEY TREY");
             //delete npc once touched?
-              
+            this.setLocation(999999,99999);
         }
 
 //not working rn
