@@ -19,7 +19,7 @@ public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
     protected Player player;
-    public static PlayLevelScreenState playLevelScreenState;
+    public static PlayLevelScreenState playLevelScreenState = PlayLevelScreenState.RUNNING;
     protected WinScreen winScreen;
     protected GameOverScreen gameOverScreen;
     protected BattleScreen battleScreen;
