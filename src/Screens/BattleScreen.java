@@ -167,16 +167,6 @@ public class BattleScreen extends Screen {
                 this.playLevelScreen.stopBattle();
             }
         }
-
-        // if up or down is pressed, the health goes up or down
-        if (Keyboard.isKeyDown(Key.UP)) {
-            //Code for the health system
-            this.playerHealth.heal(1);
-        } else if (Keyboard.isKeyDown(Key.DOWN)) {
-            //Code for the health system
-            this.playerHealth.damage(1);
-        }
-
     }
     public void draw(GraphicsHandler graphicsHandler) {
         graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
