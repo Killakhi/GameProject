@@ -2,7 +2,6 @@ package Scripts.TestMap;
 
 import Level.Script;
 import ScriptActions.*;
-import Utils.Visibility;
 import java.util.ArrayList;
 
 // script for talking to new Custom npc
