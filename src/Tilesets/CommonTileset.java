@@ -24,8 +24,8 @@ public class CommonTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder lightGrass1Tile = new MapTileBuilder(lightGrass1Frame);
-
+        MapTileBuilder lightGrass1Tile = new MapTileBuilder(lightGrass1Frame)
+        .withTileType(TileType.PASSABLE);
         mapTiles.add(lightGrass1Tile);
 
         // Tile 2: lightGrass2
