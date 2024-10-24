@@ -55,6 +55,7 @@ public class TestMap extends Map {
         Goku goku = new Goku(4, getMapTile(10, 10).getLocation().subtractY(40));
         goku.setInteractScript(new GokuScript());
         npcs.add(goku);
+        this.enemies.add(goku);
 
         Bat bat = new Bat(1, getMapTile(11, 15).getLocation().subtractY(40));
         bat.setInteractScript(new BatScript());
