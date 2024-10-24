@@ -32,7 +32,7 @@ public class Goku extends NPC {
     public void performAction(Player player)  {
         
         if (touching(player)) {
-            PlayLevelScreen.playLevelScreenState = PlayLevelScreenState.BATTLING;
+            PlayLevelScreen.playLevelScreenState = PlayLevelScreenState.ENTERING_BATTLE;
             
             
             System.out.println("HEY TREY");

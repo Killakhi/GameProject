@@ -99,8 +99,12 @@ public class PlayLevelScreen extends Screen {
             case LEVEL_COMPLETED:
                 winScreen.update();
                 break;
-            case BATTLING:
+            case ENTERING_BATTLE:
                 battleScreen.initialize();
+                playLevelScreenState = PlayLevelScreenState.BATTLING;
+                // fallthrough to next case
+            case BATTLING:
+                battleScreen.update();
                 break;
             case GAME_OVER:
                 gameOverScreen.update();
@@ -162,6 +166,10 @@ public class PlayLevelScreen extends Screen {
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);
                 break;
+            case ENTERING_BATTLE:
+                battleScreen.initialize();
+                playLevelScreenState = PlayLevelScreenState.BATTLING;
+                // fallthrough to next case
             case BATTLING:
                 battleScreen.draw(graphicsHandler);
                 break;
@@ -191,6 +199,6 @@ public class PlayLevelScreen extends Screen {
 
     // This enum represents the different states this screen can be in
     public enum PlayLevelScreenState {
-        RUNNING, LEVEL_COMPLETED, BATTLING, GAME_OVER
+        RUNNING, LEVEL_COMPLETED, ENTERING_BATTLE, BATTLING, GAME_OVER
     }
 }
