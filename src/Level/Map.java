@@ -511,21 +511,6 @@ public abstract class Map {
     }
 
     public void update(Player player) {
-        // test stuff
-        if (Keyboard.isKeyDown(Key.SEVEN)) {
-            // this is going to be absolutely terrifying
-            for (NPC npc : this.npcs) {
-                Route routeToPlayer = this.pathfinder.getBestRoute(player, npc.getLocation());
-                
-                if (routeToPlayer != null) {
-                    java.awt.Point direction = routeToPlayer.getDirectionToMove();
-
-                    npc.moveX(direction.x * 2);
-                    npc.moveY(direction.y * 2);
-                }
-            }
-        }
-
         for (NPC npc : this.enemies) {
             Point delta = player.getLocation().subtract(npc.getLocation());
             double distance = Math.sqrt(delta.x * delta.x + delta.y * delta.y);
