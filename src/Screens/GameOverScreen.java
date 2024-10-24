@@ -7,7 +7,7 @@ import java.awt.*;
 
 // This class is for the win level screen
 public class GameOverScreen extends Screen {
-    protected SpriteFont winMessage;
+    protected SpriteFont gameOverMessage;
     protected SpriteFont instructions;
     protected KeyLocker keyLocker = new KeyLocker();
     protected PlayLevelScreen playLevelScreen;
@@ -25,8 +25,8 @@ public class GameOverScreen extends Screen {
 
     @Override
     public void initialize() {
-        winMessage = new SpriteFont("Game Over!", 350, 239, "Arial", 30, Color.red);
-        instructions = new SpriteFont("Press Space to go back to the main menu", 120, 279,"Arial", 20, Color.white);
+        gameOverMessage = new SpriteFont("Game Over!", 320, 239, "Arial", 30, Color.red);
+        instructions = new SpriteFont("Press Space to go back to the main menu", 215, 279,"Arial", 20, Color.white);
         keyLocker.lockKey(Key.SPACE);
         System.out.println("It got here?");
     }
@@ -48,7 +48,7 @@ public class GameOverScreen extends Screen {
 
     public void draw(GraphicsHandler graphicsHandler) {
         graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
-        winMessage.draw(graphicsHandler);
+        gameOverMessage.draw(graphicsHandler);
         instructions.draw(graphicsHandler);
     }
 }
