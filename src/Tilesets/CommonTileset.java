@@ -218,9 +218,19 @@ public class CommonTileset extends Tileset {
         .withTileType(TileType.PASSABLE);
         mapTiles.add(topleftlightCornerpathTile);
 
-        // Tile 21: smalltopleftlightCornerpath
+        // Tile 21: lightopRightcornerpath
 
-        Frame smalltopleftlightCornerpathFrame = new FrameBuilder(getSubImage(2, 2))
+        Frame lightopRightcornerpathFrame = new FrameBuilder(getSubImage(2, 2))
+         .withScale(tileScale)
+        .build();
+
+        MapTileBuilder lightopRightcornerpathTile = new MapTileBuilder(lightopRightcornerpathFrame)
+        .withTileType(TileType.PASSABLE);
+        mapTiles.add(lightopRightcornerpathTile);
+
+        // Tile 22: smalltopleftlightCornerpath
+
+        Frame smalltopleftlightCornerpathFrame = new FrameBuilder(getSubImage(2, 3))
          .withScale(tileScale)
         .build();
 
@@ -228,9 +238,9 @@ public class CommonTileset extends Tileset {
         .withTileType(TileType.PASSABLE);
         mapTiles.add(smalltopleftlightCornerpathTile);
 
-        // Tile 22: smalltoprightlightCornerpath
+        // Tile 23: smalltoprightlightCornerpath
 
-        Frame smalltoprightlightCornerpathFrame = new FrameBuilder(getSubImage(2, 3))
+        Frame smalltoprightlightCornerpathFrame = new FrameBuilder(getSubImage(2, 4))
          .withScale(tileScale)
         .build();
 
@@ -238,9 +248,9 @@ public class CommonTileset extends Tileset {
         .withTileType(TileType.PASSABLE);
         mapTiles.add(smalltoprightlightCornerpathTile);
 
-         // Tile 23: bottomrightlightCornerpath
+         // Tile 24: bottomrightlightCornerpath
 
-         Frame bottomrightlightCornerpathFrame = new FrameBuilder(getSubImage(2, 4))
+         Frame bottomrightlightCornerpathFrame = new FrameBuilder(getSubImage(2, 5))
          .withScale(tileScale)
         .build();
 
@@ -248,9 +258,9 @@ public class CommonTileset extends Tileset {
         .withTileType(TileType.PASSABLE);
         mapTiles.add(bottomrightlightCornerpathTile);
 
-        // Tile 24: smallbottomrightlightCornerpath
+        // Tile 25: smallbottomrightlightCornerpath
 
-        Frame smallbottomrightlightCornerpathFrame = new FrameBuilder(getSubImage(2, 5))
+        Frame smallbottomrightlightCornerpathFrame = new FrameBuilder(getSubImage(2, 6))
         .withScale(tileScale)
        .build();
 
@@ -258,9 +268,9 @@ public class CommonTileset extends Tileset {
        .withTileType(TileType.PASSABLE);
        mapTiles.add(smallbottomrightlightCornerpathTile);
 
-       // Tile 25: bottomleftdarkCornerpath
+       // Tile 26: bottomleftdarkCornerpath
 
-       Frame bottomleftdarkCornerpathFrame = new FrameBuilder(getSubImage(2, 6))
+       Frame bottomleftdarkCornerpathFrame = new FrameBuilder(getSubImage(2, 7))
        .withScale(tileScale)
       .build();
 
@@ -268,9 +278,9 @@ public class CommonTileset extends Tileset {
       .withTileType(TileType.PASSABLE);
       mapTiles.add(bottomleftdarkCornerpathTile);
 
-      // Tile 26: topleftdarkCornerpath
+      // Tile 27: topleftdarkCornerpath
 
-        Frame topleftdarkCornerpathFrame = new FrameBuilder(getSubImage(2, 7))
+        Frame topleftdarkCornerpathFrame = new FrameBuilder(getSubImage(2, 8))
         .withScale(tileScale)
         .build();
 
@@ -278,9 +288,19 @@ public class CommonTileset extends Tileset {
         .withTileType(TileType.PASSABLE);
         mapTiles.add(topleftdarkCornerpathTile);
 
-        // Tile 27: smalltopleftdarkCornerpath
+        // Tile 28: toprighttdarkCornerpath
 
-        Frame smalltopleftdarkCornerpathFrame = new FrameBuilder(getSubImage(2, 8))
+        Frame toprighttdarkCornerpathFrame = new FrameBuilder(getSubImage(3, 0))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder toprighttdarkCornerpathTile = new MapTileBuilder(toprighttdarkCornerpathFrame)
+        .withTileType(TileType.PASSABLE);
+        mapTiles.add(toprighttdarkCornerpathTile);
+
+        // Tile 29: smalltopleftdarkCornerpath
+
+        Frame smalltopleftdarkCornerpathFrame = new FrameBuilder(getSubImage(3, 1))
         .withScale(tileScale)
         .build();
 
@@ -288,9 +308,9 @@ public class CommonTileset extends Tileset {
         .withTileType(TileType.PASSABLE);
         mapTiles.add(smalltopleftdarkCornerpathTile);
 
-        // Tile 28: smalltoprightdarkCornerpath
+        // Tile 30: smalltoprightdarkCornerpath
 
-        Frame smalltoprightdarkCornerpathFrame = new FrameBuilder(getSubImage(3, 0))
+        Frame smalltoprightdarkCornerpathFrame = new FrameBuilder(getSubImage(3, 2))
         .withScale(tileScale)
         .build();
 
@@ -298,9 +318,9 @@ public class CommonTileset extends Tileset {
         .withTileType(TileType.PASSABLE);
         mapTiles.add(smalltoprightdarkCornerpathTile);
 
-        // Tile 29: bottomrightdarkCornerpath
+        // Tile 31: bottomrightdarkCornerpath
 
-        Frame bottomrightdarkCornerpathFrame = new FrameBuilder(getSubImage(3, 1))
+        Frame bottomrightdarkCornerpathFrame = new FrameBuilder(getSubImage(3, 3))
         .withScale(tileScale)
         .build();
 
@@ -308,9 +328,9 @@ public class CommonTileset extends Tileset {
         .withTileType(TileType.PASSABLE);
         mapTiles.add(bottomrightdarkCornerpathTile);
 
-        // Tile 30: smallbottomrightdarkCornerpath
+        // Tile 32: smallbottomrightdarkCornerpath
 
-        Frame smallbottomrightdarkCornerpathFrame = new FrameBuilder(getSubImage(3, 2))
+        Frame smallbottomrightdarkCornerpathFrame = new FrameBuilder(getSubImage(3, 4))
         .withScale(tileScale)
         .build();
 
@@ -318,9 +338,9 @@ public class CommonTileset extends Tileset {
         .withTileType(TileType.PASSABLE);
         mapTiles.add(smallbottomrightdarkCornerpathTile);
 
-        // Tile 31: bottomleftdarkandlightCornerpath
+        // Tile 33: bottomleftdarkandlightCornerpath
 
-        Frame bottomleftdarkandlightCornerpathFrame = new FrameBuilder(getSubImage(3, 3))
+        Frame bottomleftdarkandlightCornerpathFrame = new FrameBuilder(getSubImage(3, 5))
         .withScale(tileScale)
         .build();
 
@@ -328,9 +348,9 @@ public class CommonTileset extends Tileset {
         .withTileType(TileType.PASSABLE);
         mapTiles.add(bottomleftdarkandlightCornerpathTile);
 
-        // Tile 32: topdarkleftCornerpath
+        // Tile 34: topdarkleftCornerpath
 
-        Frame topdarkleftCornerpathFrame = new FrameBuilder(getSubImage(3, 4))
+        Frame topdarkleftCornerpathFrame = new FrameBuilder(getSubImage(3, 6))
         .withScale(tileScale)
         .build();
 
@@ -338,9 +358,19 @@ public class CommonTileset extends Tileset {
         .withTileType(TileType.PASSABLE);
         mapTiles.add(topdarkleftCornerpathTile);
 
-        // Tile 33: smalltopdarkleftCornerpath
+        // Tile 35: topdarkrightCornerpath
 
-        Frame smalltopdarkleftCornerpathFrame = new FrameBuilder(getSubImage(3, 5))
+        Frame topdarkrightCornerpathFrame = new FrameBuilder(getSubImage(3, 7))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder topdarkrightCornerpathTile = new MapTileBuilder(topdarkrightCornerpathFrame)
+        .withTileType(TileType.PASSABLE);
+        mapTiles.add(topdarkrightCornerpathTile);
+
+        // Tile 36: smalltopdarkleftCornerpath
+
+        Frame smalltopdarkleftCornerpathFrame = new FrameBuilder(getSubImage(3, 8))
         .withScale(tileScale)
         .build();
 
@@ -348,9 +378,9 @@ public class CommonTileset extends Tileset {
         .withTileType(TileType.PASSABLE);
         mapTiles.add(smalltopdarkleftCornerpathTile);
 
-         // Tile 34: smalltopdarkrightCornerpath
+         // Tile 37: smalltopdarkrightCornerpath
 
-         Frame smalltopdarkrightCornerpathFrame = new FrameBuilder(getSubImage(3, 6))
+         Frame smalltopdarkrightCornerpathFrame = new FrameBuilder(getSubImage(4, 0))
          .withScale(tileScale)
          .build();
  
@@ -358,9 +388,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.PASSABLE);
          mapTiles.add(smalltopdarkrightCornerpathTile);
 
-         // Tile 35: bottomdarkrightCornerpath
+         // Tile 38: bottomdarkrightCornerpath
 
-         Frame bottomdarkrightCornerpathFrame = new FrameBuilder(getSubImage(3, 7))
+         Frame bottomdarkrightCornerpathFrame = new FrameBuilder(getSubImage(4, 1))
          .withScale(tileScale)
          .build();
  
@@ -368,9 +398,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.PASSABLE);
          mapTiles.add(bottomdarkrightCornerpathTile);
 
-         // Tile 36: bottomdarksmallrightCornerpath
+         // Tile 39: bottomdarksmallrightCornerpath
 
-         Frame bottomdarksmallrightCornerpathFrame = new FrameBuilder(getSubImage(3, 8))
+         Frame bottomdarksmallrightCornerpathFrame = new FrameBuilder(getSubImage(4, 2))
          .withScale(tileScale)
          .build();
  
@@ -378,9 +408,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.PASSABLE);
          mapTiles.add(bottomdarksmallrightCornerpathTile);
 
-         // Tile 37: Wood
+         // Tile 40: Wood
 
-         Frame WoodFrame = new FrameBuilder(getSubImage(4, 0))
+         Frame WoodFrame = new FrameBuilder(getSubImage(4, 3))
          .withScale(tileScale)
          .build();
  
@@ -388,9 +418,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(WoodTile);
 
-         // Tile 38: Woodwithbanners
+         // Tile 41: Woodwithbanners
 
-         Frame WoodwithbannersFrame = new FrameBuilder(getSubImage(4, 1))
+         Frame WoodwithbannersFrame = new FrameBuilder(getSubImage(4, 4))
          .withScale(tileScale)
          .build();
  
@@ -398,9 +428,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(WoodwithbannersTile);
 
-         // Tile 39: treeWood
+         // Tile 42: treeWood
 
-         Frame treeWoodFrame = new FrameBuilder(getSubImage(4, 2))
+         Frame treeWoodFrame = new FrameBuilder(getSubImage(4, 5))
          .withScale(tileScale)
          .build();
  
@@ -408,9 +438,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(treeWoodTile);
 
-         // Tile 40: regularGrass
+         // Tile 43: regularGrass
 
-         Frame regularGrassFrame = new FrameBuilder(getSubImage(4, 3))
+         Frame regularGrassFrame = new FrameBuilder(getSubImage(4, 6))
          .withScale(tileScale)
          .build();
  
@@ -418,9 +448,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.PASSABLE);
          mapTiles.add(regularGrassTile);
 
-         // Tile 41: leftroundregularGrass
+         // Tile 44: leftroundregularGrass
 
-         Frame leftroundregularGrassFrame = new FrameBuilder(getSubImage(4, 4))
+         Frame leftroundregularGrassFrame = new FrameBuilder(getSubImage(4, 7))
          .withScale(tileScale)
          .build();
  
@@ -428,9 +458,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.PASSABLE);
          mapTiles.add(leftroundregularGrassTile);
 
-         // Tile 42: rightroundregularGrass
+         // Tile 45: rightroundregularGrass
 
-         Frame rightroundregularGrassFrame = new FrameBuilder(getSubImage(4, 5))
+         Frame rightroundregularGrassFrame = new FrameBuilder(getSubImage(4, 8))
          .withScale(tileScale)
          .build();
  
@@ -438,9 +468,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.PASSABLE);
          mapTiles.add(rightroundregularGrassTile);
 
-         // Tile 43: toprightcornerregularGrass
+         // Tile 46: toprightcornerregularGrass
 
-         Frame toprightcornerregularGrassFrame = new FrameBuilder(getSubImage(4, 6))
+         Frame toprightcornerregularGrassFrame = new FrameBuilder(getSubImage(5, 0))
          .withScale(tileScale)
          .build();
  
@@ -448,9 +478,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.PASSABLE);
          mapTiles.add(toprightcornerregularGrassTile);
 
-         // Tile 44: topleftcornerregularGrass
+         // Tile 47: topleftcornerregularGrass
 
-         Frame topleftcornerregularGrassFrame = new FrameBuilder(getSubImage(4, 7))
+         Frame topleftcornerregularGrassFrame = new FrameBuilder(getSubImage(5, 1))
          .withScale(tileScale)
          .build();
  
@@ -458,9 +488,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.PASSABLE);
          mapTiles.add(topleftcornerregularGrassTile);
 
-         // Tile 45: bottomrightcornerregularGrass
+         // Tile 48: bottomrightcornerregularGrass
 
-         Frame bottomrightcornerregularGrassFrame = new FrameBuilder(getSubImage(4, 8))
+         Frame bottomrightcornerregularGrassFrame = new FrameBuilder(getSubImage(5, 2))
          .withScale(tileScale)
          .build();
  
@@ -468,9 +498,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.PASSABLE);
          mapTiles.add(bottomrightcornerregularGrassTile);
 
-         // Tile 46: bottomleftcornerregularGrass
+         // Tile 49: bottomleftcornerregularGrass
 
-         Frame bottomleftcornerregularGrassFrame = new FrameBuilder(getSubImage(5, 0))
+         Frame bottomleftcornerregularGrassFrame = new FrameBuilder(getSubImage(5, 3))
          .withScale(tileScale)
          .build();
  
@@ -478,9 +508,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.PASSABLE);
          mapTiles.add(bottomleftcornerregularGrassTile);
 
-         // Tile 47: bottomregularGrass1
+         // Tile 50: bottomregularGrass1
 
-         Frame bottomregularGrass1Frame = new FrameBuilder(getSubImage(5, 1))
+         Frame bottomregularGrass1Frame = new FrameBuilder(getSubImage(5, 4))
          .withScale(tileScale)
          .build();
  
@@ -488,9 +518,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.PASSABLE);
          mapTiles.add(bottomregularGrass1Tile);
 
-         // Tile 48: bottomregularGrass2
+         // Tile 51: bottomregularGrass2
 
-         Frame bottomregularGrass2Frame = new FrameBuilder(getSubImage(5, 2))
+         Frame bottomregularGrass2Frame = new FrameBuilder(getSubImage(5, 5))
          .withScale(tileScale)
          .build();
  
@@ -498,19 +528,19 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.PASSABLE);
          mapTiles.add(bottomregularGrass2Tile);
 
-         // Tile 49: topregularGrass
+         // Tile 52: Treewood2
 
-         Frame topregularGrassFrame = new FrameBuilder(getSubImage(5, 3))
+         Frame Treewood2Frame = new FrameBuilder(getSubImage(5, 6))
          .withScale(tileScale)
          .build();
  
-         MapTileBuilder topregularGrassTile = new MapTileBuilder(topregularGrassFrame)
-         .withTileType(TileType.PASSABLE);
-         mapTiles.add(topregularGrassTile);
+         MapTileBuilder Treewood2Tile = new MapTileBuilder(Treewood2Frame)
+         .withTileType(TileType.NOT_PASSABLE);
+         mapTiles.add(Treewood2Tile);
 
-         // Tile 50: balloons
+         // Tile 53: balloons
 
-         Frame balloonsFrame = new FrameBuilder(getSubImage(5, 4))
+         Frame balloonsFrame = new FrameBuilder(getSubImage(5, 7))
          .withScale(tileScale)
          .build();
  
@@ -518,9 +548,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.PASSABLE);
          mapTiles.add(balloonsTile);
 
-         // Tile 51: window
+         // Tile 54: window
 
-         Frame windowFrame = new FrameBuilder(getSubImage(5, 5))
+         Frame windowFrame = new FrameBuilder(getSubImage(5, 8))
          .withScale(tileScale)
          .build();
  
@@ -528,9 +558,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(windowTile);
 
-         // Tile 52: windowPanel
+         // Tile 55: windowPanel
 
-         Frame windowPanelFrame = new FrameBuilder(getSubImage(5, 6))
+         Frame windowPanelFrame = new FrameBuilder(getSubImage(6, 0))
          .withScale(tileScale)
          .build();
  
@@ -538,9 +568,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(windowPanelTile);
 
-         // Tile 53: sand1
+         // Tile 56: sand1
 
-         Frame sand1Frame = new FrameBuilder(getSubImage(5, 7))
+         Frame sand1Frame = new FrameBuilder(getSubImage(6, 1))
          .withScale(tileScale)
          .build();
  
@@ -548,9 +578,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.PASSABLE);
          mapTiles.add(sand1Tile);
 
-         // Tile 54: sand2
+         // Tile 57: sand2
 
-         Frame sand2Frame = new FrameBuilder(getSubImage(5, 8))
+         Frame sand2Frame = new FrameBuilder(getSubImage(6, 2))
          .withScale(tileScale)
          .build();
  
@@ -558,9 +588,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.PASSABLE);
          mapTiles.add(sand2Tile);
 
-         // Tile 55: door
+         // Tile 58: door
 
-         Frame doorFrame = new FrameBuilder(getSubImage(6, 0))
+         Frame doorFrame = new FrameBuilder(getSubImage(6, 3))
          .withScale(tileScale)
          .build();
  
@@ -568,19 +598,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(doorTile);
 
-         // Tile 56: leftroofEdge
+         // Tile 59: rightroofEdge
 
-         Frame leftroofEdgeFrame = new FrameBuilder(getSubImage(6, 1))
-         .withScale(tileScale)
-         .build();
- 
-         MapTileBuilder leftroofEdgeTile = new MapTileBuilder(leftroofEdgeFrame)
-         .withTileType(TileType.NOT_PASSABLE);
-         mapTiles.add(leftroofEdgeTile);
-
-         // Tile 57: rightroofEdge
-
-         Frame rightroofEdgeFrame = new FrameBuilder(getSubImage(6, 2))
+         Frame rightroofEdgeFrame = new FrameBuilder(getSubImage(6, 4))
          .withScale(tileScale)
          .build();
  
@@ -588,9 +608,19 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(rightroofEdgeTile);
 
-         // Tile 58: leftroofAndhouse
+         // Tile 60: leftroofEdge
 
-         Frame leftroofAndhouseFrame = new FrameBuilder(getSubImage(6, 3))
+         Frame leftroofEdgeFrame = new FrameBuilder(getSubImage(6, 5))
+         .withScale(tileScale)
+         .build();
+ 
+         MapTileBuilder leftroofEdgeTile = new MapTileBuilder(leftroofEdgeFrame)
+         .withTileType(TileType.NOT_PASSABLE);
+         mapTiles.add(leftroofEdgeTile);
+
+         // Tile 61: leftroofAndhouse
+
+         Frame leftroofAndhouseFrame = new FrameBuilder(getSubImage(6, 6))
          .withScale(tileScale)
          .build();
  
@@ -598,9 +628,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(leftroofAndhouseTile);
 
-         // Tile 59: topLeftroof
+         // Tile 62: topLeftroof
 
-         Frame topLeftroofFrame = new FrameBuilder(getSubImage(6, 4))
+         Frame topLeftroofFrame = new FrameBuilder(getSubImage(6, 7))
          .withScale(tileScale)
          .build();
  
@@ -608,9 +638,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(topLeftroofTile);
 
-         // Tile 60: leftRoof
+         // Tile 63: leftRoof
 
-         Frame leftRoofFrame = new FrameBuilder(getSubImage(6, 5))
+         Frame leftRoofFrame = new FrameBuilder(getSubImage(6, 8))
          .withScale(tileScale)
          .build();
  
@@ -618,9 +648,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(leftRoofTile);
 
-         // Tile 61: rightRoof
+         // Tile 64: rightRoof
 
-         Frame rightRoofFrame = new FrameBuilder(getSubImage(6, 6))
+         Frame rightRoofFrame = new FrameBuilder(getSubImage(7, 0))
          .withScale(tileScale)
          .build();
  
@@ -628,9 +658,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(rightRoofTile);
 
-         // Tile 62: rightRoof2
+         // Tile 65: rightRoof2
 
-         Frame rightRoof2Frame = new FrameBuilder(getSubImage(6, 7))
+         Frame rightRoof2Frame = new FrameBuilder(getSubImage(7, 1))
          .withScale(tileScale)
          .build();
  
@@ -638,9 +668,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(rightRoof2Tile);
 
-         // Tile 63: tophouseAndrightroof
+         // Tile 66: tophouseAndrightroof
 
-         Frame tophouseAndrightroofFrame = new FrameBuilder(getSubImage(6, 8))
+         Frame tophouseAndrightroofFrame = new FrameBuilder(getSubImage(7, 2))
          .withScale(tileScale)
          .build();
  
@@ -648,9 +678,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(tophouseAndrightroofTile);
 
-         // Tile 64: topRightroof
+         // Tile 67: topRightroof
 
-         Frame topRightroofFrame = new FrameBuilder(getSubImage(7, 0))
+         Frame topRightroofFrame = new FrameBuilder(getSubImage(7, 3))
          .withScale(tileScale)
          .build();
  
@@ -658,9 +688,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(topRightroofTile);
 
-         // Tile 65: rightroofAndhouse
+         // Tile 68: rightroofAndhouse
 
-         Frame rightroofAndhouseFrame = new FrameBuilder(getSubImage(7, 1))
+         Frame rightroofAndhouseFrame = new FrameBuilder(getSubImage(7, 4))
          .withScale(tileScale)
          .build();
  
@@ -668,9 +698,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(rightroofAndhouseTile);
 
-         // Tile 66: tophouseAndleftroof
+         // Tile 69: tophouseAndleftroof
 
-         Frame tophouseAndleftroofFrame = new FrameBuilder(getSubImage(7, 2))
+         Frame tophouseAndleftroofFrame = new FrameBuilder(getSubImage(7, 5))
          .withScale(tileScale)
          .build();
  
@@ -678,9 +708,9 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(tophouseAndleftroofTile);
 
-         // Tile 67: leftRoof2
+         // Tile 70: leftRoof2
 
-         Frame leftRoof2Frame = new FrameBuilder(getSubImage(7, 3))
+         Frame leftRoof2Frame = new FrameBuilder(getSubImage(7, 6))
          .withScale(tileScale)
          .build();
  
@@ -688,8 +718,36 @@ public class CommonTileset extends Tileset {
          .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(leftRoof2Tile);
 
+        // Tile 71: rightroofandhouse
 
+        Frame rightroofandhouseFrame = new FrameBuilder(getSubImage(7, 7))
+        .withScale(tileScale)
+        .build();
 
-        return mapTiles;
-    }
+        MapTileBuilder rightroofandhouseTile = new MapTileBuilder(rightroofandhouseFrame)
+        .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(rightroofandhouseTile);
+
+        // Tile 72: tophouseandleftroof
+
+        Frame tophouseandleftroofFrame = new FrameBuilder(getSubImage(7, 8))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder tophouseandleftroofTile = new MapTileBuilder(tophouseandleftroofFrame)
+        .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(tophouseandleftroofTile);
+/* 
+        // Tile 73: leftroof2
+
+        Frame leftroof2Frame = new FrameBuilder(getSubImage(8, 0))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder leftroof2Tile = new MapTileBuilder(leftroof2Frame)
+        .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(leftroof2Tile);
+*/
+                return mapTiles;
+        }
 }
