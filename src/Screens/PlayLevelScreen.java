@@ -81,6 +81,17 @@ public class PlayLevelScreen extends Screen {
         switch (playLevelScreenState) {
             // if level is "running" update player and map to keep game logic for the platformer level going
             case RUNNING:
+                if (Keyboard.isKeyDown(Key.B) && !keyLocker.isKeyLocked(Key.B) && keyPressTimer == 0) {
+                    keyLocker.lockKey(Key.B);
+                    keyPressTimer = 20;
+                }
+                else if (Keyboard.isKeyDown(Key.B) && keyLocker.isKeyLocked(Key.B) && keyPressTimer == 0) {
+                    keyLocker.unlockKey(Key.B);
+                    keyPressTimer = 20;
+                }
+                if (!keyLocker.isKeyLocked(Key.B)) {
+                    playLevelScreenState = PlayLevelScreenState.ENTERING_BATTLE;
+                }
                 player.update();
                 map.update(player);
                 break;
@@ -93,17 +104,6 @@ public class PlayLevelScreen extends Screen {
                 playLevelScreenState = PlayLevelScreenState.BATTLING;
                 // fallthrough to next case
             case BATTLING:
-                if (Keyboard.isKeyDown(Key.B) && !keyLocker.isKeyLocked(Key.B) && keyPressTimer == 0) {
-                    keyLocker.lockKey(Key.B);
-                    keyPressTimer = 20;
-                }
-                else if (Keyboard.isKeyDown(Key.B) && keyLocker.isKeyLocked(Key.B) && keyPressTimer == 0) {
-                    keyLocker.unlockKey(Key.B);
-                    keyPressTimer = 20;
-                }
-                if (!keyLocker.isKeyLocked(Key.B)) {
-                    playLevelScreenState = PlayLevelScreenState.BATTLING;
-                }
                 battleScreen.update();
                 break;
             case GAME_OVER:

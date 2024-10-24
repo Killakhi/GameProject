@@ -8,10 +8,11 @@ import NPCs.*;
 import GameObject.HealthBar;
 import SpriteFont.SpriteFont;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 // This class is for the win level screen
 public class BattleScreen extends Screen {
-    protected NPC enemy1;
+    protected BufferedImage enemy1;
     protected ScreenCoordinator screenCoordinator;
     protected int currentMenuItemHovered = 0; // current menu item being "hovered" over
     protected SpriteFont magicAttack;
@@ -35,6 +36,7 @@ public class BattleScreen extends Screen {
         this.playLevelScreen = playLevelScreen;
     }
 
+
     @Override
     public void initialize() {
         keyPressTimer = 0;
@@ -48,6 +50,7 @@ public class BattleScreen extends Screen {
         keyLocker.unlockKey(Key.B);
         keyLocker.unlockKey(Key.UP);
         keyLocker.unlockKey(Key.DOWN);
+        enemy1 = ImageLoader.load("Ghost.png");
         update();
     }
 
@@ -183,6 +186,7 @@ public class BattleScreen extends Screen {
         else {
             intro.draw(graphicsHandler);
         }
+        graphicsHandler.drawImage(enemy1, 10, 10);
         physicalAttack.draw(graphicsHandler);
         magicAttack.draw(graphicsHandler);
         this.playerHealth.setVisible(true);
