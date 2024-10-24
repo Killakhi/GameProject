@@ -20,7 +20,7 @@ public class InnkeeperScript extends Script {
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasTalkedToInnkeeper", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("L+ ratio");
+                    addText("Go to the inn if you want information");
                     
                     
                 }});

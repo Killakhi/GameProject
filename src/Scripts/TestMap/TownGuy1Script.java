@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 // script for talking to new Custom npc
 // checkout the documentation website for a detailed guide on how this script works
-public class TownsfolkScript extends Script {
+public class TownGuy1Script extends Script {
 
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
@@ -20,15 +20,16 @@ public class TownsfolkScript extends Script {
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasTalkedToTownsfolk", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("Don't you love it here?");
+                    addText("I heard that there were some werid sounds to the north east.");
+                    addText("Maybe you should go check it out?");
                     
                     
                 }});
-                addScriptAction(new ChangeFlagScriptAction("hasTalkedToTownsfolk", true));
+                addScriptAction(new ChangeFlagScriptAction("hasTalkedToTownGuy1", true));
             }});
 
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToTownsfolk", true));
+                addRequirement(new FlagRequirement("hasTalkedToTownGuy1", true));
                 addScriptAction(new TextboxScriptAction("Go away"));
             }});
         }});

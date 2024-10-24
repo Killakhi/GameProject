@@ -12,9 +12,9 @@ import Utils.Point;
 import java.util.HashMap;
 
 // This class is for the new custom NPC
-public class Townsfolk extends NPC {
+public class TownGuy1 extends NPC {
 
-    public Townsfolk(int id, Point location) {
+    public TownGuy1(int id, Point location) {
         super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("LittleGuy.png"), 30, 30), "STAND_LEFT");
     }
 
