@@ -2,10 +2,8 @@ package Maps;
 
 import EnhancedMapTiles.Coin;
 import EnhancedMapTiles.PushableRock;
-import Game.ScreenCoordinator;
 import Level.*;
 import NPCs.*;
-import Screens.BattleScreen;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.*;
 import Tilesets.CommonTileset;
