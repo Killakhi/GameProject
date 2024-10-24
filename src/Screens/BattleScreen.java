@@ -123,11 +123,11 @@ public class BattleScreen extends Screen {
             timer++;
             if(timer > 90) {
                 currentBattleState = BattleState.APPLY_ENEMY_DAMAGE;
-                /*if(enemy health <= 0) {
+                if(Keyboard.isKeyDown(Key.A)) {
                     currentBattleState = BattleState.VICTORY;
                 } else {
                     currentBattleState = BattleState.APPLY_ENEMY_DAMAGE;
-                }*/
+                }
             }
 
         }
@@ -149,14 +149,16 @@ public class BattleScreen extends Screen {
                 if(this.playerHealth.isDead()) {
                     playLevelScreen.stopBattle();
                     playLevelScreen.gameOver();
-                    
                 }
             }
             
         } 
         else if(currentBattleState == BattleState.VICTORY) {
             intro.setText("You defeated the enemy! Nice work");
-            
+            timer--;
+            if(timer == 0) {            
+                this.playLevelScreen.stopBattle();
+            }
         }
 
         // if up or down is pressed, the health goes up or down
