@@ -20,7 +20,7 @@ public class TownGuy1Script extends Script {
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasTalkedToTownsfolk", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("I heard that there were some werid sounds to the north \neast.");
+                    addText("I heard that there were some werid sounds to the north \nwest.");
                     addText("Maybe you should go check it out?");
                     
                     
