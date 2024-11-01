@@ -3,7 +3,6 @@ package Screens;
 import Engine.GraphicsHandler;
 import Engine.Key;
 import Engine.KeyLocker;
-import Engine.Keyboard;
 import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
@@ -21,6 +20,7 @@ public class PlayLevelScreen extends Screen {
     protected Player player;
     public static PlayLevelScreenState playLevelScreenState = PlayLevelScreenState.RUNNING;
     protected WinScreen winScreen;
+    protected PauseMenu pauseMenu;
     protected GameOverScreen gameOverScreen;
     protected BattleScreen battleScreen;
     protected FlagManager flagManager;
@@ -66,6 +66,7 @@ public class PlayLevelScreen extends Screen {
         map.preloadScripts();
 
         winScreen = new WinScreen(this);
+        pauseMenu = new PauseMenu(screenCoordinator);
         battleScreen = new BattleScreen(screenCoordinator);
         gameOverScreen = new GameOverScreen(screenCoordinator);
         battleScreen.addGameLevel(this);
@@ -84,6 +85,10 @@ public class PlayLevelScreen extends Screen {
                 player.update();
                 map.update(player);
                 break;
+            // if game is paused
+            case PAUSE_MENU:
+            pauseMenu.initialize();
+            break;
             // if level has been completed, bring up level cleared screen
             case LEVEL_COMPLETED:
                 winScreen.update();
@@ -152,6 +157,9 @@ public class PlayLevelScreen extends Screen {
             case RUNNING:
                 map.draw(player, graphicsHandler);
                 break;
+            case PAUSE_MENU:
+                pauseMenu.draw(graphicsHandler);
+                break;
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);
                 break;
@@ -188,6 +196,6 @@ public class PlayLevelScreen extends Screen {
 
     // This enum represents the different states this screen can be in
     public enum PlayLevelScreenState {
-        RUNNING, LEVEL_COMPLETED, ENTERING_BATTLE, BATTLING, GAME_OVER
+        RUNNING, PAUSE_MENU, LEVEL_COMPLETED, ENTERING_BATTLE, BATTLING, GAME_OVER
     }
 }
