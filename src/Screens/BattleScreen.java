@@ -10,9 +10,11 @@ import SpriteFont.SpriteFont;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-// This class is for the win level screen
+// This class is for the battle screen
 public class BattleScreen extends Screen {
+    protected AttackManager attackManager;
     protected BufferedImage enemy1;
+    protected BufferedImage animation;
     protected ScreenCoordinator screenCoordinator;
     protected int currentMenuItemHovered = 0; // current menu item being "hovered" over
     protected SpriteFont magicAttack;
@@ -22,9 +24,10 @@ public class BattleScreen extends Screen {
     protected SpriteFont battle;
     protected SpriteFont attacks;
     protected HealthBar playerHealth = new HealthBar(100, 100);
-    protected HealthBar enemyHealth = new HealthBar(200, 200);
+    protected HealthBar enemyHealth = new HealthBar(100, 100);
     protected KeyLocker keyLocker = new KeyLocker();
     protected int keyPressTimer;
+    protected int attackType;
     protected PlayLevelScreen playLevelScreen;
     protected FlagManager flagManager;
 
@@ -41,9 +44,11 @@ public class BattleScreen extends Screen {
     public void initialize() {
         keyPressTimer = 0;
         flagManager = new FlagManager();
+        attackManager = new AttackManager(this);
         intro = new SpriteFont("A nefarious ghost approaches!", 200, 50, "Arial", 30, Color.white);
         battle = new SpriteFont("You hit for some damage!", 240, 50,"Arial", 20, Color.white);
         flagManager.addFlag("Attacking", false);
+        flagManager.addFlag("Animation", false);
         physicalAttack = new SpriteFont("Physical Attack                                     " , 90, 500, "Arial", 30, Color.white );
         magicAttack = new SpriteFont("                                       Magic Attack               " , 90, 500, "Arial", 30, Color.white );
         keyLocker.unlockKey(Key.SPACE);
@@ -108,28 +113,33 @@ public class BattleScreen extends Screen {
         else if (currentBattleState == BattleState.APPLY_PLAYER_DAMAGE) {
             if(currentMenuItemHovered == 0) {
                 hit = ((int)(Math.random() * (40))) + 20 ;
-                battle.setText("You hit for " + hit + " melee damage!"); 
+                battle.setText("You hit for " + hit + " melee damage!");
+                attackType = 0; 
             } else if(currentMenuItemHovered == 1) {
                 hit = ((int)(Math.random() * (10))) + 45 ;
                 battle.setText("You hit for " + hit + " magic damage!"); 
+                attackType = 1;
             }
                        
             flagManager.setFlag("Attacking");
+            flagManager.unsetFlag("Animation");
             currentBattleState = BattleState.SHOW_PLAYER_DAMAGE;
         }
         else if (currentBattleState == BattleState.SHOW_PLAYER_DAMAGE) {
             if(currentMenuItemHovered == 0) {
-                battle.setText("You hit for " + hit + " melee damage!"); 
+                battle.setText("You hit for " + hit + " melee damage!");
+                attackType = 0; 
             } else if(currentMenuItemHovered == 1) {
                 battle.setText("You hit for " + hit + " magic damage!"); 
+                attackType = 1;
             }
             flagManager.setFlag("Attacking");
+            animation = attackManager.animation(attackType, timer);
             timer++;
-            if(timer == 45) {
+            if(timer == 90) {
                 enemyHealth.damage(hit);
-            }
-            if(timer > 90) {
-                currentBattleState = BattleState.APPLY_ENEMY_DAMAGE;
+                flagManager.unsetFlag("Animation");
+                animation = ImageLoader.load("Empty.png");
                 if(enemyHealth.isDead()) {
                     currentBattleState = BattleState.VICTORY;
                 } else {
@@ -142,12 +152,14 @@ public class BattleScreen extends Screen {
             damage = ((int)(Math.random() * (10))) + 10;
             battle.setText("You were hit for " + damage + " damage!");
             flagManager.setFlag("Attacking");
+            flagManager.unsetFlag("Animation");
             currentBattleState = BattleState.SHOW_ENEMY_DAMAGE;
 
         }
         else if (currentBattleState == BattleState.SHOW_ENEMY_DAMAGE) {
             battle.setText("You were hit for " + damage + " damage!");
             flagManager.setFlag("Attacking");
+            flagManager.unsetFlag("Animation");
             timer--;
             if(timer == 0) {
                 currentBattleState = BattleState.CHOOSE_ATTACK;
@@ -161,6 +173,7 @@ public class BattleScreen extends Screen {
             
         } 
         else if(currentBattleState == BattleState.VICTORY) {
+            flagManager.unsetFlag("Attacking");
             intro.setText("You defeated the enemy! Nice work");
             timer--;
             if(timer <= 0) {            
@@ -176,7 +189,12 @@ public class BattleScreen extends Screen {
         else {
             intro.draw(graphicsHandler);
         }
-        graphicsHandler.drawImage(enemy1, 270, 180);
+        if(!enemyHealth.isDead()) {
+            graphicsHandler.drawImage(enemy1, 270, 180);
+        }
+        if(flagManager.isFlagSet("Attacking")) {
+            graphicsHandler.drawImage(animation, 240, 150);
+        }
         physicalAttack.draw(graphicsHandler);
         magicAttack.draw(graphicsHandler);
         this.playerHealth.setVisible(true);
