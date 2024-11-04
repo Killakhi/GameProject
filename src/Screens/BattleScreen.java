@@ -57,7 +57,7 @@ public class BattleScreen extends Screen {
         keyLocker.unlockKey(Key.B);
         keyLocker.unlockKey(Key.UP);
         keyLocker.unlockKey(Key.DOWN);
-        enemy1 = ImageLoader.load("Ghost_Battle.png");
+        enemy1 = ImageLoader.load("Ghost Angy Battle.png");
         enemyID = 1;
         update();
     }
