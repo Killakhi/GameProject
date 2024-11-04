@@ -12,9 +12,24 @@ public class AttackManager {
     protected int attackType;
     protected int attack;
     protected int speed;
+    protected int hitRate;
     public AttackManager(BattleScreen battleScreen) {
         this.battleScreen = battleScreen;
     }
+    
+    public int setHitRate(int attackType) {
+        if(attackType == 0) {
+            hitRate = 100;
+        }
+        else if(attackType == 1) {
+            hitRate = 20;
+        }
+        else if(attackType == 2) {
+            hitRate = 30;
+        }
+        return hitRate;
+    }
+
     public BufferedImage animation(int attackType, int timer) {
         if(attackType == 0) {
             if(timer < 60) {
@@ -44,6 +59,21 @@ public class AttackManager {
                 animation = ImageLoader.load("Fire_Magic_4.png");
             } else if (timer >= 78 && timer < 90) {                 
                 animation = ImageLoader.load("Fire_Magic_5.png");
+            }
+            
+        }
+
+        if(attackType == 2) {
+            if(timer < 30 || (timer >= 50 && timer < 70)) {
+                animation = ImageLoader.load("Empty.png");
+            } else if ((timer >= 30 && timer < 35) || (timer >= 70 && timer < 75)) {
+                animation = ImageLoader.load("Water_Magic_1.png");
+            } else if ((timer >= 35 && timer < 40) || (timer >= 75 && timer < 80)) {                 
+                animation = ImageLoader.load("Water_Magic_2.png");
+            } else if ((timer >= 40 && timer < 45) || (timer >= 80 && timer < 85)) {                 
+                animation = ImageLoader.load("Water_Magic_3.png");
+            } else if ((timer >= 45 && timer < 50) || (timer >= 85 && timer < 90)) {                 
+                animation = ImageLoader.load("Water_Magic_4.png");
             }
             
         }
