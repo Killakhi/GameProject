@@ -1,7 +1,5 @@
 package Level;
 
-import java.awt.Color;
-
 import Engine.GraphicsHandler;
 import Engine.Key;
 import Engine.KeyLocker;
@@ -10,11 +8,13 @@ import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
 import Utils.Direction;
+import java.awt.Color;
 
 public abstract class Player extends GameObject {
     // values that affect player movement
     // these should be set in a subclass
     protected float walkSpeed = 0;
+    protected float speedUp = 2;
     protected int interactionRange = 1;
     protected Direction currentWalkingXDirection;
     protected Direction currentWalkingYDirection;
@@ -39,6 +39,7 @@ public abstract class Player extends GameObject {
     protected Key MOVE_UP_KEY = Key.UP;
     protected Key MOVE_DOWN_KEY = Key.DOWN;
     protected Key INTERACT_KEY = Key.SPACE;
+    protected Key SPEED_UP_KEY = Key.SHIFT;
 
     protected boolean isLocked = false;
     public Object intersects;
@@ -48,6 +49,7 @@ public abstract class Player extends GameObject {
         facingDirection = Direction.RIGHT;
         playerState = PlayerState.STANDING;
         upDown = Direction.DOWN;
+
         
         previousPlayerState = playerState;
         this.affectedByTriggers = true;
@@ -107,7 +109,6 @@ public abstract class Player extends GameObject {
         }
     }
 
-    
 
 
     // player WALKING state logic
@@ -116,6 +117,7 @@ public abstract class Player extends GameObject {
             keyLocker.lockKey(INTERACT_KEY);
             map.entityInteract(this);
         }
+
 
         // if walk left key is pressed, move player to the left
         if (Keyboard.isKeyDown(MOVE_LEFT_KEY)) {
@@ -299,7 +301,7 @@ public abstract class Player extends GameObject {
     }
 
     // Uncomment this to have game draw player's bounds to make it easier to visualize
-    
+
     public void draw(GraphicsHandler graphicsHandler) {
         super.draw(graphicsHandler);
         drawBounds(graphicsHandler, new Color(255, 0, 0, 100));

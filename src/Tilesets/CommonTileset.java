@@ -445,7 +445,7 @@ public class CommonTileset extends Tileset {
          .build();
  
          MapTileBuilder regularGrassTile = new MapTileBuilder(regularGrassFrame)
-         .withTileType(TileType.PASSABLE);
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(regularGrassTile);
 
          // Tile 44: leftroundregularGrass
@@ -455,7 +455,7 @@ public class CommonTileset extends Tileset {
          .build();
  
          MapTileBuilder leftroundregularGrassTile = new MapTileBuilder(leftroundregularGrassFrame)
-         .withTileType(TileType.PASSABLE);
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(leftroundregularGrassTile);
 
          // Tile 45: rightroundregularGrass
@@ -465,7 +465,7 @@ public class CommonTileset extends Tileset {
          .build();
  
          MapTileBuilder rightroundregularGrassTile = new MapTileBuilder(rightroundregularGrassFrame)
-         .withTileType(TileType.PASSABLE);
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(rightroundregularGrassTile);
 
          // Tile 46: toprightcornerregularGrass
@@ -475,7 +475,7 @@ public class CommonTileset extends Tileset {
          .build();
  
          MapTileBuilder toprightcornerregularGrassTile = new MapTileBuilder(toprightcornerregularGrassFrame)
-         .withTileType(TileType.PASSABLE);
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(toprightcornerregularGrassTile);
 
          // Tile 47: topleftcornerregularGrass
@@ -515,7 +515,7 @@ public class CommonTileset extends Tileset {
          .build();
  
          MapTileBuilder bottomregularGrass1Tile = new MapTileBuilder(bottomregularGrass1Frame)
-         .withTileType(TileType.PASSABLE);
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(bottomregularGrass1Tile);
 
          // Tile 51: bottomregularGrass2
@@ -525,7 +525,7 @@ public class CommonTileset extends Tileset {
          .build();
  
          MapTileBuilder bottomregularGrass2Tile = new MapTileBuilder(bottomregularGrass2Frame)
-         .withTileType(TileType.PASSABLE);
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(bottomregularGrass2Tile);
 
          // Tile 52: Treewood2
@@ -545,7 +545,7 @@ public class CommonTileset extends Tileset {
          .build();
  
          MapTileBuilder balloonsTile = new MapTileBuilder(balloonsFrame)
-         .withTileType(TileType.PASSABLE);
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(balloonsTile);
 
          // Tile 54: window
