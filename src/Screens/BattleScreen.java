@@ -50,7 +50,7 @@ public class BattleScreen extends Screen {
         keyLocker.unlockKey(Key.B);
         keyLocker.unlockKey(Key.UP);
         keyLocker.unlockKey(Key.DOWN);
-        enemy1 = ImageLoader.load("Ghost_Battle.png");
+        enemy1 = ImageLoader.load("Ghost Angy Battle.png");
         update();
     }
 
@@ -97,11 +97,6 @@ public class BattleScreen extends Screen {
             } else if (currentMenuItemHovered == 1) {
                 physicalAttack.setColor(new Color(49, 207, 240));
             
-            }
-            if (currentMenuItemHovered == 0) {
-                magicAttack.setColor(new Color(49, 207, 240));
-            } else if (currentMenuItemHovered == 1) {
-                magicAttack.setColor(new Color(255, 215, 0));
             
             }
         }
@@ -136,6 +131,7 @@ public class BattleScreen extends Screen {
                     currentBattleState = BattleState.APPLY_ENEMY_DAMAGE;
                 }
             }
+        
 
         }
         else if (currentBattleState == BattleState.APPLY_ENEMY_DAMAGE) {
@@ -178,7 +174,6 @@ public class BattleScreen extends Screen {
         }
         graphicsHandler.drawImage(enemy1, 270, 180);
         physicalAttack.draw(graphicsHandler);
-        magicAttack.draw(graphicsHandler);
         this.playerHealth.setVisible(true);
         this.playerHealth.draw(graphicsHandler, 30, 30);
     }

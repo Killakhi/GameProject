@@ -21,7 +21,7 @@ public class Goku extends NPC {
    
 
     public Goku(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Ghost.png"), 30, 30), "STAND_LEFT");
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Ghost Idle.png"), 30, 30), "STAND_LEFT");
         
     }
 
@@ -32,8 +32,7 @@ public class Goku extends NPC {
             PlayLevelScreen.playLevelScreenState = PlayLevelScreenState.ENTERING_BATTLE;
             
             
-            //System.out.println("WHY DID YOU KILL ME");
-            //delete npc once touched?
+            
             this.setLocation(999999,99999);
         }
 
