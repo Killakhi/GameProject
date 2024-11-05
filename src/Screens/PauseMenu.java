@@ -91,6 +91,7 @@ public class PauseMenu extends Screen {
             pointerLocationX = 70;
             pointerLocationY = 230;
         }
+    }
 
     public void draw(GraphicsHandler graphicsHandler) {
         graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.gray);
