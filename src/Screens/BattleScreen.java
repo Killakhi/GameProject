@@ -126,14 +126,13 @@ public class BattleScreen extends Screen {
             else {
                 if(currentMenuItemHovered == 0) {
                     hit = ((int)(Math.random() * (40))) + 20 ;
-                    battle.setText("You hit for " + hit + " melee damage!");
                     attackType = 0; 
                 } else if(currentMenuItemHovered == 1) {
                     hit = ((int)(Math.random() * (10))) + 45 ;
-                    battle.setText("You hit for " + hit + " magic damage!"); 
-                    attackType = 2;
+                    attackType = 3;
                     playLevelScreen.currentMagic = playLevelScreen.currentMagic - 10;
                 }
+                battle.setText(attackManager.setDisplay(attackType, hit)); 
                 flagManager.setFlag("Attacking");
                 flagManager.unsetFlag("Animation");
                 currentBattleState = BattleState.SHOW_PLAYER_DAMAGE;
@@ -151,13 +150,12 @@ public class BattleScreen extends Screen {
         }
         else if (currentBattleState == BattleState.SHOW_PLAYER_DAMAGE) {
             if(currentMenuItemHovered == 0) {
-                battle.setText("You hit for " + hit + " melee damage!");
                 attackType = 0; 
             } else if(currentMenuItemHovered == 1) {
-                battle.setText("You hit for " + hit + " magic damage!"); 
-                attackType = 2;
+                attackType = 3;
                 mp.setText(playLevelScreen.currentMagic + " / " + playLevelScreen.magicStat);
             }
+            battle.setText(attackManager.setDisplay(attackType, hit)); 
             flagManager.setFlag("Attacking");
             animation = attackManager.animation(attackType, timer);
             timer++;
