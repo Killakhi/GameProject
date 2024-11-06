@@ -130,13 +130,12 @@ public class BattleScreen extends Screen {
             }
             else {
                 if(currentMenuItemHovered == 0) {
-                    hit = ((int)(Math.random() * (40))) + 20 ;
                     attackType = 0; 
                 } else if(currentMenuItemHovered == 1) {
-                    hit = ((int)(Math.random() * (10))) + 45 ;
                     attackType = 3;
                     playLevelScreen.currentMagic = playLevelScreen.currentMagic - 10;
                 }
+                hit = attackManager.setHit(attackType, playLevelScreen.attackStat);
                 battle.setText(attackManager.setDisplay(attackType, hit)); 
                 flagManager.setFlag("Attacking");
                 flagManager.unsetFlag("Animation");
@@ -210,10 +209,11 @@ public class BattleScreen extends Screen {
                 intro.setText("You earned " + (enemyID * 10) + " Experience!");
             }
             if(timer == -90) {
+                playLevelScreen.exp = playLevelScreen.exp + 110;
                 if(playLevelScreen.exp >= (80 + (playLevelScreen.level*20))){
                     currentBattleState = BattleState.LEVEL_UP;
                 } else{
-                this.playLevelScreen.stopBattle();
+                    this.playLevelScreen.stopBattle();
                 }
             }
         }
@@ -221,7 +221,14 @@ public class BattleScreen extends Screen {
             intro.setText("Level Up! You are now at Level " + (playLevelScreen.level + 1));
             timer++;
             if(timer == 0) {
+                playLevelScreen.level++;
+                playLevelScreen.attackStat = playLevelScreen.attackStat + ((int)(Math.random() * (10))) + (playLevelScreen.level*2);
+                playLevelScreen.speedStat = playLevelScreen.speedStat + ((int)(Math.random() * (10))) + playLevelScreen.level;
+                playLevelScreen.hpStat = playLevelScreen.hpStat + ((int)(Math.random() * (10))) + (playLevelScreen.level*5);
+                playLevelScreen.currentHp = playLevelScreen.hpStat;
+                playLevelScreen.magicStat = playLevelScreen.magicStat + ((int)(Math.random() * (10))) + (playLevelScreen.level*3);
                 this.playLevelScreen.stopBattle();
+                playLevelScreen.exp = playLevelScreen.exp - (80 + (playLevelScreen.level*20));
             }
         }
     }
