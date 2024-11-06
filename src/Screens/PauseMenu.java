@@ -1,6 +1,7 @@
 package Screens;
 
 import Engine.*;
+import Game.GameState;
 import Game.ScreenCoordinator;
 import SpriteFont.SpriteFont;
 import java.awt.*;
@@ -53,9 +54,6 @@ public class PauseMenu extends Screen {
         if (Keyboard.isKeyUp(Key.SPACE)) {
             keyLocker.unlockKey(Key.SPACE);
         }
-        if (Keyboard.isKeyUp(Key.ESC)) {
-            keyLocker.unlockKey(Key.ESC);
-        }
 
         // if down or up is pressed, change menu item "hovered" over (white square in front of text will move along with currentMenuItemHovered changing)
         if (Keyboard.isKeyDown(Key.DOWN) && keyPressTimer == 0) {
@@ -82,14 +80,35 @@ public class PauseMenu extends Screen {
             resume.setColor(new Color(255, 215, 0));
             health.setColor(new Color(49, 207, 240));
             returnMainMenu.setColor(new Color(49, 207, 240));
-            pointerLocationX = 70;
-            pointerLocationY = 125;
+            pointerLocationX = 60;
+            pointerLocationY = 135;
         } else if (currentpauseMenuItemHovered == 1) {
             resume.setColor(new Color(49, 207, 240));
             health.setColor(new Color(255, 215, 0));
             returnMainMenu.setColor(new Color(255, 215, 0));
-            pointerLocationX = 70;
-            pointerLocationY = 230;
+            pointerLocationX = 60;
+            pointerLocationY = 145;
+        } else if (currentpauseMenuItemHovered == 2) {
+            resume.setColor(new Color(49, 207, 240));
+            health.setColor(new Color(255, 215, 0));
+            returnMainMenu.setColor(new Color(255, 215, 0));
+            pointerLocationX = 60;
+            pointerLocationY = 155;
+        }
+
+        // if space is pressed on menu item, change to appropriate screen based on which menu item was chosen
+        if (Keyboard.isKeyUp(Key.SPACE)) {
+            keyLocker.unlockKey(Key.SPACE);
+        }
+        if (!keyLocker.isKeyLocked(Key.SPACE) && Keyboard.isKeyDown(Key.SPACE)) {
+            pauseMenuItemSelected = currentpauseMenuItemHovered;
+            if (pauseMenuItemSelected == 0) {
+                screenCoordinator.setGameState(GameState.LEVEL);
+            } else if (pauseMenuItemSelected == 1) {
+            
+            }
+        } else if (pauseMenuItemSelected == 2) {
+            screenCoordinator.setGameState(GameState.MENU);
         }
 
     public void draw(GraphicsHandler graphicsHandler) {

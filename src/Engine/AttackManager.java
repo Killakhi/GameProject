@@ -26,18 +26,18 @@ public class AttackManager {
         this.battleScreen = battleScreen;
     }
 
-    public int setHit(int attackType) {
+    public int setHit(int attackType, int attack) {
         if(attackType == 0) {
-            hit = ((int)(Math.random() * (40))) + 20;
+            hit = ((int)(Math.random() * (40))) + attack;
         }
         else if(attackType == 1) {
-            hit = ((int)(Math.random() * (20))) + 30;
+            hit = ((int)(Math.random() * (20))) + (10 + attack);
         } 
         else if(attackType == 2) {
-            hit = ((int)(Math.random() * (10))) + 40;
+            hit = ((int)(Math.random() * (10))) + (20 + attack);
         }
         else if(attackType == 3) {
-            hit = ((int)(Math.random() * (10))) + 30;
+            hit = ((int)(Math.random() * (10))) + (20 + (attack));
         }
         return hit;
     }
