@@ -95,6 +95,7 @@ public class PauseMenu extends Screen {
             pointerLocationX = 60;
             pointerLocationY = 155;
         }
+    }
 
         // if space is pressed on menu item, change to appropriate screen based on which menu item was chosen
         if (Keyboard.isKeyUp(Key.SPACE)) {

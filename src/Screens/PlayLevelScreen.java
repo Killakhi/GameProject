@@ -16,6 +16,14 @@ import java.util.ArrayList;
 
 // This class is for when the RPG game is actually being played
 public class PlayLevelScreen extends Screen {
+    public int level;
+    public int exp;
+    public int hpStat;
+    public int currentHp;
+    public int magicStat;
+    public int currentMagic;
+    public int attackStat;
+    public int speedStat;
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
     protected Player player;
@@ -81,6 +89,12 @@ public class PlayLevelScreen extends Screen {
         //add a keyLocker to pause the screen when the space button is pressed
         keyLocker.lockKey(Key.SPACE);
         keyPressTimer = 0;
+        hpStat = 100;
+        currentHp = 100;
+        attackStat = 20;
+        magicStat = 30;
+        currentMagic = 30;
+        speedStat = 15;
     }
 
     public void update() {

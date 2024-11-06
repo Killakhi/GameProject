@@ -3,8 +3,6 @@ package Screens;
 import Engine.*;
 import Game.ScreenCoordinator;
 import Level.FlagManager;
-import Level.NPC;
-import NPCs.*;
 import GameObject.HealthBar;
 import SpriteFont.SpriteFont;
 import java.awt.*;
@@ -14,20 +12,22 @@ import java.awt.image.BufferedImage;
 public class BattleScreen extends Screen {
     protected AttackManager attackManager;
     protected BufferedImage enemy1;
+    protected int enemyID;
     protected BufferedImage animation;
     protected ScreenCoordinator screenCoordinator;
     protected int currentMenuItemHovered = 0; // current menu item being "hovered" over
     protected SpriteFont magicAttack;
     protected SpriteFont physicalAttack;
-    protected SpriteFont health;
     protected SpriteFont intro;
     protected SpriteFont battle;
     protected SpriteFont attacks;
-    protected HealthBar playerHealth = new HealthBar(100, 100);
+    protected SpriteFont mp;
+    protected HealthBar playerHealth;
     protected HealthBar enemyHealth = new HealthBar(100, 100);
     protected KeyLocker keyLocker = new KeyLocker();
     protected int keyPressTimer;
     protected int attackType;
+    protected int hitRate;
     protected PlayLevelScreen playLevelScreen;
     protected FlagManager flagManager;
 
@@ -42,6 +42,7 @@ public class BattleScreen extends Screen {
 
     @Override
     public void initialize() {
+        playerHealth = new HealthBar(playLevelScreen.currentHp, playLevelScreen.hpStat);
         keyPressTimer = 0;
         flagManager = new FlagManager();
         attackManager = new AttackManager(this);
@@ -51,16 +52,18 @@ public class BattleScreen extends Screen {
         flagManager.addFlag("Animation", false);
         physicalAttack = new SpriteFont("Physical Attack                                     " , 90, 500, "Arial", 30, Color.white );
         magicAttack = new SpriteFont("                                       Magic Attack               " , 90, 500, "Arial", 30, Color.white );
+        mp = new SpriteFont(playLevelScreen.currentMagic + " / " + playLevelScreen.magicStat, 30, 90, "Arial", 30, Color.white);
         keyLocker.unlockKey(Key.SPACE);
         keyLocker.unlockKey(Key.B);
         keyLocker.unlockKey(Key.UP);
         keyLocker.unlockKey(Key.DOWN);
-        enemy1 = ImageLoader.load("Ghost_Battle.png");
+        enemy1 = ImageLoader.load("Ghost Angy Battle.png");
+        enemyID = 1;
         update();
     }
 
     private enum BattleState {
-        CHOOSE_ATTACK, APPLY_PLAYER_DAMAGE, SHOW_PLAYER_DAMAGE, APPLY_ENEMY_DAMAGE, SHOW_ENEMY_DAMAGE, VICTORY
+        CHOOSE_ATTACK, APPLY_PLAYER_DAMAGE, MISS, SHOW_PLAYER_DAMAGE, APPLY_ENEMY_DAMAGE, SHOW_ENEMY_DAMAGE, VICTORY, LEVEL_UP
     }
     int hit = 0;
     int damage = 0;
@@ -111,28 +114,52 @@ public class BattleScreen extends Screen {
             }
         }
         else if (currentBattleState == BattleState.APPLY_PLAYER_DAMAGE) {
-            if(currentMenuItemHovered == 0) {
-                hit = ((int)(Math.random() * (40))) + 20 ;
-                battle.setText("You hit for " + hit + " melee damage!");
-                attackType = 0; 
-            } else if(currentMenuItemHovered == 1) {
-                hit = ((int)(Math.random() * (10))) + 45 ;
-                battle.setText("You hit for " + hit + " magic damage!"); 
-                attackType = 1;
+            int check = ((int)(Math.random() * (100))) + 1;
+            hitRate = attackManager.setHitRate(attackType);
+            if (check > (playLevelScreen.speedStat)*5 + hitRate) {
+                currentBattleState = BattleState.MISS;
+            } 
+            else if(currentMenuItemHovered == 1 && playLevelScreen.currentMagic < 10) {
+                intro.setText("You don't have enough MP to cast!");
+                timer++;
+                if (timer == 90) {
+                    timer = 0;
+                    intro.setText("A nefarious ghost approaches!");
+                    currentBattleState = BattleState.CHOOSE_ATTACK;
+                }
             }
-                       
-            flagManager.setFlag("Attacking");
+            else {
+                if(currentMenuItemHovered == 0) {
+                    attackType = 0; 
+                } else if(currentMenuItemHovered == 1) {
+                    attackType = 3;
+                    playLevelScreen.currentMagic = playLevelScreen.currentMagic - 10;
+                }
+                hit = attackManager.setHit(attackType, playLevelScreen.attackStat);
+                battle.setText(attackManager.setDisplay(attackType, hit)); 
+                flagManager.setFlag("Attacking");
+                flagManager.unsetFlag("Animation");
+                currentBattleState = BattleState.SHOW_PLAYER_DAMAGE;
+            }
+        }
+        else if (currentBattleState == BattleState.MISS) {
+            flagManager.unsetFlag("Attacking");
             flagManager.unsetFlag("Animation");
-            currentBattleState = BattleState.SHOW_PLAYER_DAMAGE;
+            intro.setText("Whoops, you missed!"); 
+            timer++;
+            if(timer >= 60) {
+                currentBattleState = BattleState.APPLY_ENEMY_DAMAGE;
+                intro.setText("A nefarious ghost approaches!");
+            }
         }
         else if (currentBattleState == BattleState.SHOW_PLAYER_DAMAGE) {
             if(currentMenuItemHovered == 0) {
-                battle.setText("You hit for " + hit + " melee damage!");
                 attackType = 0; 
             } else if(currentMenuItemHovered == 1) {
-                battle.setText("You hit for " + hit + " magic damage!"); 
-                attackType = 1;
+                attackType = 3;
+                mp.setText(playLevelScreen.currentMagic + " / " + playLevelScreen.magicStat);
             }
+            battle.setText(attackManager.setDisplay(attackType, hit)); 
             flagManager.setFlag("Attacking");
             animation = attackManager.animation(attackType, timer);
             timer++;
@@ -174,10 +201,34 @@ public class BattleScreen extends Screen {
         } 
         else if(currentBattleState == BattleState.VICTORY) {
             flagManager.unsetFlag("Attacking");
-            intro.setText("You defeated the enemy! Nice work");
+
             timer--;
-            if(timer <= 0) {            
+            if(timer > 0) {
+                intro.setText("You defeated the enemy! Nice work");
+            } else if(timer <= 0) {            
+                intro.setText("You earned " + (enemyID * 10) + " Experience!");
+            }
+            if(timer == -90) {
+                playLevelScreen.exp = playLevelScreen.exp + 110;
+                if(playLevelScreen.exp >= (80 + (playLevelScreen.level*20))){
+                    currentBattleState = BattleState.LEVEL_UP;
+                } else{
+                    this.playLevelScreen.stopBattle();
+                }
+            }
+        }
+        else if(currentBattleState == BattleState.LEVEL_UP) {
+            intro.setText("Level Up! You are now at Level " + (playLevelScreen.level + 1));
+            timer++;
+            if(timer == 0) {
+                playLevelScreen.level++;
+                playLevelScreen.attackStat = playLevelScreen.attackStat + ((int)(Math.random() * (10))) + (playLevelScreen.level*2);
+                playLevelScreen.speedStat = playLevelScreen.speedStat + ((int)(Math.random() * (10))) + playLevelScreen.level;
+                playLevelScreen.hpStat = playLevelScreen.hpStat + ((int)(Math.random() * (10))) + (playLevelScreen.level*5);
+                playLevelScreen.currentHp = playLevelScreen.hpStat;
+                playLevelScreen.magicStat = playLevelScreen.magicStat + ((int)(Math.random() * (10))) + (playLevelScreen.level*3);
                 this.playLevelScreen.stopBattle();
+                playLevelScreen.exp = playLevelScreen.exp - (80 + (playLevelScreen.level*20));
             }
         }
     }
@@ -197,7 +248,10 @@ public class BattleScreen extends Screen {
         }
         physicalAttack.draw(graphicsHandler);
         magicAttack.draw(graphicsHandler);
+        mp.draw(graphicsHandler);
         this.playerHealth.setVisible(true);
+        this.enemyHealth.setVisible(true);
         this.playerHealth.draw(graphicsHandler, 30, 30);
+        this.enemyHealth.draw(graphicsHandler, 270, 100);
     }
 }
