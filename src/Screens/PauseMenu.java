@@ -95,7 +95,6 @@ public class PauseMenu extends Screen {
             pointerLocationX = 60;
             pointerLocationY = 155;
         }
-    }
 
         // if space is pressed on menu item, change to appropriate screen based on which menu item was chosen
         if (Keyboard.isKeyUp(Key.SPACE)) {
@@ -106,15 +105,14 @@ public class PauseMenu extends Screen {
             if (pauseMenuItemSelected == 0) {
                 screenCoordinator.setGameState(GameState.LEVEL);
             } else if (pauseMenuItemSelected == 1) {
-             /*    screenCoordinator.setGameState(GameState.HEALTH);
-             */
-        } else if (pauseMenuItemSelected == 2) {
-                screenCoordinator.setGameState(GameState.MENU);
+            
             }
-    }
+        } else if (pauseMenuItemSelected == 2) {
+            screenCoordinator.setGameState(GameState.MENU);
+        }
     }
 
-    public void draw(GraphicsHandler graphicsHandler) {
+    public void dßraw(GraphicsHandler graphicsHandler) {
         graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.gray);
         pauseMenuMessage.draw(graphicsHandler);
         resume.draw(graphicsHandler);
