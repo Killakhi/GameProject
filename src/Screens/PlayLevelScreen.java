@@ -10,6 +10,7 @@ import GameObject.Money;
 import Level.*;
 import Maps.TestMap;
 import Players.Cat;
+import Screens.PlayLevelScreen.PlayLevelScreenState;
 import Utils.Direction;
 import java.util.ArrayList;
 
@@ -69,11 +70,16 @@ public class PlayLevelScreen extends Screen {
         pauseMenu = new PauseMenu(screenCoordinator);
         battleScreen = new BattleScreen(screenCoordinator);
         gameOverScreen = new GameOverScreen(screenCoordinator);
+        pauseMenu.addGameLevel(this);
         battleScreen.addGameLevel(this);
         gameOverScreen.addGameLevel(this);
 
         // add a keyLocker to track when the battle button is pressed
         keyLocker.lockKey(Key.B);
+        keyPressTimer = 0;
+
+        //add a keyLocker to pause the screen when the space button is pressed
+        keyLocker.lockKey(Key.SPACE);
         keyPressTimer = 0;
     }
 
@@ -87,8 +93,8 @@ public class PlayLevelScreen extends Screen {
                 break;
             // if game is paused
             case PAUSE_MENU:
-            pauseMenu.initialize();
-            break;
+                pauseMenu.initialize();
+                break;
             // if level has been completed, bring up level cleared screen
             case LEVEL_COMPLETED:
                 winScreen.update();
@@ -145,6 +151,10 @@ public class PlayLevelScreen extends Screen {
 
     public void stopBattle() {
         playLevelScreenState = PlayLevelScreenState.RUNNING;
+    }
+
+    public void pauseMenu(){
+        playLevelScreenState = PlayLevelScreenState.PAUSE_MENU;
     }
 
     public void gameOver() {
