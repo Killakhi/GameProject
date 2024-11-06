@@ -1,7 +1,5 @@
 package Level;
 
-import java.awt.Color;
-
 import Engine.GraphicsHandler;
 import Engine.Key;
 import Engine.KeyLocker;
@@ -10,6 +8,7 @@ import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
 import Utils.Direction;
+import java.awt.Color;
 
 public abstract class Player extends GameObject {
     // values that affect player movement
@@ -176,7 +175,23 @@ public abstract class Player extends GameObject {
     protected void handlePlayerAnimation() {
         if (playerState == PlayerState.STANDING) {
             // sets animation to a STAND animation based on which way player is facing
-            this.currentAnimationName = facingDirection == Direction.RIGHT ? "STAND_RIGHT" : "STAND_LEFT";
+            switch (facingDirection) {
+                case DOWN:
+                    this.currentAnimationName = "STAND_DOWN";
+                    break;
+                case LEFT:
+                    this.currentAnimationName = "STAND_LEFT";
+                    break;
+                case RIGHT:
+                    this.currentAnimationName = "STAND_RIGHT";
+                    break;
+                case UP:
+                    this.currentAnimationName = "STAND_UP";
+                    break;
+                case NONE:
+                    this.currentAnimationName = "STAND_DOWN";
+                    break;
+            }
         }
         else if (playerState == PlayerState.WALKING) {
             // sets animation to a WALK animation based on which way player is facing
