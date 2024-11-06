@@ -14,6 +14,7 @@ public abstract class Player extends GameObject {
     // values that affect player movement
     // these should be set in a subclass
     protected float walkSpeed = 0;
+    protected float speedUp = 2;
     protected int interactionRange = 1;
     protected Direction currentWalkingXDirection;
     protected Direction currentWalkingYDirection;
@@ -38,6 +39,7 @@ public abstract class Player extends GameObject {
     protected Key MOVE_UP_KEY = Key.UP;
     protected Key MOVE_DOWN_KEY = Key.DOWN;
     protected Key INTERACT_KEY = Key.SPACE;
+    protected Key SPEED_UP_KEY = Key.SHIFT;
 
     protected boolean isLocked = false;
     public Object intersects;
@@ -47,6 +49,7 @@ public abstract class Player extends GameObject {
         facingDirection = Direction.RIGHT;
         playerState = PlayerState.STANDING;
         upDown = Direction.DOWN;
+
         
         previousPlayerState = playerState;
         this.affectedByTriggers = true;
@@ -106,7 +109,6 @@ public abstract class Player extends GameObject {
         }
     }
 
-    
 
 
     // player WALKING state logic
@@ -118,34 +120,79 @@ public abstract class Player extends GameObject {
 
         // if walk left key is pressed, move player to the left
         if (Keyboard.isKeyDown(MOVE_LEFT_KEY)) {
-            moveAmountX -= walkSpeed;
-            facingDirection = Direction.LEFT;
-            currentWalkingXDirection = Direction.LEFT;
-            lastWalkingXDirection = Direction.LEFT;
+            
+        if(Keyboard.isKeyDown(SPEED_UP_KEY)){
+        
+        moveAmountX -= walkSpeed+2;
+        facingDirection = Direction.LEFT;
+        currentWalkingXDirection = Direction.LEFT;
+        lastWalkingXDirection = Direction.LEFT;
         }
+        else {
+
+        moveAmountX -= walkSpeed;
+        facingDirection = Direction.LEFT;
+        currentWalkingXDirection = Direction.LEFT;
+        lastWalkingXDirection = Direction.LEFT;
+        }
+    }
 
         // if walk right key is pressed, move player to the right
         else if (Keyboard.isKeyDown(MOVE_RIGHT_KEY)) {
-            moveAmountX += walkSpeed;
+
+        if(Keyboard.isKeyDown(SPEED_UP_KEY)){
+        
+            moveAmountX += walkSpeed+2;
+            facingDirection = Direction.RIGHT;
+            currentWalkingXDirection = Direction.RIGHT;
+            lastWalkingXDirection = Direction.RIGHT;  
+            }
+        else {
+        
+                moveAmountX += walkSpeed;
             facingDirection = Direction.RIGHT;
             currentWalkingXDirection = Direction.RIGHT;
             lastWalkingXDirection = Direction.RIGHT;
+                }
         }
+
         else {
             currentWalkingXDirection = Direction.NONE;
         }
 
         if (Keyboard.isKeyDown(MOVE_UP_KEY)) {
-            moveAmountY -= walkSpeed;
-            currentWalkingYDirection = Direction.UP;
-            lastWalkingYDirection = Direction.UP;
-            facingDirection = Direction.UP;
+        
+            if(Keyboard.isKeyDown(SPEED_UP_KEY)){
+        
+                moveAmountY -= walkSpeed+2;
+                currentWalkingYDirection = Direction.UP;
+                lastWalkingYDirection = Direction.UP;
+                facingDirection = Direction.UP;
+                }
+                else {
+        
+                    moveAmountY -= walkSpeed;
+                    currentWalkingYDirection = Direction.UP;
+                    lastWalkingYDirection = Direction.UP;
+                    facingDirection = Direction.UP;
+                }
         }
         else if (Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
-            moveAmountY += walkSpeed;
+
+            if(Keyboard.isKeyDown(SPEED_UP_KEY)){
+        
+                moveAmountY += walkSpeed+2;
             currentWalkingYDirection = Direction.DOWN;
             lastWalkingYDirection = Direction.DOWN;
             facingDirection = Direction.DOWN;
+                }
+                else {
+        
+                    moveAmountY += walkSpeed;
+            currentWalkingYDirection = Direction.DOWN;
+            lastWalkingYDirection = Direction.DOWN;
+            facingDirection = Direction.DOWN;
+                }
         }
         else {
             currentWalkingYDirection = Direction.NONE;
@@ -163,6 +210,42 @@ public abstract class Player extends GameObject {
         if (Keyboard.isKeyUp(MOVE_LEFT_KEY) && Keyboard.isKeyUp(MOVE_RIGHT_KEY) && Keyboard.isKeyUp(MOVE_UP_KEY) && Keyboard.isKeyUp(MOVE_DOWN_KEY)) {
             playerState = PlayerState.STANDING;
         }
+    }
+
+    protected void playerSpeedingupUpdirection(){
+        if(Keyboard.isKeyDown(MOVE_UP_KEY) && (!keyLocker.isKeyLocked(SPEED_UP_KEY) && Keyboard.isKeyDown(SPEED_UP_KEY))){
+            moveAmountY -= walkSpeed+2;
+            currentWalkingYDirection = Direction.UP;
+            lastWalkingYDirection = Direction.UP;
+            facingDirection = Direction.UP;
+        }
+    }
+
+    protected void playerSpeedingupDowndirection() {
+        if(Keyboard.isKeyDown(MOVE_DOWN_KEY) && (!keyLocker.isKeyLocked(SPEED_UP_KEY) && Keyboard.isKeyDown(SPEED_UP_KEY))) {
+            moveAmountY += walkSpeed+2;
+            currentWalkingYDirection = Direction.DOWN;
+            lastWalkingYDirection = Direction.DOWN;
+            facingDirection = Direction.DOWN;
+    }
+}
+
+    protected void playerSpeedingupRightdirection(){
+        if(Keyboard.isKeyDown(MOVE_RIGHT_KEY) && (!keyLocker.isKeyLocked(SPEED_UP_KEY) && Keyboard.isKeyDown(SPEED_UP_KEY)))
+            moveAmountX += walkSpeed+2;
+            facingDirection = Direction.RIGHT;
+            currentWalkingXDirection = Direction.RIGHT;
+            lastWalkingXDirection = Direction.RIGHT;   
+    }
+
+    protected void playerSpeedingupLeftdirection(){
+        if (Keyboard.isKeyDown(MOVE_LEFT_KEY) && (!keyLocker.isKeyLocked(SPEED_UP_KEY) && Keyboard.isKeyDown(SPEED_UP_KEY))) {
+            moveAmountX -= walkSpeed+2;
+            facingDirection = Direction.LEFT;
+            currentWalkingXDirection = Direction.LEFT;
+            lastWalkingXDirection = Direction.LEFT;
+        }
+
     }
 
     protected void updateLockedKeys() {
@@ -314,7 +397,7 @@ public abstract class Player extends GameObject {
     }
 
     // Uncomment this to have game draw player's bounds to make it easier to visualize
-    
+
     public void draw(GraphicsHandler graphicsHandler) {
         super.draw(graphicsHandler);
         drawBounds(graphicsHandler, new Color(255, 0, 0, 100));

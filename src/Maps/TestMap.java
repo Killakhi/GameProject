@@ -21,10 +21,10 @@ public class TestMap extends Map {
     public ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {
         ArrayList<EnhancedMapTile> enhancedMapTiles = new ArrayList<>();
 
-        PushableRock pushableRock = new PushableRock(getMapTile(2, 7).getLocation());
+        PushableRock pushableRock = new PushableRock(getMapTile(2, 0).getLocation());
         enhancedMapTiles.add(pushableRock);
 
-        Coin coin1 = new Coin(getMapTile(4, 7).getLocation());
+        Coin coin1 = new Coin(getMapTile(9, 15).getLocation());
         enhancedMapTiles.add(coin1);
 
         Coin coin2 = new Coin(getMapTile(7, 9).getLocation());
@@ -50,7 +50,7 @@ public class TestMap extends Map {
         //bug.setInteractScript(new BugScript());
         //npcs.add(bug);
 
-        Goku goku = new Goku(4, getMapTile(3, 1).getLocation().subtractY(40));
+        Goku goku = new Goku(4, getMapTile(7, 2).getLocation().subtractY(40));
         goku.setInteractScript(new GokuScript());
         npcs.add(goku);
         this.enemies.add(goku);

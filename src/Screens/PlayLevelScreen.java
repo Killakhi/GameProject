@@ -3,7 +3,6 @@ package Screens;
 import Engine.GraphicsHandler;
 import Engine.Key;
 import Engine.KeyLocker;
-import Engine.Keyboard;
 import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
@@ -11,16 +10,26 @@ import GameObject.Money;
 import Level.*;
 import Maps.TestMap;
 import Players.Cat;
+import Screens.PlayLevelScreen.PlayLevelScreenState;
 import Utils.Direction;
 import java.util.ArrayList;
 
 // This class is for when the RPG game is actually being played
 public class PlayLevelScreen extends Screen {
+    public int level;
+    public int exp;
+    public int hpStat;
+    public int currentHp;
+    public int magicStat;
+    public int currentMagic;
+    public int attackStat;
+    public int speedStat;
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
     protected Player player;
     public static PlayLevelScreenState playLevelScreenState = PlayLevelScreenState.RUNNING;
     protected WinScreen winScreen;
+    protected PauseMenu pauseMenu;
     protected GameOverScreen gameOverScreen;
     protected BattleScreen battleScreen;
     protected FlagManager flagManager;
@@ -66,14 +75,26 @@ public class PlayLevelScreen extends Screen {
         map.preloadScripts();
 
         winScreen = new WinScreen(this);
+        pauseMenu = new PauseMenu(screenCoordinator);
         battleScreen = new BattleScreen(screenCoordinator);
         gameOverScreen = new GameOverScreen(screenCoordinator);
+        pauseMenu.addGameLevel(this);
         battleScreen.addGameLevel(this);
         gameOverScreen.addGameLevel(this);
 
         // add a keyLocker to track when the battle button is pressed
         keyLocker.lockKey(Key.B);
         keyPressTimer = 0;
+
+        //add a keyLocker to pause the screen when the space button is pressed
+        keyLocker.lockKey(Key.SPACE);
+        keyPressTimer = 0;
+        hpStat = 100;
+        currentHp = 100;
+        attackStat = 20;
+        magicStat = 30;
+        currentMagic = 30;
+        speedStat = 15;
     }
 
     public void update() {
@@ -83,6 +104,10 @@ public class PlayLevelScreen extends Screen {
             case RUNNING:
                 player.update();
                 map.update(player);
+                break;
+            // if game is paused
+            case PAUSE_MENU:
+                pauseMenu.initialize();
                 break;
             // if level has been completed, bring up level cleared screen
             case LEVEL_COMPLETED:
@@ -142,6 +167,10 @@ public class PlayLevelScreen extends Screen {
         playLevelScreenState = PlayLevelScreenState.RUNNING;
     }
 
+    public void pauseMenu(){
+        playLevelScreenState = PlayLevelScreenState.PAUSE_MENU;
+    }
+
     public void gameOver() {
         playLevelScreenState = PlayLevelScreenState.GAME_OVER;
     }
@@ -151,6 +180,9 @@ public class PlayLevelScreen extends Screen {
         switch (playLevelScreenState) {
             case RUNNING:
                 map.draw(player, graphicsHandler);
+                break;
+            case PAUSE_MENU:
+                pauseMenu.draw(graphicsHandler);
                 break;
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);
@@ -188,6 +220,6 @@ public class PlayLevelScreen extends Screen {
 
     // This enum represents the different states this screen can be in
     public enum PlayLevelScreenState {
-        RUNNING, LEVEL_COMPLETED, ENTERING_BATTLE, BATTLING, GAME_OVER
+        RUNNING, PAUSE_MENU, LEVEL_COMPLETED, ENTERING_BATTLE, BATTLING, GAME_OVER
     }
 }
