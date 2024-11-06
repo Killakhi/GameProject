@@ -112,7 +112,7 @@ public class PauseMenu extends Screen {
         }
     }
 
-    public void dßraw(GraphicsHandler graphicsHandler) {
+    public void draw(GraphicsHandler graphicsHandler) {
         graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.gray);
         pauseMenuMessage.draw(graphicsHandler);
         resume.draw(graphicsHandler);
