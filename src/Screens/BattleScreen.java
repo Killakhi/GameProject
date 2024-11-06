@@ -58,9 +58,9 @@ public class BattleScreen extends Screen {
         flagManager.addFlag("Attacking", false);
         flagManager.addFlag("Animation", false);
         physicalAttack = new SpriteFont("Physical Attack" , 10, 500, "Arial", 30, Color.white );
-        items = new SpriteFont("items", 200, 500, "Arial", 30, Color.white);
+        items = new SpriteFont("Items", 260, 500, "Arial", 30, Color.white);
         runAway = new SpriteFont("Run Away", 400, 500, "Arial", 30, Color.white);
-        switchMenu = new SpriteFont("Magic Menu", 600, 500, "Arial", 30, Color.white);
+        switchMenu = new SpriteFont("Magic Attack", 600, 500, "Arial", 30, Color.white);
         fireAttack = new SpriteFont("Fire Attack", 500, 400, "Arial", 30, Color.white);
         waterAttack = new SpriteFont("Water Attack", 500, 300, "Arial", 30, Color.white);
         windAttack = new SpriteFont("Wind Attack", 500, 200, "Arial", 30, Color.white);
@@ -70,8 +70,9 @@ public class BattleScreen extends Screen {
         keyLocker.unlockKey(Key.B);
         keyLocker.unlockKey(Key.UP);
         keyLocker.unlockKey(Key.DOWN);
-        enemy1 = ImageLoader.load("Ghost Angy Battle.png");
-        enemyID = 1;
+        if(playLevelScreen.enemyID == 1) {
+            enemy1 = ImageLoader.load("Ghost Angy Battle.png");
+        }
         update();
     }
 
@@ -179,8 +180,7 @@ public class BattleScreen extends Screen {
                 if(currentMenuItemHovered != 0) {
                     playLevelScreen.currentMagic = playLevelScreen.currentMagic - 10;
                 }
-                hit = AttackManager.setHit();
-                
+                hit = attackManager.setHit(attackType, playLevelScreen.attackStat);
                 battle.setText(attackManager.setDisplay(attackType, hit)); 
                 flagManager.setFlag("Attacking");
                 flagManager.unsetFlag("Animation");
@@ -198,13 +198,7 @@ public class BattleScreen extends Screen {
             }
         }
         else if (currentBattleState == BattleState.SHOW_PLAYER_DAMAGE) {
-            if(currentMagicAttackHovered == 1) {
-                attackType = 0; 
-            } else if(currentMenuItemHovered == 1) {
-                //attackType = 3;
-                mp.setText(playLevelScreen.currentMagic + " / " + playLevelScreen.magicStat);
-            }
-
+            mp.setText(playLevelScreen.currentMagic + " / " + playLevelScreen.magicStat);
             battle.setText(attackManager.setDisplay(attackType, hit)); 
             flagManager.setFlag("Attacking");
             animation = attackManager.animation(attackType, timer);
@@ -248,12 +242,19 @@ public class BattleScreen extends Screen {
         } 
     else if (currentBattleState == BattleState.MAGIC_MENU) {
         if (Keyboard.isKeyDown(Key.UP) && keyPressTimer == 0) {
-            keyPressTimer = 60;
+            keyPressTimer = 30;
             currentMagicAttackHovered++;
         } else if (Keyboard.isKeyDown(Key.DOWN) && keyPressTimer == 0) {
-            keyPressTimer = 60;
+            keyPressTimer = 30;
             currentMagicAttackHovered--;
-        } 
+        } else if (Keyboard.isKeyDown(Key.SPACE) && keyPressTimer == 0) {
+            attackType = currentMagicAttackHovered + 1;
+            currentBattleState = BattleState.APPLY_PLAYER_DAMAGE;
+        } else {
+            if(keyPressTimer > 0) {
+                keyPressTimer--;
+            }
+        }
 
         if(currentMagicAttackHovered > 2){
             currentMagicAttackHovered = 0;
@@ -298,7 +299,7 @@ public class BattleScreen extends Screen {
                 intro.setText("You earned " + (enemyID * 10) + " Experience!");
             }
             if(timer == -90) {
-                playLevelScreen.exp = playLevelScreen.exp + 110;
+                playLevelScreen.exp = playLevelScreen.exp + (enemyID * 10);
                 if(playLevelScreen.exp >= (80 + (playLevelScreen.level*20))){
                     currentBattleState = BattleState.LEVEL_UP;
                 } else{

@@ -30,8 +30,7 @@ public class Goku extends NPC {
         
         if (touching(player)) {
             PlayLevelScreen.playLevelScreenState = PlayLevelScreenState.ENTERING_BATTLE;
-            
-            
+            PlayLevelScreen.enemyID = 1;
             
             this.setLocation(999999,99999);
         }
