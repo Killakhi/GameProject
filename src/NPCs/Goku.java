@@ -38,6 +38,7 @@ public class Goku extends NPC {
 
     @Override
     public void performAction(Player player)  {
+        //changes the annimation of the enemy to an angry annimation once you get within a certain bounds
         if(this.getInteractionRange().intersects(player.getBounds())){
             if(!isPlayerNearby){
                 isPlayerNearby = true;
@@ -51,7 +52,7 @@ public class Goku extends NPC {
         }
 
         
-        
+        //if the enemy touches the player the battle screen begins and the enemy is  sent away
         if (touching(player)) {
             PlayLevelScreen.playLevelScreenState = PlayLevelScreenState.ENTERING_BATTLE;
             PlayLevelScreen.enemyID = 1;
