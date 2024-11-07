@@ -2,8 +2,8 @@ package Screens;
 
 import Engine.*;
 import Game.ScreenCoordinator;
-import Level.FlagManager;
 import GameObject.HealthBar;
+import Level.FlagManager;
 import SpriteFont.SpriteFont;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -179,7 +179,8 @@ public class BattleScreen extends Screen {
                 if(currentMenuItemHovered != 0) {
                     playLevelScreen.currentMagic = playLevelScreen.currentMagic - 10;
                 }
-                hit = AttackManager.setHit();
+                hit = attackManager.setHit(attackType, playLevelScreen.attackStat);
+
                 
                 battle.setText(attackManager.setDisplay(attackType, hit)); 
                 flagManager.setFlag("Attacking");
@@ -198,8 +199,8 @@ public class BattleScreen extends Screen {
             }
         }
         else if (currentBattleState == BattleState.SHOW_PLAYER_DAMAGE) {
-            if(currentMagicAttackHovered == 1) {
-                attackType = 0; 
+            if(currentMagicAttackHovered != 0) {
+                mp.setText(playLevelScreen.currentMagic + " / " + playLevelScreen.magicStat);
             } else if(currentMenuItemHovered == 1) {
                 //attackType = 3;
                 mp.setText(playLevelScreen.currentMagic + " / " + playLevelScreen.magicStat);
@@ -253,7 +254,14 @@ public class BattleScreen extends Screen {
         } else if (Keyboard.isKeyDown(Key.DOWN) && keyPressTimer == 0) {
             keyPressTimer = 60;
             currentMagicAttackHovered--;
-        } 
+        } else if (Keyboard.isKeyDown(Key.SPACE) && keyPressTimer == 0) {
+            attackType = currentMagicAttackHovered + 1;
+            currentBattleState = BattleState.APPLY_PLAYER_DAMAGE;
+        } else {
+            if(keyPressTimer > 0) {
+                keyPressTimer--;
+            }
+        }
 
         if(currentMagicAttackHovered > 2){
             currentMagicAttackHovered = 0;
