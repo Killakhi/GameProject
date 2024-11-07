@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 // This class is for the battle screen
 public class BattleScreen extends Screen {
     protected AttackManager attackManager;
+    protected EnemyManager enemyManager;
     protected BufferedImage enemy1;
     protected int enemyID;
     protected BufferedImage animation;
@@ -53,6 +54,7 @@ public class BattleScreen extends Screen {
         keyPressTimer = 0;
         flagManager = new FlagManager();
         attackManager = new AttackManager(this);
+        enemyManager = new EnemyManager();     
         intro = new SpriteFont("A nefarious ghost approaches!", 200, 50, "Arial", 30, Color.white);
         battle = new SpriteFont("You hit for some damage!", 240, 50,"Arial", 20, Color.white);
         flagManager.addFlag("Attacking", false);
@@ -70,9 +72,8 @@ public class BattleScreen extends Screen {
         keyLocker.unlockKey(Key.B);
         keyLocker.unlockKey(Key.UP);
         keyLocker.unlockKey(Key.DOWN);
-        if(playLevelScreen.enemyID == 1) {
-            enemy1 = ImageLoader.load("Ghost Angy Battle.png");
-        }
+        enemyID = playLevelScreen.enemyID;
+        enemy1 = enemyManager.setSprite(enemyID);
         update();
     }
 
@@ -164,7 +165,7 @@ public class BattleScreen extends Screen {
         else if (currentBattleState == BattleState.APPLY_PLAYER_DAMAGE) {
             int check = ((int)(Math.random() * (100))) + 1;
             hitRate = attackManager.setHitRate(attackType);
-            if (check > (playLevelScreen.speedStat)*5 + hitRate) {
+            if (check > ((playLevelScreen.speedStat)*5 + hitRate) - enemyManager.dodge(enemyID)) {
                 currentBattleState = BattleState.MISS;
             } 
             else if(currentMenuItemHovered == 1 && playLevelScreen.currentMagic < 10) {
@@ -217,15 +218,19 @@ public class BattleScreen extends Screen {
 
         }
         else if (currentBattleState == BattleState.APPLY_ENEMY_DAMAGE) {
-            damage = ((int)(Math.random() * (10))) + 10;
-            battle.setText("You were hit for " + damage + " damage!");
+            damage = enemyManager.damage(enemyID);
             flagManager.setFlag("Attacking");
             flagManager.unsetFlag("Animation");
             currentBattleState = BattleState.SHOW_ENEMY_DAMAGE;
 
         }
         else if (currentBattleState == BattleState.SHOW_ENEMY_DAMAGE) {
-            battle.setText("You were hit for " + damage + " damage!");
+            if(damage == 0) {
+                battle.setText("Whoops, the enemy missed!");
+            } else {
+                battle.setText("You were hit for " + damage + " damage!");
+            }
+                
             flagManager.setFlag("Attacking");
             flagManager.unsetFlag("Animation");
             timer--;
@@ -283,10 +288,7 @@ public class BattleScreen extends Screen {
             windAttack.setColor(new Color(255, 215, 0));
         } else if (currentMagicAttackHovered != 2) {
             windAttack.setColor(new Color(49, 207, 240));
-        }
-
-        
-            
+        }   
         }
 
         else if(currentBattleState == BattleState.VICTORY) {
@@ -342,6 +344,7 @@ public class BattleScreen extends Screen {
             fireAttack.draw(graphicsHandler);
             windAttack.draw(graphicsHandler);
         } else 
+        physicalAttack.draw(graphicsHandler);
         physicalAttack.draw(graphicsHandler);
         items.draw(graphicsHandler);
         runAway.draw(graphicsHandler);
