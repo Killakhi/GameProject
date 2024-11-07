@@ -19,7 +19,9 @@ public class TownsfolkScript extends Script {
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasTalkedToTownsfolk", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("Don't you love it here?");
+                    addText("Welcome to Fellskar!");
+                    addText("Go to the innkeeper if you need anything.");
+                    addText("She should be on the south side of town.");
                     
                     
                 }});

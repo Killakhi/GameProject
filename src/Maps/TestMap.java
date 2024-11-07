@@ -67,11 +67,11 @@ public class TestMap extends Map {
         wand.setInteractScript(new WandScript());
         npcs.add(wand);
 
-        Townsfolk townsfolk = new Townsfolk(4, getMapTile(6, 13).getLocation().subtractY(40));
+        Townsfolk townsfolk = new Townsfolk(4, getMapTile(6, 10).getLocation().subtractY(40));
         townsfolk.setInteractScript(new TownsfolkScript());
         npcs.add(townsfolk);
 
-        TownGuy1 townguy1 = new TownGuy1(4, getMapTile(6, 15).getLocation().subtractY(40));
+        TownGuy1 townguy1 = new TownGuy1(4, getMapTile(3, 19).getLocation().subtractY(40));
         townguy1.setInteractScript(new TownGuy1Script());
         npcs.add(townguy1);
 
