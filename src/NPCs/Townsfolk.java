@@ -15,7 +15,7 @@ import java.util.HashMap;
 public class Townsfolk extends NPC {
 
     public Townsfolk(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("LittleGuy.png"), 30, 30), "STAND_LEFT");
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("LittleGuy_3.png.png"), 30, 30), "STAND_LEFT");
     }
 
     @Override
