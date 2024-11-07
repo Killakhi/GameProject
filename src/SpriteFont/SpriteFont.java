@@ -1,7 +1,6 @@
 package SpriteFont;
 
 import Engine.GraphicsHandler;
-
 import java.awt.*;
 
 // This class represents a sprite font, which is graphic text (text drawn to the screen as if it were an image)
