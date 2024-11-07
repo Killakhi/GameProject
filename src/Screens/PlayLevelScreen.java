@@ -36,6 +36,7 @@ public class PlayLevelScreen extends Screen {
     protected BattleScreen battleScreen;
     protected FlagManager flagManager;
     protected int keyPressTimer;
+    public static int enemyID;
     protected KeyLocker keyLocker = new KeyLocker();
     protected ArrayList<String> obtainableItems = new ArrayList<>();
 
@@ -100,8 +101,13 @@ public class PlayLevelScreen extends Screen {
         //add a keyLocker to pause the screen when the space button is pressed
         keyLocker.lockKey(Key.SPACE);
         keyPressTimer = 0;
-
-        keyPressTimer = 0;
+        level = 1;
+        hpStat = 100;
+        currentHp = 100;
+        attackStat = 20;
+        magicStat = 30;
+        currentMagic = 30;
+        speedStat = 15;
     }
 
     public void update() {

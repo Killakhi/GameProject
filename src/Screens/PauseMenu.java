@@ -103,8 +103,8 @@ public class PauseMenu extends Screen {
         } else if (pauseMenuItemSelected == 2) {
             screenCoordinator.setGameState(GameState.MENU);
         }
-        }
-
+    }
+    
     public void draw(GraphicsHandler graphicsHandler) {
         graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.gray);
         pauseMenuMessage.draw(graphicsHandler);
