@@ -2,8 +2,8 @@ package Screens;
 
 import Engine.*;
 import Game.ScreenCoordinator;
-import Level.FlagManager;
 import GameObject.HealthBar;
+import Level.FlagManager;
 import SpriteFont.SpriteFont;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -182,6 +182,7 @@ public class BattleScreen extends Screen {
                     playLevelScreen.currentMagic = playLevelScreen.currentMagic - 10;
                 }
                 hit = attackManager.setHit(attackType, playLevelScreen.attackStat);
+
                 battle.setText(attackManager.setDisplay(attackType, hit)); 
                 flagManager.setFlag("Attacking");
                 flagManager.unsetFlag("Animation");
@@ -199,7 +200,14 @@ public class BattleScreen extends Screen {
             }
         }
         else if (currentBattleState == BattleState.SHOW_PLAYER_DAMAGE) {
-            mp.setText(playLevelScreen.currentMagic + " / " + playLevelScreen.magicStat);
+
+            if(currentMagicAttackHovered != 0) {
+                mp.setText(playLevelScreen.currentMagic + " / " + playLevelScreen.magicStat);
+            } else if(currentMenuItemHovered == 1) {
+                //attackType = 3;
+                mp.setText(playLevelScreen.currentMagic + " / " + playLevelScreen.magicStat);
+            }
+
             battle.setText(attackManager.setDisplay(attackType, hit)); 
             flagManager.setFlag("Attacking");
             animation = attackManager.animation(attackType, timer);
