@@ -3,6 +3,7 @@ package Screens;
 import Engine.GraphicsHandler;
 import Engine.Key;
 import Engine.KeyLocker;
+import Engine.Keyboard;
 import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
@@ -24,12 +25,13 @@ public class PlayLevelScreen extends Screen {
     public int currentMagic;
     public int attackStat;
     public int speedStat;
+    public static PlayLevelScreenState playLevelScreenState = PlayLevelScreenState.RUNNING;
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
     protected Player player;
-    public static PlayLevelScreenState playLevelScreenState = PlayLevelScreenState.RUNNING;
     protected WinScreen winScreen;
     protected PauseMenu pauseMenu;
+    protected HealthStatsScreen healthMenu;
     protected GameOverScreen gameOverScreen;
     protected BattleScreen battleScreen;
     protected FlagManager flagManager;
@@ -75,11 +77,20 @@ public class PlayLevelScreen extends Screen {
         // both are supported, however preloading is recommended
         map.preloadScripts();
 
+        hpStat = 100;
+        currentHp = 100;
+        attackStat = 20;
+        magicStat = 30;
+        currentMagic = 30;
+        speedStat = 15;
+
         winScreen = new WinScreen(this);
         pauseMenu = new PauseMenu(screenCoordinator);
+        healthMenu = new HealthStatsScreen(screenCoordinator);
         battleScreen = new BattleScreen(screenCoordinator);
         gameOverScreen = new GameOverScreen(screenCoordinator);
         pauseMenu.addGameLevel(this);
+        healthMenu.addGameLevel(this);
         battleScreen.addGameLevel(this);
         gameOverScreen.addGameLevel(this);
 
@@ -109,7 +120,12 @@ public class PlayLevelScreen extends Screen {
                 break;
             // if game is paused
             case PAUSE_MENU:
-                pauseMenu.initialize();
+                pauseMenu.update();
+                playLevelScreenState = PlayLevelScreenState.PAUSE_MENU;
+                break;
+            case STATS:
+                healthMenu.update();
+                playLevelScreenState = PlayLevelScreenState.STATS;
                 break;
             // if level has been completed, bring up level cleared screen
             case LEVEL_COMPLETED:
@@ -156,6 +172,11 @@ public class PlayLevelScreen extends Screen {
             System.out.println(obtainableItems);
         }
 
+        if (Keyboard.isKeyDown(Key.M))  {
+            
+            pauseMenu();
+        }
+
         // if flag is set at any point during gameplay, game is "won"
         if (map.getFlagManager().isFlagSet("hasFoundBall") || map.getFlagManager().isFlagSet("hasFoughtNPC")) {
             playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
@@ -171,6 +192,7 @@ public class PlayLevelScreen extends Screen {
 
     public void pauseMenu(){
         playLevelScreenState = PlayLevelScreenState.PAUSE_MENU;
+        screenCoordinator.setGameState(GameState.PAUSE);
     }
 
     public void gameOver() {
@@ -185,6 +207,9 @@ public class PlayLevelScreen extends Screen {
                 break;
             case PAUSE_MENU:
                 pauseMenu.draw(graphicsHandler);
+                break;
+            case STATS:
+                healthMenu.draw(graphicsHandler);
                 break;
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);
@@ -222,6 +247,6 @@ public class PlayLevelScreen extends Screen {
 
     // This enum represents the different states this screen can be in
     public enum PlayLevelScreenState {
-        RUNNING, PAUSE_MENU, LEVEL_COMPLETED, ENTERING_BATTLE, BATTLING, GAME_OVER
+        RUNNING, PAUSE_MENU, STATS, LEVEL_COMPLETED, ENTERING_BATTLE, BATTLING, GAME_OVER
     }
 }
