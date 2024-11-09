@@ -79,6 +79,10 @@ public class TestMap extends Map {
         innkeeper.setInteractScript(new InnkeeperScript());
         npcs.add(innkeeper);
 
+        TownGuy2 townguy2 = new TownGuy2(9, getMapTile(7, 1).getLocation().subtractY(40));
+        townguy2.setInteractScript(new TownGuy2Script());
+        npcs.add(townguy2);
+
 
 
         

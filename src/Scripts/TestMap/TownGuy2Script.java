@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 // script for talking to new Custom npc
 // checkout the documentation website for a detailed guide on how this script works
-public class TownsfolkScript extends Script {
+public class TownGuy2Script extends Script {
 
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
@@ -17,20 +17,20 @@ public class TownsfolkScript extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToTownsfolk", false));
+                addRequirement(new FlagRequirement("hasTalkedToTownGuy2", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("Welcome to Fellskar!");
-                    addText("Go to the innkeeper if you need anything.");
-                    addText("She should be on the south side of town.");
-                    addText("Luke: Thank you");
+                    addText("Mysterious person: What happened?");
+                    addText("Luke: You look like a ghost...\n what's the last thing you remember?");
+                    addText("MP: I was walking through the woods like I always do.\n I heard rustling and the next thing I knew I was here.");
+                    addText("Luke: Don't worry Ill find a way to help you");
                     
                     
                 }});
-                addScriptAction(new ChangeFlagScriptAction("hasTalkedToTownsfolk", true));
+                addScriptAction(new ChangeFlagScriptAction("hasTalkedToTownGuy2", true));
             }});
 
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToTownsfolk", true));
+                addRequirement(new FlagRequirement("hasTalkedToTownGuy2", true));
                 addScriptAction(new TextboxScriptAction("Go away"));
             }});
         }});
