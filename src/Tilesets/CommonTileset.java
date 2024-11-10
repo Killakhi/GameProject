@@ -417,7 +417,7 @@ public class CommonTileset extends Tileset {
  
          MapTileBuilder WoodTile = new MapTileBuilder(WoodFrame)
          .withTopLayer(WoodFrame)
-         .withTileType(TileType.PASSABLE);
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(WoodTile);
 
          // Tile 41: Woodwithbanners
@@ -428,7 +428,7 @@ public class CommonTileset extends Tileset {
  
          MapTileBuilder WoodwithbannersTile = new MapTileBuilder(WoodwithbannersFrame)
          .withTopLayer(WoodwithbannersFrame)
-         .withTileType(TileType.PASSABLE);
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(WoodwithbannersTile);
 
          // Tile 42: treeWood
@@ -439,7 +439,7 @@ public class CommonTileset extends Tileset {
  
          MapTileBuilder treeWoodTile = new MapTileBuilder(treeWoodFrame)
          .withTopLayer(treeWoodFrame)
-         .withTileType(TileType.PASSABLE);
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(treeWoodTile);
 
          // Tile 43: MiddleofTree
@@ -549,7 +549,7 @@ public class CommonTileset extends Tileset {
  
          MapTileBuilder Treewood2Tile = new MapTileBuilder(Treewood2Frame)
          .withTopLayer(Treewood2Frame)
-         .withTileType(TileType.PASSABLE);
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(Treewood2Tile);
 
          // Tile 53: balloons
@@ -571,7 +571,7 @@ public class CommonTileset extends Tileset {
  
          MapTileBuilder windowTile = new MapTileBuilder(windowFrame)
          .withTopLayer(windowFrame)
-         .withTileType(TileType.PASSABLE);
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(windowTile);
 
          // Tile 55: windowPanel
@@ -582,7 +582,7 @@ public class CommonTileset extends Tileset {
  
          MapTileBuilder windowPanelTile = new MapTileBuilder(windowPanelFrame)
          .withTopLayer(windowPanelFrame)
-         .withTileType(TileType.PASSABLE);
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(windowPanelTile);
 
          // Tile 56: sand1
@@ -613,7 +613,7 @@ public class CommonTileset extends Tileset {
  
          MapTileBuilder doorTile = new MapTileBuilder(doorFrame)
          .withTopLayer(doorFrame)
-         .withTileType(TileType.PASSABLE);
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(doorTile);
 
          // Tile 59: rightroofEdge
@@ -834,7 +834,7 @@ public class CommonTileset extends Tileset {
 
         MapTileBuilder insideOfWallTile = new MapTileBuilder(insideOfWallFrame)
         .withTopLayer(insideOfWallFrame)
-        .withTileType(TileType.PASSABLE);
+        .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(insideOfWallTile);
 
         // Tile 77: BlackFrame
@@ -845,7 +845,7 @@ public class CommonTileset extends Tileset {
 
         MapTileBuilder blackTile = new MapTileBuilder(blackFrame)
         .withTopLayer(blackFrame)
-        .withTileType(TileType.PASSABLE);
+        .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(blackTile);
 
         // Tile 78: grayRoof1
