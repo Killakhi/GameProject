@@ -19,7 +19,8 @@ public class InnkeeperScript extends Script {
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasTalkedToInnkeeper", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("Get lost punk! >:[");
+                    addText("Kid: Get lost punk! >:[");
+                    addText("Luke: I hate you so much");
                     
                     
                 }});
