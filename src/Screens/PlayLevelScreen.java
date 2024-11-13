@@ -89,6 +89,7 @@ public class PlayLevelScreen extends Screen {
         //add a keyLocker to pause the screen when the space button is pressed
         keyLocker.lockKey(Key.SPACE);
         keyPressTimer = 0;
+        level = 1;
         hpStat = 100;
         currentHp = 100;
         attackStat = 20;

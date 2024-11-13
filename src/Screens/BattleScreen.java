@@ -58,7 +58,7 @@ public class BattleScreen extends Screen {
         flagManager.addFlag("Attacking", false);
         flagManager.addFlag("Animation", false);
         physicalAttack = new SpriteFont("Physical Attack" , 10, 500, "Arial", 30, Color.white );
-        items = new SpriteFont("items", 200, 500, "Arial", 30, Color.white);
+        items = new SpriteFont("Items", 270, 500, "Arial", 30, Color.white);
         runAway = new SpriteFont("Run Away", 400, 500, "Arial", 30, Color.white);
         switchMenu = new SpriteFont("Magic Menu", 600, 500, "Arial", 30, Color.white);
         fireAttack = new SpriteFont("Fire Attack", 500, 400, "Arial", 30, Color.white);
@@ -163,7 +163,7 @@ public class BattleScreen extends Screen {
         else if (currentBattleState == BattleState.APPLY_PLAYER_DAMAGE) {
             int check = ((int)(Math.random() * (100))) + 1;
             hitRate = attackManager.setHitRate(attackType);
-            if (check > (playLevelScreen.speedStat)*5 + hitRate) {
+            if (check < (playLevelScreen.speedStat)*5 + hitRate) {
                 currentBattleState = BattleState.MISS;
             } 
             else if(currentMenuItemHovered == 1 && playLevelScreen.currentMagic < 10) {
@@ -179,7 +179,7 @@ public class BattleScreen extends Screen {
                 if(currentMenuItemHovered != 0) {
                     playLevelScreen.currentMagic = playLevelScreen.currentMagic - 10;
                 }
-                hit = AttackManager.setHit();
+                hit = attackManager.setHit(attackType, playLevelScreen.attackStat);
                 
                 battle.setText(attackManager.setDisplay(attackType, hit)); 
                 flagManager.setFlag("Attacking");
@@ -198,13 +198,9 @@ public class BattleScreen extends Screen {
             }
         }
         else if (currentBattleState == BattleState.SHOW_PLAYER_DAMAGE) {
-            if(currentMagicAttackHovered == 1) {
-                attackType = 0; 
-            } else if(currentMenuItemHovered == 1) {
-                //attackType = 3;
+            if(currentMenuItemHovered != 0) {
                 mp.setText(playLevelScreen.currentMagic + " / " + playLevelScreen.magicStat);
             }
-
             battle.setText(attackManager.setDisplay(attackType, hit)); 
             flagManager.setFlag("Attacking");
             animation = attackManager.animation(attackType, timer);
@@ -248,12 +244,19 @@ public class BattleScreen extends Screen {
         } 
     else if (currentBattleState == BattleState.MAGIC_MENU) {
         if (Keyboard.isKeyDown(Key.UP) && keyPressTimer == 0) {
-            keyPressTimer = 60;
+            keyPressTimer = 20;
             currentMagicAttackHovered++;
         } else if (Keyboard.isKeyDown(Key.DOWN) && keyPressTimer == 0) {
-            keyPressTimer = 60;
+            keyPressTimer = 20;
             currentMagicAttackHovered--;
-        } 
+        } else if (Keyboard.isKeyDown(Key.SPACE) && keyPressTimer == 0) {
+            attackType = currentMagicAttackHovered + 1;
+            currentBattleState = BattleState.APPLY_PLAYER_DAMAGE;
+        } else {
+            if(keyPressTimer > 0) {
+                keyPressTimer--;
+            }
+        }
 
         if(currentMagicAttackHovered > 2){
             currentMagicAttackHovered = 0;
