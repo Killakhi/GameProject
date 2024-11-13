@@ -23,7 +23,7 @@ public class TownGuy1Script extends Script {
                     addText("Luke: Of course what do you need?");
                     addText("Innkeeper: I heard that there were some \nwerid sounds to the northwest.");
                     addText("Maybe you should go check it out?");
-                    addText("Luke: You got it ill help you out.");
+                    addText("Luke: You got it, i'll help you out.");
                     
                     
                 }});
