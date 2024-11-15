@@ -50,9 +50,6 @@ public class ScreenCoordinator extends Screen {
 					case LEVEL:
 						currentScreen = new PlayLevelScreen(this);
 						break;
-					case PAUSE:
-						currentScreen = new PauseMenu(this);
-						break;
 					case HEALTH:
 						currentScreen = new HealthStatsScreen(this);
 						break;
