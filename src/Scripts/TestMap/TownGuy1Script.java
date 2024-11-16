@@ -2,7 +2,6 @@ package Scripts.TestMap;
 
 import Level.Script;
 import ScriptActions.*;
-import Utils.Visibility;
 import java.util.ArrayList;
 
 // script for talking to new Custom npc
@@ -20,8 +19,11 @@ public class TownGuy1Script extends Script {
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasTalkedToTownsfolk", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("I heard that there were some werid sounds to the north \nwest.");
+                    addText("I see that you are an adventurer.\n Could you help us with something?");
+                    addText("Luke: Of course what do you need?");
+                    addText("Innkeeper: I heard that there were some \nwerid sounds to the northwest.");
                     addText("Maybe you should go check it out?");
+                    addText("Luke: You got it ill help you out.");
                     
                     
                 }});

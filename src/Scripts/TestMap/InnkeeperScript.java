@@ -2,7 +2,6 @@ package Scripts.TestMap;
 
 import Level.Script;
 import ScriptActions.*;
-import Utils.Visibility;
 import java.util.ArrayList;
 
 // script for talking to new Custom npc
@@ -20,7 +19,8 @@ public class InnkeeperScript extends Script {
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasTalkedToInnkeeper", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("Get lost punk! >:[");
+                    addText("Kid: Get lost punk! >:[");
+                    addText("Luke: I hate you so much");
                     
                     
                 }});

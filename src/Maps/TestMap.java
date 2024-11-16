@@ -55,29 +55,38 @@ public class TestMap extends Map {
         npcs.add(goku);
         this.enemies.add(goku);
 
-        Bat bat = new Bat(1, getMapTile(11, 15).getLocation().subtractY(40));
+
+        Bat bat = new Bat(5, getMapTile(11, 15).getLocation().subtractY(40));
         bat.setInteractScript(new BatScript());
         npcs.add(bat);
 
-        Sword sword = new Sword(1, getMapTile(14, 13).getLocation().subtractY(40));
+        Sword sword = new Sword(6, getMapTile(14, 13).getLocation().subtractY(40));
         sword.setInteractScript(new SwordScript());
         npcs.add(sword);
 
-        Wand wand = new Wand(1, getMapTile(6, 19).getLocation().subtractY(40));
+        Wand wand = new Wand(7, getMapTile(6, 19).getLocation().subtractY(40));
         wand.setInteractScript(new WandScript());
         npcs.add(wand);
 
-        Townsfolk townsfolk = new Townsfolk(4, getMapTile(6, 13).getLocation().subtractY(40));
+        Maya maya = new Maya(3, getMapTile(12, 12).getLocation().subtractY(40));
+        npcs.add(maya);
+        this.friendly.add(maya);
+
+        Townsfolk townsfolk = new Townsfolk(8, getMapTile(6, 10).getLocation().subtractY(40));
         townsfolk.setInteractScript(new TownsfolkScript());
         npcs.add(townsfolk);
 
-        TownGuy1 townguy1 = new TownGuy1(4, getMapTile(6, 15).getLocation().subtractY(40));
+        TownGuy1 townguy1 = new TownGuy1(9, getMapTile(3, 19).getLocation().subtractY(40));
         townguy1.setInteractScript(new TownGuy1Script());
         npcs.add(townguy1);
 
-        Innkeeper innkeeper = new Innkeeper(4, getMapTile(8, 17).getLocation().subtractY(40));
+        Innkeeper innkeeper = new Innkeeper(10, getMapTile(8, 17).getLocation().subtractY(40));
         innkeeper.setInteractScript(new InnkeeperScript());
         npcs.add(innkeeper);
+
+        TownGuy2 townguy2 = new TownGuy2(9, getMapTile(7, 1).getLocation().subtractY(40));
+        townguy2.setInteractScript(new TownGuy2Script());
+        npcs.add(townguy2);
 
 
 

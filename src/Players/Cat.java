@@ -97,7 +97,7 @@ public class Cat extends Player {
             
 
             put("WALK_RIGHT", new Frame[] {
-                    new FrameBuilder(spriteSheet.getSprite(5, 0), 14)
+                    new FrameBuilder(spriteSheet.getSprite(3, 0), 14)
                             .withScale(3)
                             .withBounds(6, 12, 12, 7)
                             .build(),

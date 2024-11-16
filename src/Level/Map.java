@@ -8,6 +8,7 @@ import Engine.Pathfinder;
 import Engine.Route;
 import Engine.ScreenManager;
 import GameObject.Rectangle;
+import NPCs.Maya;
 import Utils.Direction;
 import Utils.Point;
 
@@ -61,6 +62,7 @@ public abstract class Map {
     protected ArrayList<EnhancedMapTile> enhancedMapTiles;
     protected ArrayList<NPC> npcs;
     protected ArrayList<NPC> enemies;
+    protected ArrayList<NPC> friendly;
     protected ArrayList<Trigger> triggers;
 
     // current script that is being executed (if any)
@@ -87,6 +89,7 @@ public abstract class Map {
         this.mapFileName = mapFileName;
         this.tileset = tileset;
         this.enemies = new ArrayList<>();
+        this.friendly = new ArrayList<>();
         setupMap();
         this.startBoundX = 0;
         this.startBoundY = 0;
@@ -533,6 +536,50 @@ public abstract class Map {
 
                 npc.moveX((float) dx);
                 npc.moveY((float) dy);
+            }
+        }
+
+        for (NPC npc : this.friendly) {
+            Point delta = player.getLocation().subtract(npc.getLocation());
+            double distance = Math.sqrt(delta.x * delta.x + delta.y * delta.y);
+
+            if (distance < 50 || distance < -50) {
+                Maya.direction = -1;
+                System.out.println("stopped");
+                continue;
+            } else if (distance > 50 || distance < -50) {
+                Route routeToPlayer = this.pathfinder.getBestRoute(player, npc.getLocation());
+                
+                if (routeToPlayer != null) {
+                    java.awt.Point direction = routeToPlayer.getDirectionToMove();
+
+                    npc.moveX(direction.x * 2);
+                    npc.moveY(direction.y * 2);
+                    if(direction.y < 0) {
+                        Maya.setDirection(0);
+                        System.out.println("north");
+                    } else if (direction.y > 0) {
+                        Maya.setDirection(2);
+                        System.out.println("south");
+                    } else {
+                        if(direction.x < 0){
+                            Maya.setDirection(1);
+                            System.out.println("west");
+                        }
+                        else if(direction.x > 0) {
+                            Maya.setDirection(3);
+                            System.out.println("east");
+                        }
+                    }
+                }
+            } else {
+                // move directly
+                double dx = 2.0 * delta.x / (distance + 1.0);
+                double dy = 2.0 * delta.y / (distance + 1.0);
+
+                npc.moveX((float) dx);
+                npc.moveY((float) dy);
+
             }
         }
 
