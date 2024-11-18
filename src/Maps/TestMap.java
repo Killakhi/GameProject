@@ -79,9 +79,15 @@ public class TestMap extends Map {
         innkeeper.setInteractScript(new InnkeeperScript());
         npcs.add(innkeeper);
 
-        TownGuy2 townguy2 = new TownGuy2(9, getMapTile(7, 1).getLocation().subtractY(40));
+        TownGuy2 townguy2 = new TownGuy2(11, getMapTile(7, 1).getLocation().subtractY(40));
         townguy2.setInteractScript(new TownGuy2Script());
         npcs.add(townguy2);
+
+        Moth moth = new Moth(12, getMapTile(9, 4).getLocation().subtractY(40));
+        moth.setInteractScript(new GokuScript());
+        npcs.add(moth);
+        this.enemies.add(moth);
+
 
 
 
