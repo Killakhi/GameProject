@@ -20,12 +20,12 @@ public class ScrollableMenu<T> implements Drawable, Navigable<MenuItem<T>> {
         }
 
         String itemName = items.get(index).getDisplayName();
-        Font font = Font.getFont(Font.SANS_SERIF);
+        Font font = Font.decode(Font.SANS_SERIF).deriveFont(25.0f);
 
-        if (selected) {
-            graphicsHandler.drawString(itemName, x, y + 30 * row, font, Color.GRAY);
+        if (!selected) {
+            graphicsHandler.drawString(itemName, x + 20, y + 25 + 30 * row, font, Color.GRAY);
         } else {
-            graphicsHandler.drawStringWithOutline(itemName, x, y + 30 * row, font, Color.WHITE, Color.GRAY, 2.0f);
+            graphicsHandler.drawStringWithOutline(itemName, x + 20, y + 25 + 30 * row, font, Color.WHITE, Color.GRAY, 2.0f);
         }
     }
 

@@ -1,4 +1,4 @@
-package EnhancedMapTiles;
+ package EnhancedMapTiles;
 
 import Builders.FrameBuilder;
 import Engine.ImageLoader;
@@ -13,13 +13,13 @@ import Utils.Point;
 
 public class Coin extends EnhancedMapTile {
     public Coin(Point location) {
-        super(location.x, location.y, new SpriteSheet(ImageLoader.load("Coin.png"), 16, 16), TileType.PASSABLE);
+        super(location.x, location.y, new SpriteSheet(ImageLoader.load("Coin.png"), 32, 32), TileType.PASSABLE);
     }
 
     @Override
     public void update(Player player) {
         super.update(player);
-        if (player.touching(this) && !this.isHidden) {
+        if (player.touching(this) && !this.isHidden) { 
             this.isHidden = true;
             Money.INSTANCE.give(25);
         }
@@ -28,7 +28,7 @@ public class Coin extends EnhancedMapTile {
     @Override
     protected GameObject loadBottomLayer(SpriteSheet spriteSheet) {
         Frame frame = new FrameBuilder(spriteSheet.getSubImage(0, 0))
-                .withScale(3)
+                .withScale(2)
                 .build();
         return new GameObject(x, y, frame);
     }

@@ -25,6 +25,7 @@ public class PlayLevelScreen extends Screen {
     public int currentMagic;
     public int attackStat;
     public int speedStat;
+    public boolean paused = false;
     public static PlayLevelScreenState playLevelScreenState = PlayLevelScreenState.RUNNING;
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
@@ -85,11 +86,10 @@ public class PlayLevelScreen extends Screen {
         speedStat = 15;
 
         winScreen = new WinScreen(this);
-        pauseMenu = new PauseMenu(screenCoordinator);
+        pauseMenu = new PauseMenu(screenCoordinator, this);
         healthMenu = new HealthStatsScreen(screenCoordinator);
         battleScreen = new BattleScreen(screenCoordinator);
         gameOverScreen = new GameOverScreen(screenCoordinator);
-        pauseMenu.addGameLevel(this);
         healthMenu.addGameLevel(this);
         battleScreen.addGameLevel(this);
         gameOverScreen.addGameLevel(this);
@@ -111,17 +111,17 @@ public class PlayLevelScreen extends Screen {
     }
 
     public void update() {
+        if (paused) {
+            this.pauseMenu.update();
+            return;
+        }
+
         // based on screen state, perform specific actions
         switch (playLevelScreenState) {
             // if level is "running" update player and map to keep game logic for the platformer level going
             case RUNNING:
                 player.update();
                 map.update(player);
-                break;
-            // if game is paused
-            case PAUSE_MENU:
-                pauseMenu.update();
-                playLevelScreenState = PlayLevelScreenState.PAUSE_MENU;
                 break;
             case STATS:
                 healthMenu.update();
@@ -191,8 +191,7 @@ public class PlayLevelScreen extends Screen {
     }
 
     public void pauseMenu(){
-        playLevelScreenState = PlayLevelScreenState.PAUSE_MENU;
-        screenCoordinator.setGameState(GameState.PAUSE);
+        paused = true;
     }
 
     public void gameOver() {
@@ -201,12 +200,14 @@ public class PlayLevelScreen extends Screen {
 
     public void draw(GraphicsHandler graphicsHandler) {
         // based on screen state, draw appropriate graphics
+        if (paused) {
+            this.pauseMenu.draw(graphicsHandler);
+            return;
+        }
+
         switch (playLevelScreenState) {
             case RUNNING:
                 map.draw(player, graphicsHandler);
-                break;
-            case PAUSE_MENU:
-                pauseMenu.draw(graphicsHandler);
                 break;
             case STATS:
                 healthMenu.draw(graphicsHandler);
@@ -247,6 +248,6 @@ public class PlayLevelScreen extends Screen {
 
     // This enum represents the different states this screen can be in
     public enum PlayLevelScreenState {
-        RUNNING, PAUSE_MENU, STATS, LEVEL_COMPLETED, ENTERING_BATTLE, BATTLING, GAME_OVER
+        RUNNING, STATS, LEVEL_COMPLETED, ENTERING_BATTLE, BATTLING, GAME_OVER
     }
 }
