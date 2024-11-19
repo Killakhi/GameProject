@@ -84,9 +84,19 @@ public class TestMap extends Map {
         npcs.add(townguy2);
 
         Moth moth = new Moth(12, getMapTile(9, 4).getLocation().subtractY(40));
-        moth.setInteractScript(new GokuScript());
+        moth.setInteractScript(new MothScript());
         npcs.add(moth);
         this.enemies.add(moth);
+
+        Imp imp = new Imp(13, getMapTile(14, 10).getLocation().subtractY(40));
+        imp.setInteractScript(new ImpScript());
+        npcs.add(imp);
+        this.enemies.add(imp);
+
+        Cultist cultist = new Cultist(14, getMapTile(14, 15).getLocation().subtractY(40));
+        cultist.setInteractScript(new CultistScript());
+        npcs.add(cultist);
+        this.enemies.add(cultist);
 
 
 
