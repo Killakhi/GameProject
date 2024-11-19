@@ -21,12 +21,7 @@ public class EnemyManager {
             enemy = ImageLoader.load("ImpBattle1.0.png");
         } else if (enemyID ==4) {
             enemy = ImageLoader.load("CultistBattle.png");
-
-
-
-            
-
-            
+             
         }
         return enemy;
     }
