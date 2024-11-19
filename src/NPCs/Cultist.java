@@ -24,7 +24,7 @@ public class Cultist extends NPC {
    
 
     public Cultist(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Cultist.png"), 27, 27), "STAND_LEFT");
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Cultist.png"), 32, 40), "STAND_LEFT");
         
     }
     public Rectangle getInteractionRange() {
