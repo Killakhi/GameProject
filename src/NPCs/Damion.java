@@ -16,13 +16,13 @@ import Screens.PlayLevelScreen.PlayLevelScreenState;
 import java.util.HashMap;
 
 // This class is for the new custom NPC
-public class Maya extends NPC {
+public class Damion extends NPC {
     public static int direction = -1;
    
 
-    public Maya(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Second Character Sprite Sheet.png"), 20, 31), "STAND");
-        isUncollidable = false;
+    public Damion(int id, Point location) {
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Third Character Sprite Sheet.png"), 20, 31), "STAND");
+        isUncollidable = true;
     }
     
     public static void setDirection(int i) {
