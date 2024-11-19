@@ -18,7 +18,7 @@ import java.util.HashMap;
 // This class is for the new custom NPC
 public class Cultist extends NPC {
     private boolean isPlayerNearby = false;
-    private int interactionRange = 50;
+    private int interactionRange = 150;
     
     
    
@@ -31,8 +31,8 @@ public class Cultist extends NPC {
         return new Rectangle(
                 getBounds().getX1() - interactionRange,
                 getBounds().getY1() - interactionRange,
-                getBounds().getWidth() + (interactionRange * 4),
-                getBounds().getHeight() + (interactionRange * 4)
+                getBounds().getWidth() + (interactionRange * 20),
+                getBounds().getHeight() + (interactionRange * 20)
         );
     }
 
