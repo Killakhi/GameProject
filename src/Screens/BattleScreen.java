@@ -39,8 +39,8 @@ public class BattleScreen extends Screen {
     protected SpriteFont battle;
     protected SpriteFont attacks;
     protected SpriteFont mp;
-    protected HealthBar playerHealth;
-    protected HealthBar enemyHealth = new HealthBar(100, 100);
+    protected HealthBar playerHealth = new HealthBar(90, 90);
+    protected static HealthBar enemyHealth = new HealthBar(100, 100);
     protected KeyLocker keyLocker = new KeyLocker();
     protected int keyPressTimer;
     protected int attackType;
@@ -140,9 +140,9 @@ public class BattleScreen extends Screen {
     }
 
     private enum BattleState {
-        DECIDE_TURN_ORDER, CHOOSE_ATTACK, MAYA_CHOOSE_ATTACK, DAMION_CHOOSE_ATTACK, APPLY_PLAYER_DAMAGE, MISS, SHOW_PLAYER_DAMAGE, APPLY_ENEMY_DAMAGE, SHOW_ENEMY_DAMAGE, VICTORY, LEVEL_UP, MAGIC_MENU,  MAYA_MAGIC_MENU, DAMION_MAGIC_MENU
+        DECIDE_TURN_ORDER, CHOOSE_ATTACK, MAYA_CHOOSE_ATTACK, DAMION_CHOOSE_ATTACK, APPLY_PLAYER_DAMAGE, MISS, SHOW_PLAYER_DAMAGE, APPLY_ENEMY_DAMAGE, SHOW_ENEMY_DAMAGE, VICTORY, LEVEL_UP, MAGIC_MENU,  MAYA_MAGIC_MENU, DAMION_MAGIC_MENU, PURGATORY
     }
-    // Add MAYA_CHOOSE_ATTACK, DAMION_CHOOSE_ATTACK, MAYA_MAGIC_MENU and DAMION_MAGIC_MENU
+
     int hit = 0;
     int damage = 0;
     int timer = 0; 
@@ -723,6 +723,7 @@ public class BattleScreen extends Screen {
                     playLevelScreen.magicStat = magicStat;
                     playLevelScreen.currentMagic = currentMagic;
                     playLevelScreen.speedStat = speedStat;
+                    currentBattleState = BattleState.PURGATORY;
                     this.playLevelScreen.stopBattle();
                 }
             }
@@ -744,10 +745,24 @@ public class BattleScreen extends Screen {
                 playLevelScreen.magicStat = magicStat;
                 playLevelScreen.currentMagic = currentMagic;
                 playLevelScreen.speedStat = speedStat;
+                currentBattleState = BattleState.PURGATORY;
                 this.playLevelScreen.stopBattle();
             }
         }
+        else if(currentBattleState == BattleState.PURGATORY) {
+            if(enemyHealth.isDead()) {
+
+            } else {
+                currentBattleState = BattleState.DECIDE_TURN_ORDER;
+            }
+        }
     }
+
+    public static void setHP(int i) {
+        enemyHealth.setCurrentHealth(i);
+        enemyHealth.setMaxHealth(i);
+    }
+
     public void draw(GraphicsHandler graphicsHandler) {
         graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
         if(flagManager.isFlagSet("Attacking")) {

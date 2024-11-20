@@ -4,10 +4,6 @@ import Engine.Navigation.MenuItem;
 import Engine.Navigation.ScrollableMenu;
 import Engine.Navigation.ScrollableMenuScreen;
 import Engine.Navigation.StaticMenuItem;
-import Engine.Navigation.MenuItem;
-import Engine.Navigation.ScrollableMenu;
-import Engine.Navigation.ScrollableMenuScreen;
-import Engine.Navigation.StaticMenuItem;
 import Game.ScreenCoordinator;
 
 import java.util.ArrayList;

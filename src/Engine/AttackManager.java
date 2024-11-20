@@ -32,6 +32,12 @@ public class AttackManager {
         playerSpeed = players;
         if(enemyID == 1) {
             playerSpeed[3] = 10;
+        } else if(enemyID == 2) {
+            playerSpeed[3] = 20;
+        } else if(enemyID == 3) {
+            playerSpeed[3] = 0;
+        } else if(enemyID == 4) {
+            playerSpeed[3] = 17;
         }
         int max = Math.max((Math.max(playerSpeed[0], playerSpeed[1])),(Math.max(playerSpeed[2], playerSpeed[3])));
         int min = Math.min((Math.min(playerSpeed[0], playerSpeed[1])),(Math.min(playerSpeed[2], playerSpeed[3])));
@@ -58,7 +64,12 @@ public class AttackManager {
                 theTurnOrder[2] = i;
             }
         }
-
+        System.out.println(theTurnOrder[0]);
+        System.out.println(theTurnOrder[1]);
+        System.out.println("Midway");
+        System.out.println(theTurnOrder[2]);
+        System.out.println(theTurnOrder[3]);
+        System.out.println("Finish");
         return theTurnOrder;
     }
 

@@ -92,13 +92,6 @@ public class PlayLevelScreen extends Screen {
         // both are supported, however preloading is recommended
         map.preloadScripts();
 
-        hpStat = 100;
-        currentHp = 100;
-        attackStat = 20;
-        magicStat = 30;
-        currentMagic = 30;
-        speedStat = 15;
-
         winScreen = new WinScreen(this);
         pauseMenu = new PauseMenu(screenCoordinator, this);
         healthMenu = new HealthStatsScreen(screenCoordinator);
@@ -165,7 +158,7 @@ public class PlayLevelScreen extends Screen {
                 winScreen.update();
                 break;
             case ENTERING_BATTLE:
-                battleScreen.initialize();
+                System.out.println("\nThe");
                 playLevelScreenState = PlayLevelScreenState.BATTLING;
                 // fallthrough to next case
             case BATTLING:

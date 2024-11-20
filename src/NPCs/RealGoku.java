@@ -10,54 +10,40 @@ import GameObject.SpriteSheet;
 import Level.NPC;
 import Level.Player;
 import Utils.Point;
-import Screens.BattleScreen;
 import Screens.PlayLevelScreen;
 import Screens.PlayLevelScreen.PlayLevelScreenState;
 
 import java.util.HashMap;
 
 // This class is for the new custom NPC
-public class Cultist extends NPC {
+public class RealGoku extends NPC {
     private boolean isPlayerNearby = false;
     private int interactionRange = 150;
     
     
    
 
-    public Cultist(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Cultist.png"), 32, 40), "STAND_LEFT");
+    public RealGoku(int id, Point location) {
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("goku-angry.jpg"), 55, 30), "STAND_LEFT");
         
     }
     public Rectangle getInteractionRange() {
         return new Rectangle(
                 getBounds().getX1() - interactionRange,
                 getBounds().getY1() - interactionRange,
-                getBounds().getWidth() + (interactionRange * 20),
-                getBounds().getHeight() + (interactionRange * 20)
+                getBounds().getWidth() + (interactionRange * 4),
+                getBounds().getHeight() + (interactionRange * 4)
         );
     }
 
     @Override
     public void performAction(Player player)  {
-        //changes the annimation of the enemy to an angry annimation once you get within a certain bounds
-        if(this.getInteractionRange().intersects(player.getBounds())){
-            if(!isPlayerNearby){
-                isPlayerNearby = true;
-                this.currentAnimationName = "ALERT";
-            }
-        } else {
-            if(isPlayerNearby) {
-                isPlayerNearby = false;
-                this.currentAnimationName = "STAND_LEFT";
-            }
-        }
-
+        
         
         //if the enemy touches the player the battle screen begins and the enemy is  sent away
         if (touching(player)) {
-            BattleScreen.setHP(150);
             PlayLevelScreen.playLevelScreenState = PlayLevelScreenState.ENTERING_BATTLE;
-            PlayLevelScreen.enemyID = 4;
+            PlayLevelScreen.enemyID = 9001;
             
             this.setLocation(999999,99999);
         }
@@ -87,12 +73,7 @@ public class Cultist extends NPC {
                            .withBounds(7, 13, 11, 7)
                            .build()
            });
-           put("ALERT", new Frame[] {
-            new FrameBuilder(spriteSheet.getSprite(0, 1))
-                    .withScale(3)
-                    .withBounds(7, 13, 11, 7)
-                    .build()
-    });
+           
         }};
     }
 
