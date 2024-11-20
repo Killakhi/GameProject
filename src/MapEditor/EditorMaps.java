@@ -1,6 +1,7 @@
 package MapEditor;
 
 import Level.Map;
+import Maps.BossArena;
 import Maps.NewMap;
 import Maps.TestMap;
 import Maps.TitleScreenMap;
@@ -12,6 +13,7 @@ public class EditorMaps {
             add("TestMap");
             add("TitleScreen");
             add("NewMap");
+            add("BossArena");
         }};
     }
 
@@ -23,6 +25,8 @@ public class EditorMaps {
                 return new TitleScreenMap();
             case "NewMap":
                 return new NewMap();
+            case "BossArena":
+                return new BossArena();
             default:
                 throw new RuntimeException("Unrecognized map name");
         }

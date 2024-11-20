@@ -5,9 +5,9 @@ import Engine.Navigation.ScrollableMenu;
 import Engine.Navigation.ScrollableMenuScreen;
 import Engine.Navigation.StaticMenuItem;
 import Game.ScreenCoordinator;
-
 import java.util.ArrayList;
 import java.util.function.Consumer;
+
 
 public class PauseMenu extends ScrollableMenuScreen<Consumer<PauseMenu>> {
     public ScreenCoordinator screenCoordinator;
@@ -16,7 +16,9 @@ public class PauseMenu extends ScrollableMenuScreen<Consumer<PauseMenu>> {
     public PauseMenu(ScreenCoordinator screenCoordinator, PlayLevelScreen playLevelScreen) {
         this.screenCoordinator = screenCoordinator;
         this.playLevelScreen = playLevelScreen;    
+        this.playLevelScreen = playLevelScreen;    
     }
+
 
     @Override
     protected ScrollableMenu<Consumer<PauseMenu>> createScrollableMenu() {
@@ -29,9 +31,12 @@ public class PauseMenu extends ScrollableMenuScreen<Consumer<PauseMenu>> {
         return new ScrollableMenu<>(options);
     }
 
+
     @Override
     public void select() {
         this.menu.getSelectedItem().accept(this);
     }
+
+    
 }
 

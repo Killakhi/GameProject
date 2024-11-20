@@ -26,6 +26,20 @@ public class PlayLevelScreen extends Screen {
     public int attackStat;
     public int speedStat;
     public boolean paused = false;
+    //maya stats
+    public int mayaHpStat;
+    public int mayaCurrentHp;
+    public int mayaMagicStat;
+    public int mayaCurrentMagic;
+    public int mayaAttackStat;
+    public int mayaSpeedStat;
+    //damion stats
+    public int damionHpStat;
+    public int damionCurrentHp;
+    public int damionMagicStat;
+    public int damionCurrentMagic;
+    public int damionAttackStat;
+    public int damionSpeedStat;
     public static PlayLevelScreenState playLevelScreenState = PlayLevelScreenState.RUNNING;
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
@@ -101,13 +115,29 @@ public class PlayLevelScreen extends Screen {
         //add a keyLocker to pause the screen when the space button is pressed
         keyLocker.lockKey(Key.SPACE);
         keyPressTimer = 0;
+        // Universal Level
         level = 1;
+        // Player Stats
         hpStat = 100;
         currentHp = 100;
         attackStat = 20;
         magicStat = 30;
         currentMagic = 30;
         speedStat = 15;
+        // Maya Stats
+        mayaHpStat = 150;
+        mayaCurrentHp = 150;
+        mayaAttackStat = 15;
+        mayaMagicStat = 40;
+        mayaCurrentMagic = 40;
+        mayaSpeedStat = 13;
+        // Damion Stats
+        damionHpStat = 90;
+        damionCurrentHp = 90;
+        damionAttackStat = 30;
+        damionMagicStat = 25;
+        damionCurrentMagic = 25;
+        damionSpeedStat = 18;
     }
 
     public void update() {
@@ -123,9 +153,12 @@ public class PlayLevelScreen extends Screen {
                 player.update();
                 map.update(player);
                 break;
+            // if game is paused
+            case PAUSE_MENU:
+                pauseMenu.update();
+                break;
             case STATS:
                 healthMenu.update();
-                playLevelScreenState = PlayLevelScreenState.STATS;
                 break;
             // if level has been completed, bring up level cleared screen
             case LEVEL_COMPLETED:
@@ -194,12 +227,18 @@ public class PlayLevelScreen extends Screen {
         paused = true;
     }
 
+
     public void gameOver() {
         playLevelScreenState = PlayLevelScreenState.GAME_OVER;
     }
 
     public void draw(GraphicsHandler graphicsHandler) {
         // based on screen state, draw appropriate graphics
+        if (paused) {
+            this.pauseMenu.draw(graphicsHandler);
+            return;
+        }
+
         if (paused) {
             this.pauseMenu.draw(graphicsHandler);
             return;
@@ -248,6 +287,6 @@ public class PlayLevelScreen extends Screen {
 
     // This enum represents the different states this screen can be in
     public enum PlayLevelScreenState {
-        RUNNING, STATS, LEVEL_COMPLETED, ENTERING_BATTLE, BATTLING, GAME_OVER
+        RUNNING, PAUSE_MENU, STATS, LEVEL_COMPLETED, ENTERING_BATTLE, BATTLING, GAME_OVER
     }
 }
