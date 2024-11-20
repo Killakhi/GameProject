@@ -75,7 +75,6 @@ public class TestMap extends Map {
         npcs.add(maya);
         this.friendly.add(maya);
         */
-        Townsfolk townsfolk = new Townsfolk(8, getMapTile(6, 10).getLocation().subtractY(40));
 
         Townsfolk townsfolk = new Townsfolk(8, getMapTile(6, 10).getLocation().subtractY(40));
         townsfolk.setInteractScript(new TownsfolkScript());
