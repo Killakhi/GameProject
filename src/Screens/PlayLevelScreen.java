@@ -224,7 +224,7 @@ public class PlayLevelScreen extends Screen {
     }
 
     public void pauseMenu(){
-        playLevelScreenState = PlayLevelScreenState.PAUSE_MENU;
+        paused = true;
     }
 
 
