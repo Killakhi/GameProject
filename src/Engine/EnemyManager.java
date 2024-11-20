@@ -15,6 +15,18 @@ public class EnemyManager {
         this.enemyID = enemyID;
         if(enemyID == 1) {
             enemy = ImageLoader.load("Ghost Angy Battle.png");
+        } else if (enemyID ==2) {
+            enemy = ImageLoader.load("angryMoth1.0.png");
+        } else if (enemyID ==3) {
+            enemy = ImageLoader.load("ImpBattle1.0.png");
+        } else if (enemyID ==4) {
+            enemy = ImageLoader.load("CultistBattle.png");
+
+
+
+            
+
+            
         }
         return enemy;
     }

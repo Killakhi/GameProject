@@ -25,6 +25,7 @@ public class PlayLevelScreen extends Screen {
     public int currentMagic;
     public int attackStat;
     public int speedStat;
+    public boolean paused = false;
     //maya stats
     public int mayaHpStat;
     public int mayaCurrentHp;
@@ -91,12 +92,18 @@ public class PlayLevelScreen extends Screen {
         // both are supported, however preloading is recommended
         map.preloadScripts();
 
+        hpStat = 100;
+        currentHp = 100;
+        attackStat = 20;
+        magicStat = 30;
+        currentMagic = 30;
+        speedStat = 15;
+
         winScreen = new WinScreen(this);
-        pauseMenu = new PauseMenu(screenCoordinator);
+        pauseMenu = new PauseMenu(screenCoordinator, this);
         healthMenu = new HealthStatsScreen(screenCoordinator);
         battleScreen = new BattleScreen(screenCoordinator);
         gameOverScreen = new GameOverScreen(screenCoordinator);
-        pauseMenu.addGameLevel(this);
         healthMenu.addGameLevel(this);
         battleScreen.addGameLevel(this);
         gameOverScreen.addGameLevel(this);
@@ -134,6 +141,11 @@ public class PlayLevelScreen extends Screen {
     }
 
     public void update() {
+        if (paused) {
+            this.pauseMenu.update();
+            return;
+        }
+
         // based on screen state, perform specific actions
         switch (playLevelScreenState) {
             // if level is "running" update player and map to keep game logic for the platformer level going
@@ -198,6 +210,11 @@ public class PlayLevelScreen extends Screen {
             pauseMenu();
         }
 
+        if (Keyboard.isKeyDown(Key.M))  {
+            
+            pauseMenu();
+        }
+
         // if flag is set at any point during gameplay, game is "won"
         if (map.getFlagManager().isFlagSet("hasFoundBall") || map.getFlagManager().isFlagSet("hasFoughtNPC")) {
             playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
@@ -226,6 +243,11 @@ public class PlayLevelScreen extends Screen {
 
     public void draw(GraphicsHandler graphicsHandler) {
         // based on screen state, draw appropriate graphics
+        if (paused) {
+            this.pauseMenu.draw(graphicsHandler);
+            return;
+        }
+
         switch (playLevelScreenState) {
             case RUNNING:
                 map.draw(player, graphicsHandler);

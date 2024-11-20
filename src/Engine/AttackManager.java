@@ -58,10 +58,7 @@ public class AttackManager {
                 theTurnOrder[2] = i;
             }
         }
-        System.out.println("\n\n\n\n\nTurn Order:");
-        for(int i = 0; i < 4; i++) {
-            System.out.println(theTurnOrder[i]);
-        }
+
         return theTurnOrder;
     }
 
