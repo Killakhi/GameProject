@@ -55,7 +55,6 @@ public class TestMap extends Map {
         npcs.add(goku);
         this.enemies.add(goku);
 
-
         Bat bat = new Bat(5, getMapTile(11, 15).getLocation().subtractY(40));
         bat.setInteractScript(new BatScript());
         npcs.add(bat);
@@ -77,6 +76,8 @@ public class TestMap extends Map {
         this.friendly.add(maya);
         */
         Townsfolk townsfolk = new Townsfolk(8, getMapTile(6, 10).getLocation().subtractY(40));
+
+        Townsfolk townsfolk = new Townsfolk(8, getMapTile(6, 10).getLocation().subtractY(40));
         townsfolk.setInteractScript(new TownsfolkScript());
         npcs.add(townsfolk);
 
@@ -88,9 +89,25 @@ public class TestMap extends Map {
         innkeeper.setInteractScript(new InnkeeperScript());
         npcs.add(innkeeper);
 
-        TownGuy2 townguy2 = new TownGuy2(9, getMapTile(7, 1).getLocation().subtractY(40));
+        TownGuy2 townguy2 = new TownGuy2(11, getMapTile(7, 1).getLocation().subtractY(40));
         townguy2.setInteractScript(new TownGuy2Script());
         npcs.add(townguy2);
+
+        Moth moth = new Moth(12, getMapTile(9, 4).getLocation().subtractY(40));
+        moth.setInteractScript(new MothScript());
+        npcs.add(moth);
+        this.enemies.add(moth);
+
+        Imp imp = new Imp(13, getMapTile(14, 10).getLocation().subtractY(40));
+        imp.setInteractScript(new ImpScript());
+        npcs.add(imp);
+        this.enemies.add(imp);
+
+        Cultist cultist = new Cultist(14, getMapTile(14, 15).getLocation().subtractY(40));
+        cultist.setInteractScript(new CultistScript());
+        npcs.add(cultist);
+        this.enemies.add(cultist);
+
 
 
 

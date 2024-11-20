@@ -18,7 +18,7 @@ import java.util.HashMap;
 // This class is for the new custom NPC
 public class Goku extends NPC {
     private boolean isPlayerNearby = false;
-    private int interactionRange = 50;
+    private int interactionRange = 150;
     
     
    

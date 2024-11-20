@@ -4,7 +4,6 @@ import Engine.*;
 import Game.ScreenCoordinator;
 import GameObject.HealthBar;
 import Level.FlagManager;
-import Level.FlagManager;
 import SpriteFont.SpriteFont;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -92,11 +91,8 @@ public class BattleScreen extends Screen {
         flagManager.addFlag("Attacking", false);
         flagManager.addFlag("Animation", false);
         physicalAttack = new SpriteFont("Physical Attack" , 10, 500, "Arial", 30, Color.white );
-        items = new SpriteFont("Items", 270, 500, "Arial", 30, Color.white);
-        items = new SpriteFont("Items", 260, 500, "Arial", 30, Color.white);
         items = new SpriteFont("Items", 260, 500, "Arial", 30, Color.white);
         runAway = new SpriteFont("Run Away", 400, 500, "Arial", 30, Color.white);
-        switchMenu = new SpriteFont("Magic Attack", 600, 500, "Arial", 30, Color.white);
         switchMenu = new SpriteFont("Magic Attack", 600, 500, "Arial", 30, Color.white);
         fireAttack = new SpriteFont("Fire Attack", 500, 400, "Arial", 30, Color.white);
         waterAttack = new SpriteFont("Water Attack", 500, 300, "Arial", 30, Color.white);
@@ -521,7 +517,6 @@ public class BattleScreen extends Screen {
         }
         else if (currentBattleState == BattleState.APPLY_ENEMY_DAMAGE) {
             damage = enemyManager.damage(enemyID);
-            damage = enemyManager.damage(enemyID);
             flagManager.setFlag("Attacking");
             flagManager.unsetFlag("Animation");
             target = ((((int)(Math.random() * (3)) + 1)) % 3);
@@ -567,11 +562,9 @@ public class BattleScreen extends Screen {
         else if (currentBattleState == BattleState.MAGIC_MENU) {
         if (Keyboard.isKeyDown(Key.UP) && keyPressTimer == 0) {
             keyPressTimer = 30;
-            keyPressTimer = 20;
             currentMagicAttackHovered++;
         } else if (Keyboard.isKeyDown(Key.DOWN) && keyPressTimer == 0) {
             keyPressTimer = 30;
-            keyPressTimer = 20;
             currentMagicAttackHovered--;
         } else if (Keyboard.isKeyDown(Key.SPACE) && keyPressTimer == 0) {
             attackType = currentMagicAttackHovered + 1;
@@ -581,7 +574,6 @@ public class BattleScreen extends Screen {
                 keyPressTimer--;
             }
         }
-        
 
         if(currentMagicAttackHovered > 2){
             currentMagicAttackHovered = 0;
@@ -704,7 +696,6 @@ public class BattleScreen extends Screen {
                 
             }
             if(timer == -90) {
-                playLevelScreen.exp = playLevelScreen.exp + (enemyID * 10);
                 playLevelScreen.exp = playLevelScreen.exp + (enemyID * 10);
                 if(playLevelScreen.exp >= (80 + (playLevelScreen.level*20))){
                     currentBattleState = BattleState.LEVEL_UP;

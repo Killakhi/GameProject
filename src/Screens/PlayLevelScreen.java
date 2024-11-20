@@ -210,11 +210,6 @@ public class PlayLevelScreen extends Screen {
             pauseMenu();
         }
 
-        if (Keyboard.isKeyDown(Key.M))  {
-            
-            pauseMenu();
-        }
-
         // if flag is set at any point during gameplay, game is "won"
         if (map.getFlagManager().isFlagSet("hasFoundBall") || map.getFlagManager().isFlagSet("hasFoughtNPC")) {
             playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
@@ -232,10 +227,6 @@ public class PlayLevelScreen extends Screen {
         playLevelScreenState = PlayLevelScreenState.PAUSE_MENU;
     }
 
-    public void stats(){
-        healthMenu.initialize();
-        playLevelScreenState = PlayLevelScreenState.STATS;
-    }
 
     public void gameOver() {
         playLevelScreenState = PlayLevelScreenState.GAME_OVER;
@@ -248,12 +239,14 @@ public class PlayLevelScreen extends Screen {
             return;
         }
 
+        if (paused) {
+            this.pauseMenu.draw(graphicsHandler);
+            return;
+        }
+
         switch (playLevelScreenState) {
             case RUNNING:
                 map.draw(player, graphicsHandler);
-                break;
-            case PAUSE_MENU:
-                pauseMenu.draw(graphicsHandler);
                 break;
             case STATS:
                 healthMenu.draw(graphicsHandler);
