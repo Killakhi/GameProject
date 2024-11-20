@@ -160,26 +160,43 @@ public class BattleScreen extends Screen {
             }
             currentTurn = playerSpeed[turnTrack];
             if(currentTurn == 0) {
-                playerHealth.setCurrentHealth(currentHp);
-                playerHealth.setMaxHealth(hpStat);
-                mp.setText(playLevelScreen.currentMagic + " / " + playLevelScreen.magicStat);
-                turn.setText("What will you do?");
-                turnPlayer = ImageLoader.load("You.png");
-                currentBattleState = BattleState.CHOOSE_ATTACK;
+
+                if(enemyID == 666) {
+                    currentBattleState = BattleState.APPLY_ENEMY_DAMAGE;
+                } else {
+                    playerHealth.setCurrentHealth(currentHp);
+                    playerHealth.setMaxHealth(hpStat);
+                    mp.setText(playLevelScreen.currentMagic + " / " + playLevelScreen.magicStat);
+                    turn.setText("What will you do?");
+                    turnPlayer = ImageLoader.load("You.png");
+                    currentBattleState = BattleState.CHOOSE_ATTACK;
+                }
+
             } else if(currentTurn == 1) {
-                playerHealth.setCurrentHealth(mayaCurrentHp);
-                playerHealth.setMaxHealth(mayaHpStat);
-                mp.setText(playLevelScreen.mayaCurrentMagic + " / " + playLevelScreen.mayaMagicStat);
-                turn.setText("What will Maya do?");
-                turnPlayer = ImageLoader.load("Maya.png");
-                currentBattleState = BattleState.MAYA_CHOOSE_ATTACK;
+
+                if(mayaCurrentHp <= 0) {
+                    currentBattleState = BattleState.DECIDE_TURN_ORDER;
+                } else {
+                    playerHealth.setCurrentHealth(mayaCurrentHp);
+                    playerHealth.setMaxHealth(mayaHpStat);
+                    mp.setText(playLevelScreen.mayaCurrentMagic + " / " + playLevelScreen.mayaMagicStat);
+                    turn.setText("What will Maya do?");
+                    turnPlayer = ImageLoader.load("Maya.png");
+                    currentBattleState = BattleState.MAYA_CHOOSE_ATTACK;
+                }
+
             } else if(currentTurn == 2) {
-                playerHealth.setCurrentHealth(damionCurrentHp);
-                playerHealth.setMaxHealth(damionHpStat);
-                mp.setText(damionCurrentMagic + " / " + damionMagicStat);
-                turn.setText("What will Damion do?");
-                turnPlayer = ImageLoader.load("Damion.png");
-                currentBattleState = BattleState.DAMION_CHOOSE_ATTACK;
+
+                if(damionCurrentHp <= 0) {
+                    currentBattleState = BattleState.DECIDE_TURN_ORDER;
+                } else {
+                    playerHealth.setCurrentHealth(damionCurrentHp);
+                    playerHealth.setMaxHealth(damionHpStat);
+                    mp.setText(damionCurrentMagic + " / " + damionMagicStat);
+                    turn.setText("What will Damion do?");
+                    turnPlayer = ImageLoader.load("Damion.png");
+                    currentBattleState = BattleState.DAMION_CHOOSE_ATTACK;
+                }
             } else if(currentTurn == 3) {
                 System.out.println("enemy attack");
                 turnPlayer = ImageLoader.load("Empty.png");
@@ -548,7 +565,7 @@ public class BattleScreen extends Screen {
                 } else if(target == 2) {
                     damionCurrentHp = damionCurrentHp - damage;
                 }
-                if(this.playerHealth.isDead()) {
+                if(this.currentHp<= 0) {
                     playLevelScreen.stopBattle();
                     playLevelScreen.gameOver();
                 } else {
@@ -700,7 +717,6 @@ public class BattleScreen extends Screen {
                 if(playLevelScreen.exp >= (80 + (playLevelScreen.level*20))){
                     currentBattleState = BattleState.LEVEL_UP;
                 } else{
-                    System.out.println(currentHp);
                     playLevelScreen.hpStat = hpStat;
                     playLevelScreen.currentHp = playerHealth.getCurrentHealth();
                     playLevelScreen.attackStat = attackStat;
