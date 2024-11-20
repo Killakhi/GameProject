@@ -10,6 +10,7 @@ import GameObject.SpriteSheet;
 import Level.NPC;
 import Level.Player;
 import Utils.Point;
+import Screens.BattleScreen;
 import Screens.PlayLevelScreen;
 import Screens.PlayLevelScreen.PlayLevelScreenState;
 
@@ -54,6 +55,7 @@ public class Goku extends NPC {
         
         //if the enemy touches the player the battle screen begins and the enemy is  sent away
         if (touching(player)) {
+            BattleScreen.setHP(100);
             PlayLevelScreen.playLevelScreenState = PlayLevelScreenState.ENTERING_BATTLE;
             PlayLevelScreen.enemyID = 1;
             
