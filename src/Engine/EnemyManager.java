@@ -20,14 +20,23 @@ public class EnemyManager {
         } else if (enemyID ==3) {
             enemy = ImageLoader.load("ImpBattle1.0.png");
         } else if (enemyID ==4) {
-            enemy = ImageLoader.load("CultistBattle.png");
-             
+            enemy = ImageLoader.load("CultistBattle.png"); 
+        } else if (enemyID == 666) {
+            //Final boss sprite
         }
         return enemy;
     }
     public int dodge(int enemyID) {
         if(enemyID == 1) {
             dodge = 0;
+        } else if(enemyID ==2) {
+            dodge =40;
+        } else if(enemyID ==3){
+            dodge =20;
+        } else if(enemyID ==4){
+            dodge = 4;
+        } else if(enemyID == 666) {
+            dodge = 60;
         }
         return dodge;
     }
@@ -39,6 +48,29 @@ public class EnemyManager {
             } else {
                 damage = 0;
             }
+        } else if (enemyID == 2) {
+            int hitRate = ((int)(Math.random() * (100))) + 1;
+            if(hitRate < 99){
+                damage = ((int)(Math.random() * (10)));
+            } else {
+                damage = 0;
+            }
+        } else if (enemyID == 3) {
+            int hitRate = ((int)(Math.random() * (100))) + 1;
+            if(hitRate < 80){
+                damage = ((int)(Math.random() * (10))) + 15;
+            } else {
+                damage = 0;
+            }
+        } else if (enemyID == 4) {
+            int hitRate = ((int)(Math.random() * (100))) + 1;
+            if(hitRate < 20){
+                damage = ((int)(Math.random() * (30))) + 50;
+            } else {
+                damage = 0;
+            }
+        } else if (enemyID == 666) {
+                damage = ((int)(Math.random() * (30))) + 50;
         }
         return damage;
     }
