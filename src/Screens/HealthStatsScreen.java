@@ -1,6 +1,6 @@
 package Screens;
 import Engine.*;
-import Game.GameState;
+import Engine.Battle.PartyStats;
 import Game.ScreenCoordinator;
 import SpriteFont.SpriteFont;
 import java.awt.*;
@@ -35,16 +35,16 @@ public class HealthStatsScreen extends Screen {
         healthScreenMessage = new SpriteFont("Stats - Press 'M' to go back.", 85, 50, "Courier Bold Italic", 45, Color.white);
         healthScreenMessage.setOutlineColor(Color.black);
         healthScreenMessage.setOutlineThickness(3);
-            currentHpMessage = new SpriteFont("HP: " + playLevelScreen.currentHp + " / " + playLevelScreen.hpStat, 85, 130, "Arial", 30, Color.white);
+            currentHpMessage = new SpriteFont("HP: " + PartyStats.PLAYER.currentHp + " / " + PartyStats.PLAYER.hpStat, 85, 130, "Arial", 30, Color.white);
             currentHpMessage.setOutlineColor(Color.black);
             currentHpMessage.setOutlineThickness(3);
-            attackStatMessage = new SpriteFont("Attack: " + playLevelScreen.attackStat, 85, 170, "Arial", 30, Color.white);
+            attackStatMessage = new SpriteFont("Attack: " + PartyStats.PLAYER.attackStat, 85, 170, "Arial", 30, Color.white);
             attackStatMessage.setOutlineColor(Color.black);
             attackStatMessage.setOutlineThickness(3);
-            magicStatMessage = new SpriteFont("Magic Points: " +  playLevelScreen.currentMagic + " / " + playLevelScreen.magicStat, 85, 210, "Arial", 30, Color.white);
+            magicStatMessage = new SpriteFont("Magic Points: " +  PartyStats.PLAYER.currentMagic + " / " + PartyStats.PLAYER.magicStat, 85, 210, "Arial", 30, Color.white);
             magicStatMessage.setOutlineColor(Color.black);
             magicStatMessage.setOutlineThickness(3);
-            speedStatMessage = new SpriteFont("Speed: " + playLevelScreen.speedStat, 85, 250, "Arial", 30, Color.white);
+            speedStatMessage = new SpriteFont("Speed: " + PartyStats.PLAYER.speedStat, 85, 250, "Arial", 30, Color.white);
             speedStatMessage.setOutlineColor(Color.black);
             speedStatMessage.setOutlineThickness(3);
         keyPressTimer = 0;

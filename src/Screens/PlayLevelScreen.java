@@ -5,6 +5,7 @@ import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
 import Engine.Screen;
+import Engine.Battle.PartyStats;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import GameObject.Money;
@@ -12,7 +13,6 @@ import Level.*;
 import Maps.TestMap;
 import Players.Cat;
 import Screens.Pause.PauseMenu;
-import Screens.PlayLevelScreen.PlayLevelScreenState;
 import Utils.Direction;
 import java.util.ArrayList;
 
@@ -20,27 +20,7 @@ import java.util.ArrayList;
 public class PlayLevelScreen extends Screen {
     public int level;
     public int exp;
-    public int hpStat;
-    public int currentHp;
-    public int magicStat;
-    public int currentMagic;
-    public int attackStat;
-    public int speedStat;
     public boolean paused = false;
-    //maya stats
-    public int mayaHpStat;
-    public int mayaCurrentHp;
-    public int mayaMagicStat;
-    public int mayaCurrentMagic;
-    public int mayaAttackStat;
-    public int mayaSpeedStat;
-    //damion stats
-    public int damionHpStat;
-    public int damionCurrentHp;
-    public int damionMagicStat;
-    public int damionCurrentMagic;
-    public int damionAttackStat;
-    public int damionSpeedStat;
     public static PlayLevelScreenState playLevelScreenState = PlayLevelScreenState.RUNNING;
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
@@ -112,26 +92,26 @@ public class PlayLevelScreen extends Screen {
         // Universal Level
         level = 1;
         // Player Stats
-        hpStat = 100;
-        currentHp = 100;
-        attackStat = 20;
-        magicStat = 30;
-        currentMagic = 30;
-        speedStat = 15;
+        PartyStats.PLAYER.hpStat = 100;
+        PartyStats.PLAYER.currentHp = 100;
+        PartyStats.PLAYER.attackStat = 20;
+        PartyStats.PLAYER.magicStat = 30;
+        PartyStats.PLAYER.currentMagic = 30;
+        PartyStats.PLAYER.speedStat = 15;
         // Maya Stats
-        mayaHpStat = 150;
-        mayaCurrentHp = 150;
-        mayaAttackStat = 15;
-        mayaMagicStat = 40;
-        mayaCurrentMagic = 40;
-        mayaSpeedStat = 13;
+        PartyStats.MAYA.hpStat = 150;
+        PartyStats.MAYA.currentHp = 150;
+        PartyStats.MAYA.attackStat = 15;
+        PartyStats.MAYA.magicStat = 40;
+        PartyStats.MAYA.currentMagic = 40;
+        PartyStats.MAYA.speedStat = 13;
         // Damion Stats
-        damionHpStat = 90;
-        damionCurrentHp = 90;
-        damionAttackStat = 30;
-        damionMagicStat = 25;
-        damionCurrentMagic = 25;
-        damionSpeedStat = 18;
+        PartyStats.DAMION.hpStat = 90;
+        PartyStats.DAMION.currentHp = 90;
+        PartyStats.DAMION.attackStat = 30;
+        PartyStats.DAMION.magicStat = 25;
+        PartyStats.DAMION.currentMagic = 25;
+        PartyStats.DAMION.speedStat = 18;
     }
 
     public void releaseKeyLockGuard(Key key) {
