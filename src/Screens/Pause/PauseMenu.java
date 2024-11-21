@@ -12,6 +12,8 @@ import GameObject.Money;
 import Inventory.Inventory;
 import Inventory.Shop;
 import Screens.PlayLevelScreen;
+import Screens.Stats.HealthStatsWindow;
+
 import java.awt.Color;
 import java.awt.Font;
 
@@ -27,6 +29,7 @@ public class PauseMenu extends ScrollableMenuScreen<Consumer<PauseMenu>> {
         PAUSE_MAIN,
         PAUSE_INVENTORY,
         PAUSE_SHOP,
+        PAUSE_STATS,
     }
 
     public PauseMenu(ScreenCoordinator screenCoordinator, PlayLevelScreen playLevelScreen) {
@@ -48,6 +51,10 @@ public class PauseMenu extends ScrollableMenuScreen<Consumer<PauseMenu>> {
 
         options.add(new StaticMenuItem<Consumer<PauseMenu>>("Shop", pauseMenu -> {
             pauseMenu.pauseState = PauseState.PAUSE_SHOP;
+        }));
+
+        options.add(new StaticMenuItem<Consumer<PauseMenu>>("Stats", pauseMenu -> {
+            pauseMenu.pauseState = PauseState.PAUSE_STATS;
         }));
 
         return new ScrollableMenu<>(options);
@@ -80,6 +87,8 @@ public class PauseMenu extends ScrollableMenuScreen<Consumer<PauseMenu>> {
             case PAUSE_SHOP:
                 Shop.INSTANCE.update();
                 break;
+            case PAUSE_STATS:
+                break;
         }
     }
 
@@ -98,10 +107,13 @@ public class PauseMenu extends ScrollableMenuScreen<Consumer<PauseMenu>> {
                 graphicsHandler.drawStringWithOutline("Money: $" + Money.INSTANCE.getMoney(), 70, 250, font, Color.WHITE, Color.BLACK, 2.0f);
                 Shop.INSTANCE.draw(graphicsHandler);
                 break;
+            case PAUSE_STATS:
+                HealthStatsWindow.INSTANCE.draw(graphicsHandler);
+                break;
         }
 
         if (pauseState != PauseState.PAUSE_MAIN) {
-            graphicsHandler.drawStringWithOutline("Press ESC to go back", 100, 250, font, Color.WHITE, Color.BLACK, 2.0f);
+            graphicsHandler.drawStringWithOutline("Press ESC to go back", 100, 450, font, Color.WHITE, Color.BLACK, 2.0f);
         }
     }
 }

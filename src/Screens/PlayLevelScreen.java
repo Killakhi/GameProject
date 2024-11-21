@@ -13,6 +13,7 @@ import Level.*;
 import Maps.TestMap;
 import Players.Cat;
 import Screens.Pause.PauseMenu;
+import Screens.Stats.HealthStatsPanel;
 import Utils.Direction;
 import java.util.ArrayList;
 
@@ -27,7 +28,7 @@ public class PlayLevelScreen extends Screen {
     protected Player player;
     protected WinScreen winScreen;
     protected PauseMenu pauseMenu;
-    protected HealthStatsScreen healthMenu;
+    protected HealthStatsPanel healthMenu;
     protected GameOverScreen gameOverScreen;
     protected BattleScreen battleScreen;
     protected FlagManager flagManager;
@@ -75,10 +76,8 @@ public class PlayLevelScreen extends Screen {
 
         winScreen = new WinScreen(this);
         pauseMenu = new PauseMenu(screenCoordinator, this);
-        healthMenu = new HealthStatsScreen(screenCoordinator);
         battleScreen = new BattleScreen(screenCoordinator);
         gameOverScreen = new GameOverScreen(screenCoordinator);
-        healthMenu.addGameLevel(this);
         battleScreen.addGameLevel(this);
         gameOverScreen.addGameLevel(this);
 
@@ -146,9 +145,6 @@ public class PlayLevelScreen extends Screen {
             // if game is paused
             case PAUSE_MENU:
                 pauseMenu.update();
-                break;
-            case STATS:
-                healthMenu.update();
                 break;
             // if level has been completed, bring up level cleared screen
             case LEVEL_COMPLETED:
@@ -233,9 +229,6 @@ public class PlayLevelScreen extends Screen {
             case RUNNING:
                 map.draw(player, graphicsHandler);
                 break;
-            case STATS:
-                healthMenu.draw(graphicsHandler);
-                break;
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);
                 break;
@@ -272,6 +265,6 @@ public class PlayLevelScreen extends Screen {
 
     // This enum represents the different states this screen can be in
     public enum PlayLevelScreenState {
-        RUNNING, PAUSE_MENU, STATS, LEVEL_COMPLETED, ENTERING_BATTLE, BATTLING, GAME_OVER
+        RUNNING, PAUSE_MENU, LEVEL_COMPLETED, ENTERING_BATTLE, BATTLING, GAME_OVER
     }
 }

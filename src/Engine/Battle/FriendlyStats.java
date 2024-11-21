@@ -7,4 +7,9 @@ public class FriendlyStats {
     public int currentMagic = 0;
     public int attackStat = 0;
     public int speedStat = 0;
+    public String partyMemberName;
+
+    public FriendlyStats(String partyMemberName) {
+        this.partyMemberName = partyMemberName;
+    }
 }
