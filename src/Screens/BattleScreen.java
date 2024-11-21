@@ -426,7 +426,14 @@ public class BattleScreen extends Screen {
         else if (currentBattleState == BattleState.APPLY_PLAYER_DAMAGE) {
             int check = ((int)(Math.random() * (100))) + 1;
             hitRate = attackManager.setHitRate(attackType);
-
+            int playerSpeed = 0;
+            if(currentTurn == 0) {
+                playerSpeed = speedStat;
+            } else if(currentTurn == 1) {
+                playerSpeed = mayaSpeedStat;
+            } else if(currentTurn == 2) {
+                playerSpeed = damionSpeedStat;
+            }
             if((attackType >= 1 && attackType <= 3 && currentMagic < 2) || (attackType >= 4 && attackType <= 5 && mayaCurrentMagic < 2) || (attackType >= 6 && attackType <= 7 && damionCurrentMagic < 3)) {
                 turn.setText("You don't have enough MP to cast!");
                 timer++;
@@ -444,7 +451,7 @@ public class BattleScreen extends Screen {
                     }
                 }
             }
-            else if (check > ((playLevelScreen.speedStat)*5 + hitRate) - enemyManager.dodge(enemyID)){
+            else if (check > ((playerSpeed)*5 + hitRate) - enemyManager.dodge(enemyID)){
                 currentBattleState = BattleState.MISS;
             } 
             else {
@@ -568,7 +575,12 @@ public class BattleScreen extends Screen {
                 if(this.currentHp<= 0) {
                     playLevelScreen.stopBattle();
                     playLevelScreen.gameOver();
-                } else {
+                } else if(enemyID == 666) {
+                    if(mayaCurrentHp == 0 && damionCurrentHp == 0){
+                        playLevelScreen.gameOver();
+                        playLevelScreen.stopBattle();
+                    }
+                }else  {
                     timer = 0;
                     currentBattleState = BattleState.DECIDE_TURN_ORDER;
                     flagManager.unsetFlag("Attacking");
@@ -714,6 +726,9 @@ public class BattleScreen extends Screen {
             }
             if(timer == -90) {
                 playLevelScreen.exp = playLevelScreen.exp + (enemyID * 10);
+                if(enemyID == 666) {
+                    playLevelScreen.finish();
+                }
                 if(playLevelScreen.exp >= (80 + (playLevelScreen.level*20))){
                     currentBattleState = BattleState.LEVEL_UP;
                 } else{

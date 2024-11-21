@@ -158,8 +158,8 @@ public class PlayLevelScreen extends Screen {
                 winScreen.update();
                 break;
             case ENTERING_BATTLE:
-                System.out.println("\nThe");
-                playLevelScreenState = PlayLevelScreenState.BATTLING;
+            battleScreen.initialize();
+            playLevelScreenState = PlayLevelScreenState.BATTLING;
                 // fallthrough to next case
             case BATTLING:
                 battleScreen.update();

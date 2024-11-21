@@ -85,6 +85,9 @@ public abstract class Map {
     // reference to current player
     protected Player player;
 
+    // the point that maya uses
+    protected Point delta;
+
     protected Pathfinder pathfinder;
 
     public Map(String mapFileName, Tileset tileset) {
@@ -518,8 +521,8 @@ public abstract class Map {
 
     public void update(Player player) {
         for (NPC npc : this.enemies) {
-            Point delta = player.getLocation().subtract(npc.getLocation());
-            double distance = Math.sqrt(delta.x * delta.x + delta.y * delta.y);
+            Point gamma = player.getLocation().subtract(npc.getLocation());
+            double distance = Math.sqrt(gamma.x * gamma.x + gamma.y * gamma.y);
 
             if (distance > 200) {
                 continue;
@@ -534,8 +537,8 @@ public abstract class Map {
                 }
             } else {
                 // move directly
-                double dx = 2.0 * delta.x / (distance + 1.0);
-                double dy = 2.0 * delta.y / (distance + 1.0);
+                double dx = 2.0 * gamma.x / (distance + 1.0);
+                double dy = 2.0 * gamma.y / (distance + 1.0);
 
                 npc.moveX((float) dx);
                 npc.moveY((float) dy);
@@ -543,7 +546,7 @@ public abstract class Map {
         }
 
         for (NPC npc : this.maya) {
-            Point delta = player.getLocation().subtract(npc.getLocation());
+            delta = player.getLocation().subtract(npc.getLocation());
             double distance = Math.sqrt(delta.x * delta.x + delta.y * delta.y);
 
             if (distance < 50 || distance < -50) {
@@ -601,13 +604,13 @@ public abstract class Map {
         }
 
         for (NPC npc : this.damion) {
-            Point delta = player.getLocation().subtract(npc.getLocation());
-            double distance = Math.sqrt(delta.x * delta.x + delta.y * delta.y);
+            Point theta = player.getLocation().subtract(npc.getLocation());
+            double distance = Math.sqrt(theta.x * theta.x + theta.y * theta.y);
 
-            if (distance < 50 || distance < -50) {
+            if (distance < 150 || distance < -150) {
                 Damion.setDirection(-1);
                 continue;
-            } else if (distance > 50 || distance > -50) {
+            } else if (distance > 150 || distance > -150) {
                 Route routeToPlayer = this.pathfinder.getBestRoute(player, npc.getLocation());
                 
                 if (routeToPlayer != null) {
@@ -635,8 +638,8 @@ public abstract class Map {
                 }
             } else {
                 // move directly
-                double dx = 2.0 * delta.x / (distance + 1.0);
-                double dy = 2.0 * delta.y / (distance + 1.0);
+                double dx = 2.0 * theta.x / (distance + 1.0);
+                double dy = 2.0 * theta.y / (distance + 1.0);
 
                 npc.moveX((float) dx);
                 npc.moveY((float) dy);

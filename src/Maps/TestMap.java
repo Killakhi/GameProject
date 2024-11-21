@@ -67,13 +67,15 @@ public class TestMap extends Map {
         wand.setInteractScript(new WandScript());
         npcs.add(wand);
         
-        Damion damion = new Damion(2, getMapTile(7, 10).getLocation().subtractY(40));
-        npcs.add(damion);
-        this.damion.add(damion);
+
  
-        Maya maya = new Maya(3, getMapTile(9, 10).getLocation().subtractY(40));
+        Maya maya = new Maya(2, getMapTile(9, 10).getLocation().subtractY(40));
         npcs.add(maya);
         this.maya.add(maya);
+
+        Damion damion = new Damion(3, getMapTile(7, 10).getLocation().subtractY(40));
+        npcs.add(damion);
+        this.damion.add(damion);
         
 
         Townsfolk townsfolk = new Townsfolk(8, getMapTile(6, 10).getLocation().subtractY(40));
