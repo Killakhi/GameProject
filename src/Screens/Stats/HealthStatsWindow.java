@@ -7,16 +7,14 @@ import java.awt.Color;
 public class HealthStatsWindow {
     public static HealthStatsWindow INSTANCE = new HealthStatsWindow();
 
-    public HealthStatsPanel player, maya, damion;
+    public void draw(GraphicsHandler graphicsHandler) {
+        HealthStatsPanel player, maya, damion;
 
-    public HealthStatsWindow() {
-        player = new HealthStatsPanel(PartyStats.PLAYER);
+        player = new HealthStatsPanel(PartyStats.PLAYER.withItemModifier());
         maya = new HealthStatsPanel(PartyStats.MAYA);
         damion = new HealthStatsPanel(PartyStats.DAMION);
-    }
 
-    public void draw(GraphicsHandler graphicsHandler) {
-            graphicsHandler.drawFilledRectangle(0, 0, 5000, 5000, Color.GRAY);
+        graphicsHandler.drawFilledRectangle(0, 0, 5000, 5000, Color.GRAY);
         player.draw(graphicsHandler, 0, 50);
         maya.draw(graphicsHandler, 240, 50);
         damion.draw(graphicsHandler, 480, 50);

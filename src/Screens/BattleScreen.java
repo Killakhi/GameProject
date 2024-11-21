@@ -122,6 +122,7 @@ public class BattleScreen extends Screen {
             }
             currentTurn = playerSpeed[turnTrack];
             FriendlyStats stats = PartyStats.statsForTurn(currentTurn);
+            FriendlyStats effectivePlayerStats = PartyStats.PLAYER.withItemModifier();
 
             if(currentTurn == 0) {
 
@@ -129,7 +130,7 @@ public class BattleScreen extends Screen {
                     currentBattleState = BattleState.APPLY_ENEMY_DAMAGE;
                 } else {
                     setHealthBar(PartyStats.PLAYER);
-                    mp.setText(stats.currentMagic + " / " + stats.magicStat);
+                    mp.setText(effectivePlayerStats.currentMagic + " / " + effectivePlayerStats.magicStat);
                     turn.setText("What will you do?");
                     turnPlayer = ImageLoader.load("You.png");
                     currentBattleState = BattleState.CHOOSE_ATTACK;
@@ -388,9 +389,10 @@ public class BattleScreen extends Screen {
             int check = ((int)(Math.random() * (100))) + 1;
             hitRate = attackManager.setHitRate(attackType);
             FriendlyStats stats = PartyStats.statsForTurn(currentTurn);
+            FriendlyStats effectivePlayerStats = PartyStats.PLAYER.withItemModifier();
             int playerSpeed = stats.speedStat;
             if (
-                (attackType >= 1 && attackType <= 3 && PartyStats.PLAYER.currentMagic < 2)
+                (attackType >= 1 && attackType <= 3 && effectivePlayerStats.currentMagic < 2)
                 || (attackType >= 4 && attackType <= 5 && PartyStats.MAYA.currentMagic < 2)
                 || (attackType >= 6 && attackType <= 7 && PartyStats.DAMION.currentMagic < 3)
             ) {
@@ -442,7 +444,7 @@ public class BattleScreen extends Screen {
             }
         }
         else if (currentBattleState == BattleState.SHOW_PLAYER_DAMAGE) {
-            FriendlyStats stats = PartyStats.statsForTurn(currentTurn);
+            FriendlyStats stats = currentTurn == 0 ? PartyStats.PLAYER.withItemModifier() : PartyStats.statsForTurn(currentTurn);
             mp.setText(stats.currentMagic + " / " + stats.magicStat);
             battle.setText(attackManager.setDisplay(attackType, hit, currentTurn)); 
             flagManager.setFlag("Attacking");
