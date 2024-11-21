@@ -21,7 +21,7 @@ public class FriendlyStats {
         stats.hpStat = hpStat;
         stats.currentHp = currentHp;
         stats.magicStat = magicStat;
-        stats.currentHp = currentMagic;
+        stats.currentMagic = currentMagic;
         stats.attackStat = attackStat;
         stats.speedStat = speedStat;
 
