@@ -27,10 +27,6 @@ public abstract class ScrollableMenuScreen<T> extends Screen {
 
     @Override
     public void update() {
-        if (Keyboard.isKeyUp(Key.SPACE)) {
-            keyLocker.unlockKey(Key.SPACE);
-        }
-
         if (keyPressTimer <= 0) {
             if (Keyboard.isKeyDown(Key.DOWN)) {
                 keyPressTimer = 14;

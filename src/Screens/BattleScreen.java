@@ -41,7 +41,7 @@ public class BattleScreen extends Screen {
     protected SpriteFont mp;
     protected HealthBar playerHealth = new HealthBar(90, 90);
     protected static HealthBar enemyHealth = new HealthBar(100, 100);
-    protected KeyLocker keyLocker = new KeyLocker();
+    protected KeyLocker keyLocker = PlayLevelScreen.keyLocker;
     protected int keyPressTimer;
     protected int attackType;
     protected int hitRate;
@@ -123,10 +123,6 @@ public class BattleScreen extends Screen {
         damionMagicStat = playLevelScreen.damionMagicStat;
         damionCurrentMagic = playLevelScreen.damionCurrentMagic;
         damionSpeedStat = playLevelScreen.damionSpeedStat;
-        keyLocker.unlockKey(Key.SPACE);
-        keyLocker.unlockKey(Key.B);
-        keyLocker.unlockKey(Key.UP);
-        keyLocker.unlockKey(Key.DOWN);
         enemyID = playLevelScreen.enemyID;
         enemy1 = enemyManager.setSprite(enemyID);
         enemyX = 270;
@@ -261,7 +257,7 @@ public class BattleScreen extends Screen {
         }
 
         // decide option
-        if (Keyboard.isKeyDown(Key.SPACE) && keyPressTimer == 0){
+        if (Keyboard.isKeyDown(Key.SPACE) && keyPressTimer == 0 && !keyLocker.isKeyLocked(Key.SPACE)){
             if(currentMenuItemHovered == 0){
                 attackType = 0;
                 currentBattleState = BattleState.APPLY_PLAYER_DAMAGE;
@@ -595,7 +591,7 @@ public class BattleScreen extends Screen {
         } else if (Keyboard.isKeyDown(Key.DOWN) && keyPressTimer == 0) {
             keyPressTimer = 30;
             currentMagicAttackHovered--;
-        } else if (Keyboard.isKeyDown(Key.SPACE) && keyPressTimer == 0) {
+        } else if (Keyboard.isKeyDown(Key.SPACE) && keyPressTimer == 0 && !keyLocker.isKeyLocked(Key.SPACE)) {
             attackType = currentMagicAttackHovered + 1;
             currentBattleState = BattleState.APPLY_PLAYER_DAMAGE;
         } else {

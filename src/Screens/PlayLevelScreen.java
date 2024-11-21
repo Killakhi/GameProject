@@ -134,10 +134,18 @@ public class PlayLevelScreen extends Screen {
         damionSpeedStat = 18;
     }
 
-    public void update() {
-        if (Keyboard.isKeyUp(Key.ESC)) {
-            keyLocker.unlockKey(Key.ESC);
+    public void releaseKeyLockGuard(Key key) {
+        if (Keyboard.isKeyUp(key)) {
+            keyLocker.unlockKey(key);
         }
+    }
+
+    public void update() {
+        releaseKeyLockGuard(Key.SPACE);
+        releaseKeyLockGuard(Key.ESC);
+        releaseKeyLockGuard(Key.B);
+        releaseKeyLockGuard(Key.UP);
+        releaseKeyLockGuard(Key.DOWN);
 
         if (paused) {
             this.pauseMenu.update();

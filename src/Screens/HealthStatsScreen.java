@@ -12,7 +12,7 @@ public class HealthStatsScreen extends Screen {
     protected SpriteFont attackStatMessage;
     protected SpriteFont magicStatMessage;
     protected SpriteFont speedStatMessage;
-    protected KeyLocker keyLocker = new KeyLocker();
+    protected KeyLocker keyLocker = PlayLevelScreen.keyLocker;
     // protected int currentpauseMenuItemHovered = 0;
     // protected int pauseMenuItemSelected = -1;
     protected int keyPressTimer;
