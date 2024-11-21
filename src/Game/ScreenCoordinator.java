@@ -7,8 +7,8 @@ import Screens.BattleScreen;
 import Screens.CreditsScreen;
 import Screens.HealthStatsScreen;
 import Screens.MenuScreen;
-import Screens.PauseMenu;
 import Screens.PlayLevelScreen;
+import Screens.Pause.PauseMenu;
 
 /*
  * Based on the current game state, this class determines which Screen should be shown

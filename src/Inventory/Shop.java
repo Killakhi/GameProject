@@ -2,44 +2,29 @@ package Inventory;
 
 import java.util.ArrayList;
 
-import Engine.GraphicsHandler;
-import Engine.Navigation.Drawable;
 import Engine.Navigation.MenuItem;
 import Engine.Navigation.ScrollableMenu;
-import Engine.Navigation.Selectable;
+import Engine.Navigation.ScrollableMenuScreen;
 import GameObject.Money;
 import Inventory.Items.ItemSword;
 import Inventory.Items.ItemWand;
 
-public class Shop implements Selectable<InventoryItem>, Drawable {
-    public ScrollableMenu<InventoryItem> itemNavigator;
+public class Shop extends ScrollableMenuScreen<InventoryItem> {
     public static Shop INSTANCE = new Shop();
 
-    public Shop() {
-        this.itemNavigator = new ScrollableMenu<>(new ArrayList<>());
-
-        this.itemNavigator.items.add(new ItemNavigatorMenuItem(new ItemWand()));
-        this.itemNavigator.items.add(new ItemNavigatorMenuItem(new ItemSword()));
-    }
-
     @Override
-    public void navigateUp() {
-        itemNavigator.navigateUp();
-    }
+    protected ScrollableMenu<InventoryItem> createScrollableMenu() {
+        ScrollableMenu<InventoryItem> menu = new ScrollableMenu<>(new ArrayList<>());
 
-    @Override
-    public void navigateDown() {
-        itemNavigator.navigateDown();
-    }
+        menu.items.add(new ItemNavigatorMenuItem(new ItemWand()));
+        menu.items.add(new ItemNavigatorMenuItem(new ItemSword()));
 
-    @Override
-    public InventoryItem getSelected() {
-        return itemNavigator.getSelectedItem();
+        return menu;
     }
 
     @Override
     public void select() {
-        MenuItem<InventoryItem> selectedItem = this.itemNavigator.getSelected();
+        MenuItem<InventoryItem> selectedItem = this.menu.getSelected();
 
         if (selectedItem == null) {
             return;
@@ -47,12 +32,7 @@ public class Shop implements Selectable<InventoryItem>, Drawable {
 
         if (Money.INSTANCE.tryTake(20)) {
             Inventory.INSTANCE.addItem(selectedItem.getValue());
-            this.itemNavigator.items.remove(selectedItem);
+            this.menu.items.remove(selectedItem);
         }
-    }
-
-    @Override
-    public void draw(GraphicsHandler graphicsHandler, int x, int y) {
-        this.itemNavigator.draw(graphicsHandler, x, y);
     }
 }

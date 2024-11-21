@@ -16,9 +16,7 @@ public class PauseMenu extends ScrollableMenuScreen<Consumer<PauseMenu>> {
     public PauseMenu(ScreenCoordinator screenCoordinator, PlayLevelScreen playLevelScreen) {
         this.screenCoordinator = screenCoordinator;
         this.playLevelScreen = playLevelScreen;    
-        this.playLevelScreen = playLevelScreen;    
     }
-
 
     @Override
     protected ScrollableMenu<Consumer<PauseMenu>> createScrollableMenu() {
@@ -31,12 +29,9 @@ public class PauseMenu extends ScrollableMenuScreen<Consumer<PauseMenu>> {
         return new ScrollableMenu<>(options);
     }
 
-
     @Override
     public void select() {
         this.menu.getSelectedItem().accept(this);
     }
-
-    
 }
 

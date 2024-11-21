@@ -1,7 +1,6 @@
 package Engine.Navigation;
 
 import java.awt.Color;
-import java.util.ArrayList;
 
 import Engine.GraphicsHandler;
 import Engine.Key;
@@ -11,7 +10,7 @@ import Engine.Screen;
 
 public abstract class ScrollableMenuScreen<T> extends Screen {
     protected int keyPressTimer = 0;
-    protected KeyLocker keyLocker = new KeyLocker();
+    public static KeyLocker keyLocker = new KeyLocker();
     protected ScrollableMenu<T> menu;
 
     public ScrollableMenuScreen() {
