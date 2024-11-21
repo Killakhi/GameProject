@@ -53,7 +53,7 @@ public class PlayLevelScreen extends Screen {
     protected FlagManager flagManager;
     protected int keyPressTimer;
     public static int enemyID;
-    protected KeyLocker keyLocker = new KeyLocker();
+    public static KeyLocker keyLocker = new KeyLocker();
     protected ArrayList<String> obtainableItems = new ArrayList<>();
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
@@ -135,9 +135,17 @@ public class PlayLevelScreen extends Screen {
     }
 
     public void update() {
+        if (Keyboard.isKeyUp(Key.ESC)) {
+            keyLocker.unlockKey(Key.ESC);
+        }
+
         if (paused) {
             this.pauseMenu.update();
             return;
+        } else if (!keyLocker.isKeyLocked(Key.ESC) && Keyboard.isKeyDown(Key.ESC)) {
+            keyLocker.lockKey(Key.ESC);
+
+            pauseMenu();
         }
 
         // based on screen state, perform specific actions
@@ -197,11 +205,6 @@ public class PlayLevelScreen extends Screen {
         if (map.getFlagManager().isFlagSet("hasTalkedToWand") && !obtainableItems.contains("Wand")) {
             obtainableItems.add("Wand");
             System.out.println(obtainableItems);
-        }
-
-        if (Keyboard.isKeyDown(Key.M))  {
-            
-            pauseMenu();
         }
 
         // if flag is set at any point during gameplay, game is "won"

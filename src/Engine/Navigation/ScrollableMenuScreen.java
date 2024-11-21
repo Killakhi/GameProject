@@ -7,10 +7,11 @@ import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
 import Engine.Screen;
+import Screens.PlayLevelScreen;
 
 public abstract class ScrollableMenuScreen<T> extends Screen {
     protected int keyPressTimer = 0;
-    public static KeyLocker keyLocker = new KeyLocker();
+    public static KeyLocker keyLocker = PlayLevelScreen.keyLocker;
     protected ScrollableMenu<T> menu;
 
     public ScrollableMenuScreen() {

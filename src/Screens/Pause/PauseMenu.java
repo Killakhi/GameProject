@@ -8,6 +8,7 @@ import Engine.Navigation.ScrollableMenu;
 import Engine.Navigation.ScrollableMenuScreen;
 import Engine.Navigation.StaticMenuItem;
 import Game.ScreenCoordinator;
+import GameObject.Money;
 import Inventory.Inventory;
 import Inventory.Shop;
 import Screens.PlayLevelScreen;
@@ -59,8 +60,14 @@ public class PauseMenu extends ScrollableMenuScreen<Consumer<PauseMenu>> {
 
     @Override
     public void update() {
-        if (Keyboard.isKeyDown(Key.ESC)) {
-            this.pauseState = PauseState.PAUSE_MAIN;
+        if (Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)) {
+            keyLocker.lockKey(Key.ESC);
+
+            if (pauseState == PauseState.PAUSE_MAIN) {
+                playLevelScreen.paused = false;
+            } else {
+                this.pauseState = PauseState.PAUSE_MAIN;
+            }
         }
 
         switch (pauseState) {
@@ -78,6 +85,8 @@ public class PauseMenu extends ScrollableMenuScreen<Consumer<PauseMenu>> {
 
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
+        Font font = Font.decode(Font.SANS_SERIF).deriveFont(25.0f);
+
         switch (pauseState) {
             case PAUSE_MAIN:
                 super.draw(graphicsHandler);
@@ -86,14 +95,13 @@ public class PauseMenu extends ScrollableMenuScreen<Consumer<PauseMenu>> {
                 Inventory.INSTANCE.draw(graphicsHandler);
                 break;
             case PAUSE_SHOP:
+                graphicsHandler.drawStringWithOutline("Money: $" + Money.INSTANCE.getMoney(), 70, 250, font, Color.WHITE, Color.BLACK, 2.0f);
                 Shop.INSTANCE.draw(graphicsHandler);
                 break;
         }
 
         if (pauseState != PauseState.PAUSE_MAIN) {
-            Font font = Font.decode(Font.SANS_SERIF).deriveFont(25.0f);
-
-            graphicsHandler.drawString("Press ESC to go back", 70, 250, font, Color.GRAY);
+            graphicsHandler.drawStringWithOutline("Press ESC to go back", 100, 250, font, Color.WHITE, Color.BLACK, 2.0f);
         }
     }
 }
