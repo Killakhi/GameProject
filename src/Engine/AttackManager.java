@@ -6,10 +6,9 @@
 
 package Engine;
 
-import java.awt.image.BufferedImage;
-
 import Level.FlagManager;
 import Screens.BattleScreen;
+import java.awt.image.BufferedImage;
 
 public class AttackManager {
     protected int[] playerSpeed = new int[4];
@@ -158,7 +157,7 @@ public class AttackManager {
             hitRate = 50;
         }
         else if(attackType == 7) {
-            hitRate = 10;
+            hitRate = 20;
         }
         return hitRate;
     }

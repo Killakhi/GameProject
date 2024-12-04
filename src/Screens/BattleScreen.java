@@ -14,7 +14,7 @@ import java.awt.image.BufferedImage;
 public class BattleScreen extends Screen {
     protected int[] playerSpeed = new int[4];
     protected AttackManager attackManager;
-    protected EnemyManager enemyManager;
+    protected EnemyManager enemyManager = new EnemyManager();    
     protected BufferedImage enemy1;
     protected BufferedImage turnPlayer;
     protected int enemyX;
@@ -23,24 +23,22 @@ public class BattleScreen extends Screen {
     protected BufferedImage animation;
     protected ScreenCoordinator screenCoordinator;
     protected int currentMenuItemHovered = 0; // current menu item being "hovered" over
-    protected int currentMagicAttackHovered =0;
-    protected SpriteFont magicAttack;
-    protected SpriteFont physicalAttack;
-    protected SpriteFont items;
-    protected SpriteFont runAway;
-    protected SpriteFont switchMenu;
-    protected SpriteFont fireAttack;
-    protected SpriteFont waterAttack;
-    protected SpriteFont windAttack;
-    protected SpriteFont earthAttack;
-    protected SpriteFont lightAttack;
-    protected SpriteFont iceAttack;
-    protected SpriteFont darkAttack;
-    protected SpriteFont intro;
-    protected SpriteFont turn;
-    protected SpriteFont battle;
+    protected int currentMagicAttackHovered = 0;
+    protected SpriteFont physicalAttack = new SpriteFont("Physical Attack" , 10, 500, "Arial", 30, Color.white );
+    protected SpriteFont items = new SpriteFont("Items", 260, 500, "Arial", 30, Color.white);
+    protected SpriteFont runAway = new SpriteFont("Run Away", 400, 500, "Arial", 30, Color.white);
+    protected SpriteFont switchMenu = new SpriteFont("Magic Attack", 600, 500, "Arial", 30, Color.white);
+    protected SpriteFont fireAttack = new SpriteFont("Fire Attack", 500, 400, "Arial", 30, Color.white);
+    protected SpriteFont waterAttack = new SpriteFont("Water Attack", 500, 300, "Arial", 30, Color.white);
+    protected SpriteFont windAttack = new SpriteFont("Wind Attack", 500, 200, "Arial", 30, Color.white);
+    protected SpriteFont earthAttack = new SpriteFont("Earth Attack", 500, 400, "Arial", 30, Color.white);
+    protected SpriteFont lightAttack = new SpriteFont("Light Attack", 500, 300, "Arial", 30, Color.white);
+    protected SpriteFont iceAttack = new SpriteFont("Ice Attack", 500, 400, "Arial", 30, Color.white);
+    protected SpriteFont darkAttack = new SpriteFont("Dark Attack", 500, 300, "Arial", 30, Color.white);
+    protected SpriteFont mp = new SpriteFont("30 / 30", 30, 90, "Arial", 30, Color.white);
+    protected SpriteFont turn = new SpriteFont("", 200, 50, "Arial", 30, Color.white);
+    protected SpriteFont battle = new SpriteFont("You hit for some damage!", 200, 50,"Arial", 30, Color.white);
     protected SpriteFont attacks;
-    protected SpriteFont mp;
     protected HealthBar playerHealth = new HealthBar(90, 90);
     protected static HealthBar enemyHealth = new HealthBar(100, 100);
     protected KeyLocker keyLocker = PlayLevelScreen.keyLocker;
@@ -50,7 +48,8 @@ public class BattleScreen extends Screen {
     protected int currentTurn;
 
     protected PlayLevelScreen playLevelScreen;
-    protected FlagManager flagManager;
+    protected FlagManager flagManager = new FlagManager();
+
 
     public BattleScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
@@ -67,7 +66,6 @@ public class BattleScreen extends Screen {
         keyPressTimer = 0;
         flagManager = new FlagManager();
         attackManager = new AttackManager(this);
-        enemyManager = new EnemyManager();     
         turn = new SpriteFont("", 200, 50, "Arial", 30, Color.white);
         battle = new SpriteFont("You hit for some damage!", 200, 50,"Arial", 30, Color.white);
         flagManager.addFlag("Attacking", false);
@@ -86,8 +84,14 @@ public class BattleScreen extends Screen {
         mp = new SpriteFont(PartyStats.PLAYER.currentMagic + " / " + PartyStats.PLAYER.magicStat, 30, 90, "Arial", 30, Color.white);
         enemyID = playLevelScreen.enemyID;
         enemy1 = enemyManager.setSprite(enemyID);
-        enemyX = 270;
-        enemyY = 180;
+        if(enemyID == 666) {
+            enemyX = 100;
+            enemyY = 150;
+        } else {
+            enemyX = 270;
+            enemyY = 180;
+        }
+
         playerSpeed[0] = PartyStats.PLAYER.speedStat;
         playerSpeed[1] = PartyStats.MAYA.speedStat;
         playerSpeed[2] = PartyStats.DAMION.speedStat;
@@ -451,26 +455,26 @@ public class BattleScreen extends Screen {
             animation = attackManager.animation(attackType, timer);
             timer++;
             if(timer >= 80 && timer < 90) {
-                enemyX = 270;
-                enemyY = 180;
+                enemyX = enemyX +5;
+                enemyY = 180 - 5;
             } else if(timer >= 75) {
-                enemyX = 265;
-                enemyY = 175;
+                enemyX = enemyX - 10;
+                enemyY = enemyY + 5;
             } else if(timer >= 70) {
-                enemyX = 260;
-                enemyY = 170;
+                enemyX = enemyX - 10;
+                enemyY = enemyY - 10;
             } else if(timer >= 65) {
-                enemyX = 280;
-                enemyY = 170;
+                enemyX = enemyX + 10;
+                enemyY = enemyY - 10;
             } else if(timer >= 60) {
-                enemyX = 280;
-                enemyY = 180;
+                enemyX = enemyX;
+                enemyY = enemyY - 10;
             } else if(timer >= 55) {
-                enemyX = 280;
-                enemyY = 190;
+                enemyX = enemyX + 10;
+                enemyY = enemyY + 10;
             } else if(timer >= 50) {
-                enemyX = 260;
-                enemyY = 190;
+                enemyX = enemyX - 10;
+                enemyY = enemyY + 10;
             } 
             if(timer == 90) {
                 enemyHealth.damage(hit);
@@ -480,8 +484,7 @@ public class BattleScreen extends Screen {
                 if(enemyHealth.isDead()) {
                     currentBattleState = BattleState.VICTORY;
                 } else {
-                    enemyX = 270;
-                    enemyY = 180;
+
                     timer = 0;
                     currentBattleState = BattleState.DECIDE_TURN_ORDER;
                 }
@@ -501,6 +504,14 @@ public class BattleScreen extends Screen {
         else if (currentBattleState == BattleState.SHOW_ENEMY_DAMAGE) {
             if(damage == 0) {
                 battle.setText("Whoops, the enemy missed!");
+            } else if(enemyID == 666){
+                if(target == 0) {
+                    battle.setText("The party was hit for " + damage + " damage!");
+                } else if(target == 1) {
+                    battle.setText("Maya was hit for " + damage + " damage!");
+                } else if(target == 2) {
+                    battle.setText("Damion was hit for " + damage + " damage!");
+                }
             } else {
                 if(target == 0) {
                     battle.setText("You were hit for " + damage + " damage!");
@@ -515,16 +526,26 @@ public class BattleScreen extends Screen {
             flagManager.unsetFlag("Animation");
             timer++;
             if(timer == 90) {
-                FriendlyStats targetStats = PartyStats.statsForTurn(target);
-                targetStats.currentHp -= damage;
-                if(PartyStats.PLAYER.currentHp<= 0) {
-                    playLevelScreen.stopBattle();
-                    playLevelScreen.gameOver();
-                } else if(enemyID == 666) {
+                if(target == 0) {
+                    if (enemyID == 666) {
+                        PartyStats.MAYA.currentHp -= damage / 2;
+                        PartyStats.DAMION.currentHp -= damage / 2;
+                    } else {
+                        PartyStats.PLAYER.currentHp -= damage;
+                    }
+                } else if(target == 1) {
+                    PartyStats.MAYA.currentHp -= damage;
+                } else if(target == 2) {
+                    PartyStats.DAMION.currentHp -= damage;
+                }
+                if(enemyID == 666) {
                     if(PartyStats.MAYA.currentHp <= 0 && PartyStats.DAMION.currentHp <= 0){
                         playLevelScreen.gameOver();
                         playLevelScreen.stopBattle();
                     }
+                } else if(PartyStats.PLAYER.currentHp <= 0) {
+                    playLevelScreen.stopBattle();
+                    playLevelScreen.gameOver();
                 }else  {
                     timer = 0;
                     currentBattleState = BattleState.DECIDE_TURN_ORDER;
@@ -694,7 +715,11 @@ public class BattleScreen extends Screen {
                 PartyStats.PLAYER.magicStat = ((int)(Math.random() * (10))) + (playLevelScreen.level*3);
                 playLevelScreen.exp = playLevelScreen.exp - (80 + (playLevelScreen.level*20));
                 currentBattleState = BattleState.PURGATORY;
-                this.playLevelScreen.stopBattle();
+                if(enemyID == 666) {
+                    this.playLevelScreen.finish();
+                }else {
+                    this.playLevelScreen.stopBattle();
+                }
             }
         }
         else if(currentBattleState == BattleState.PURGATORY) {

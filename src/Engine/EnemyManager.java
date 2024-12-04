@@ -23,6 +23,7 @@ public class EnemyManager {
             enemy = ImageLoader.load("CultistBattle.png"); 
         } else if (enemyID == 666) {
             //Final boss sprite
+            enemy = ImageLoader.load("Final_Boss_650_by_350.png");
         }
         return enemy;
     }
@@ -36,7 +37,7 @@ public class EnemyManager {
         } else if(enemyID ==4){
             dodge = 4;
         } else if(enemyID == 666) {
-            dodge = 60;
+            dodge = 30;
         }
         return dodge;
     }
@@ -70,7 +71,7 @@ public class EnemyManager {
                 damage = 0;
             }
         } else if (enemyID == 666) {
-                damage = ((int)(Math.random() * (30))) + 50;
+                damage = ((int)(Math.random() * (30))) + 10;
         }
         return damage;
     }

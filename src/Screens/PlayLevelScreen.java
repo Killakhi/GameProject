@@ -11,6 +11,8 @@ import Game.GameState;
 import Game.ScreenCoordinator;
 import GameObject.Money;
 import Level.*;
+import Maps.BossArena;
+import Maps.NewMap;
 import Maps.TestMap;
 import Players.Cat;
 import Screens.Pause.PauseMenu;
@@ -55,6 +57,9 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasTalkedToWand", false);
         flagManager.addFlag("hasFoundBall", false);
         flagManager.addFlag("hasFoughtNPC", false);
+        flagManager.addFlag("hasOpenDoor", false);
+        flagManager.addFlag("YestoBoss", false);
+        flagManager.addFlag("talkedtoInnGuy", false);
 
         // define/setup map
         map = new TestMap();
@@ -143,6 +148,54 @@ public class PlayLevelScreen extends Screen {
             case RUNNING:
                 player.update();
                 map.update(player);
+
+                if (flagManager.isFlagSet("hasOpenDoor")) {
+                    map = new NewMap();
+                    map.setFlagManager(flagManager);
+                    player.setLocation(400,850);
+                    player.unlock();
+                    player.setMap(map);
+                    playLevelScreenState = PlayLevelScreenState.RUNNING;
+                    player.setFacingDirection(Direction.UP);
+
+                    map.setPlayer(player);
+                    map.getTextbox().setInteractKey(player.getInteractKey());
+                    
+                    flagManager.unsetFlag("hasOpenDoor");
+                }
+
+                if (flagManager.isFlagSet("YestoBoss")) {
+                    map = new BossArena();
+                    map.setFlagManager(flagManager);
+                    player.setLocation(550,950);
+                    player.unlock();
+                    player.setMap(map);
+                    playLevelScreenState = PlayLevelScreenState.RUNNING;
+                    player.setFacingDirection(Direction.UP);
+
+                    map.setPlayer(player);
+                    map.getTextbox().setInteractKey(player.getInteractKey());
+
+
+                    
+                    flagManager.unsetFlag("YestoBoss");
+                }
+
+                if (flagManager.isFlagSet("talkedtoInnGuy")) {
+                    map = new TestMap();
+                    map.setFlagManager(flagManager);
+                    player.setLocation(550,950);
+                    player.unlock();
+                    player.setMap(map);
+                    playLevelScreenState = PlayLevelScreenState.RUNNING;
+                    player.setFacingDirection(Direction.DOWN);
+
+                    map.setPlayer(player);
+                    map.getTextbox().setInteractKey(player.getInteractKey());
+
+                    flagManager.unsetFlag("talkedtoInnGuy");
+
+                }
                 break;
             // if game is paused
             case PAUSE_MENU:
@@ -163,7 +216,7 @@ public class PlayLevelScreen extends Screen {
                 break;
             case GAME_OVER:
                 gameOverScreen.update();
-                break;
+                break;     
         }
 
         if (map.getFlagManager().isFlagSet("hasTalkedToWalrus") && !obtainableItems.contains("Walrus")) {
@@ -262,8 +315,7 @@ public class PlayLevelScreen extends Screen {
                 winScreen.draw(graphicsHandler);
                 break;
             case ENTERING_BATTLE:
-                battleScreen.initialize();
-                playLevelScreenState = PlayLevelScreenState.BATTLING;
+                //battleScreen.initialize();
                 // fallthrough to next case
             case BATTLING:
                 battleScreen.draw(graphicsHandler);
@@ -294,6 +346,6 @@ public class PlayLevelScreen extends Screen {
 
     // This enum represents the different states this screen can be in
     public enum PlayLevelScreenState {
-        RUNNING, PAUSE_MENU, LEVEL_COMPLETED, ENTERING_BATTLE, BATTLING, GAME_OVER
+        RUNNING, PAUSE_MENU, STATS, LEVEL_COMPLETED, ENTERING_BATTLE, BATTLING, GAME_OVER,
     }
 }
