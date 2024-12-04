@@ -50,6 +50,16 @@ public class TestMap extends Map {
         //bug.setInteractScript(new BugScript());
         //npcs.add(bug);
 
+        NPC1 man = new NPC1(3, getMapTile(11, 16).getLocation().subtractY(40));
+        man.setInteractScript(new QuestSeekerScript());
+        npcs.add(man);
+ 
+ 
+        NPC2 man2 = new NPC2(11, getMapTile(13, 7).getLocation().subtractY(40));
+        man2.setInteractScript(new MysteryQuestScript());
+        npcs.add(man2);
+ 
+
         Goku goku = new Goku(4, getMapTile(7, 2).getLocation().subtractY(40));
         goku.setInteractScript(new GokuScript());
         npcs.add(goku);
@@ -108,6 +118,10 @@ public class TestMap extends Map {
         cultist.setInteractScript(new CultistScript());
         npcs.add(cultist);
         this.enemies.add(cultist);
+
+        BossCultist bossCultist = new BossCultist(15, getMapTile(1, 2).getLocation().subtractY(40));
+        bossCultist.setInteractScript(new BossCultistScript());
+        npcs.add(bossCultist);
 
 
 

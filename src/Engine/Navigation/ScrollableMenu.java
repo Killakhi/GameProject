@@ -31,19 +31,19 @@ public class ScrollableMenu<T> implements Drawable, Navigable<MenuItem<T>> {
 
     @Override
     public void navigateUp() {
-        this.selected++;
+        this.selected--;
 
-        if (this.selected >= this.items.size()) {
-            this.selected = this.items.size() - 1;
+        if (this.selected < 0 && !this.items.isEmpty()) {
+            this.selected = 0;
         }
     }
 
     @Override
     public void navigateDown() {
-        this.selected--;
+        this.selected++;
 
-        if (this.selected < 0 && !this.items.isEmpty()) {
-            this.selected = 0;
+        if (this.selected >= this.items.size()) {
+            this.selected = this.items.size() - 1;
         }
     }
 
@@ -80,13 +80,13 @@ public class ScrollableMenu<T> implements Drawable, Navigable<MenuItem<T>> {
             } else if (index == items.size() - 1) {
                 // this is the last item
                 this.drawItem(graphicsHandler, x, y, 0, false, index - 2);
-                this.drawItem(graphicsHandler, x, y, 0, false, index - 1);
-                this.drawItem(graphicsHandler, x, y, 0, true, index);
+                this.drawItem(graphicsHandler, x, y, 1, false, index - 1);
+                this.drawItem(graphicsHandler, x, y, 2, true, index);
             } else {
                 // this is somewhere in the middle
                 this.drawItem(graphicsHandler, x, y, 0, false, index - 1);
-                this.drawItem(graphicsHandler, x, y, 0, true, index);
-                this.drawItem(graphicsHandler, x, y, 0, false, index + 1);
+                this.drawItem(graphicsHandler, x, y, 1, true, index);
+                this.drawItem(graphicsHandler, x, y, 2, false, index + 1);
             }
         }
     }
