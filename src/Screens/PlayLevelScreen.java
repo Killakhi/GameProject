@@ -207,6 +207,7 @@ public class PlayLevelScreen extends Screen {
             // if level has been completed, bring up level cleared screen
             case LEVEL_COMPLETED:
                 winScreen.update();
+                SoundHandler.StopMusic("Resources/BattleMusic30sec.wav");
                 break;
             case ENTERING_BATTLE:
             battleScreen.initialize();
@@ -341,10 +342,13 @@ public class PlayLevelScreen extends Screen {
      
     public void resetLevel() {
         initialize();
+        SoundHandler.RunMusic("Resources/GameMusic.wav");
+
     }
 
     public void goBackToMenu() {
         screenCoordinator.setGameState(GameState.MENU);
+
     }
 
     // This enum represents the different states this screen can be in

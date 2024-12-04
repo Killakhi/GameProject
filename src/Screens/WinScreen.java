@@ -2,7 +2,6 @@ package Screens;
 
 import Engine.*;
 import SpriteFont.SpriteFont;
-
 import java.awt.*;
 
 // This class is for the win level screen
