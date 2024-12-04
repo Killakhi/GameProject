@@ -86,6 +86,12 @@ public class TestMap extends Map {
         Damion damion = new Damion(3, getMapTile(7, 10).getLocation().subtractY(40));
         npcs.add(damion);
         this.damion.add(damion);
+
+        Cat cat = new Cat(4, getMapTile(8, 10).getLocation().subtractY(40));
+        npcs.add(cat);
+        
+        
+        
         
 
         Townsfolk townsfolk = new Townsfolk(8, getMapTile(6, 10).getLocation().subtractY(40));
