@@ -109,11 +109,7 @@ public class TestMap extends Map {
         npcs.add(cultist);
         this.enemies.add(cultist);
 
-        Door door = new Door(15, getMapTile(2, 17).getLocation().subtractY(40));
-        door.setInteractScript(new DoorScript());
-        npcs.add(door);
-
-        BossCultist bossCultist = new BossCultist(16, getMapTile(1, 2).getLocation().subtractY(40));
+        BossCultist bossCultist = new BossCultist(15, getMapTile(1, 2).getLocation().subtractY(40));
         bossCultist.setInteractScript(new BossCultistScript());
         npcs.add(bossCultist);
 

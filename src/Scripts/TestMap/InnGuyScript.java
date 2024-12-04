@@ -1,10 +1,6 @@
 package Scripts.TestMap;
 
 import Level.Script;
-import ScriptActions.*;
-
-import java.util.ArrayList;
-
 import ScriptActions.ChangeFlagScriptAction;
 import ScriptActions.ConditionalScriptAction;
 import ScriptActions.ConditionalScriptActionGroup;
@@ -14,8 +10,9 @@ import ScriptActions.NPCFacePlayerScriptAction;
 import ScriptActions.ScriptAction;
 import ScriptActions.TextboxScriptAction;
 import ScriptActions.UnlockPlayerScriptAction;
+import java.util.ArrayList;
 
-public class InnGuyScript {
+public class InnGuyScript extends Script{
     
      @Override
     public ArrayList<ScriptAction> loadScriptActions() {
