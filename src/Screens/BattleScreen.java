@@ -113,25 +113,25 @@ public class BattleScreen extends Screen {
     int damage = 0;
     int timer = 0; 
     int target = 0;
-    int turnTrack = -1;
+    int turnTrack = 0;
     BattleState currentBattleState = BattleState.DECIDE_TURN_ORDER;
     @Override
     public void update() {
         if(currentBattleState == BattleState.DECIDE_TURN_ORDER) {
-            turnTrack++;
             if (turnTrack > 3) {
                 turnTrack = 0;
             } else if (turnTrack < 0) {
                 turnTrack = 0;
             }
             currentTurn = playerSpeed[turnTrack];
+            System.out.println("Turn turned. Player: " + currentTurn);     
             FriendlyStats stats = PartyStats.statsForTurn(currentTurn);
             FriendlyStats effectivePlayerStats = PartyStats.PLAYER.withItemModifier();
 
             if(currentTurn == 0) {
-
                 if(enemyID == 666) {
                     currentBattleState = BattleState.APPLY_ENEMY_DAMAGE;
+                    System.out.println("HELP ME");
                 } else {
                     setHealthBar(PartyStats.PLAYER);
                     mp.setText(effectivePlayerStats.currentMagic + " / " + effectivePlayerStats.magicStat);
@@ -153,7 +153,7 @@ public class BattleScreen extends Screen {
                 }
 
             } else if(currentTurn == 2) {
-
+                System.out.println("It's Damion's turn");
                 if(PartyStats.DAMION.currentHp <= 0) {
                     currentBattleState = BattleState.DECIDE_TURN_ORDER;
                 } else {
@@ -168,6 +168,7 @@ public class BattleScreen extends Screen {
                 turnPlayer = ImageLoader.load("Empty.png");
                 currentBattleState = BattleState.APPLY_ENEMY_DAMAGE;
             }
+            turnTrack++;
         } 
         else if (currentBattleState == BattleState.CHOOSE_ATTACK) {
             // if left or right is pressed, change menu item "hovered" over
@@ -538,18 +539,17 @@ public class BattleScreen extends Screen {
                 } else if(target == 2) {
                     PartyStats.DAMION.currentHp -= damage;
                 }
-                if(enemyID == 666) {
-                    if(PartyStats.MAYA.currentHp <= 0 && PartyStats.DAMION.currentHp <= 0){
-                        playLevelScreen.gameOver();
-                        playLevelScreen.stopBattle();
-                    }
+                if(enemyID == 666 && (PartyStats.MAYA.currentHp <= 0 && PartyStats.DAMION.currentHp <= 0)) {
+                    playLevelScreen.gameOver();
+                    playLevelScreen.stopBattle();
                 } else if(PartyStats.PLAYER.currentHp <= 0) {
                     playLevelScreen.stopBattle();
                     playLevelScreen.gameOver();
-                }else  {
-                    timer = 0;
-                    currentBattleState = BattleState.DECIDE_TURN_ORDER;
+                } else  {
+                    timer = 0;                    
                     flagManager.unsetFlag("Attacking");
+                    System.out.println("return to the turn order now");
+                    currentBattleState = BattleState.DECIDE_TURN_ORDER;
                 }
             }
             
