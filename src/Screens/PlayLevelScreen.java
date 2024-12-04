@@ -55,6 +55,9 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasTalkedToGoku", false);
         flagManager.addFlag("hasTalkedToSword", false);
         flagManager.addFlag("hasTalkedToWand", false);
+        flagManager.addFlag("hasTalkedToQuestSeeker", false);
+        flagManager.addFlag("hasTalkedToMysteryQuest", false);
+        flagManager.addFlag("hasTalkedToMP", false);
         flagManager.addFlag("hasFoundBall", false);
         flagManager.addFlag("hasFoughtNPC", false);
         flagManager.addFlag("hasOpenDoor", false);

@@ -612,7 +612,7 @@ public class CommonTileset extends Tileset {
          .build();
  
          MapTileBuilder doorTile = new MapTileBuilder(doorFrame)
-         .withTileType(TileType.PASSABLE);
+         .withTileType(TileType.NOT_PASSABLE);
          mapTiles.add(doorTile);
 
          // Tile 59: rightroofEdge

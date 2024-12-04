@@ -30,16 +30,34 @@ public class QuestSeekerScript extends Script {
                 }});
                 addScriptAction(new ChangeFlagScriptAction("hasTalkedToQuestSeeker", true));
             }});
+
+         
+                addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                    addRequirement(new FlagRequirement("hasTalkedToQuestSeeker", true));
+                    addRequirement(new FlagRequirement("hasTalkedToWand", true));
+                    addRequirement(new FlagRequirement("hasTalkedToBat", true));
+                    addRequirement(new FlagRequirement("hasTalkedToSword", true));
+                    addScriptAction(new TextboxScriptAction() {{
+
+                        addScriptAction(new TextboxScriptAction("DJ: Yay! You did it!"));
+                       
+                    }});
+                    addScriptAction(new ChangeFlagScriptAction("hasTalkedToQuestSeeker", true));
+                    addRequirement(new FlagRequirement("hasTalkedToWand", true));
+                    addRequirement(new FlagRequirement("hasTalkedToBat", true));
+                    addRequirement(new FlagRequirement("hasTalkedToSword", true));
+                }});
  
- 
+           /*  
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasTalkedToQuestSeeker", true));
                 addRequirement(new FlagRequirement("hasTalkedToSword", true));
                 addRequirement(new FlagRequirement("hasTalkedToWand", true));
                 addRequirement(new FlagRequirement("hasTalkedToBat", true));
                
-                addScriptAction(new TextboxScriptAction("Yay! You did it!"));
+                addScriptAction(new TextboxScriptAction("DJ: Yay! You did it!"));
             }});
+            */
         }});
  
  
@@ -49,4 +67,8 @@ public class QuestSeekerScript extends Script {
         return scriptActions;
     }
  }
+ 
+ 
+ 
+ 
  
