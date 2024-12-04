@@ -1,5 +1,6 @@
 package Screens;
 
+import Engine.Battle.PartyStats;
 import Engine.GraphicsHandler;
 import Engine.Key;
 import Engine.KeyLocker;
@@ -13,7 +14,8 @@ import Maps.BossArena;
 import Maps.NewMap;
 import Maps.TestMap;
 import Players.Cat;
-import Screens.PlayLevelScreen.PlayLevelScreenState;
+import Screens.Pause.PauseMenu;
+import Screens.Stats.HealthStatsPanel;
 import Utils.Direction;
 import java.util.ArrayList;
 
@@ -21,40 +23,20 @@ import java.util.ArrayList;
 public class PlayLevelScreen extends Screen {
     public int level;
     public int exp;
-    public int hpStat;
-    public int currentHp;
-    public int magicStat;
-    public int currentMagic;
-    public int attackStat;
-    public int speedStat;
     public boolean paused = false;
-    //maya stats
-    public int mayaHpStat;
-    public int mayaCurrentHp;
-    public int mayaMagicStat;
-    public int mayaCurrentMagic;
-    public int mayaAttackStat;
-    public int mayaSpeedStat;
-    //damion stats
-    public int damionHpStat;
-    public int damionCurrentHp;
-    public int damionMagicStat;
-    public int damionCurrentMagic;
-    public int damionAttackStat;
-    public int damionSpeedStat;
     public static PlayLevelScreenState playLevelScreenState = PlayLevelScreenState.RUNNING;
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
     protected Player player;
     protected WinScreen winScreen;
     protected PauseMenu pauseMenu;
-    protected HealthStatsScreen healthMenu;
+    protected HealthStatsPanel healthMenu;
     protected GameOverScreen gameOverScreen;
     protected BattleScreen battleScreen;
     protected FlagManager flagManager;
     protected int keyPressTimer;
     public static int enemyID;
-    protected KeyLocker keyLocker = new KeyLocker();
+    public static KeyLocker keyLocker = new KeyLocker();
     protected ArrayList<String> obtainableItems = new ArrayList<>();
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
@@ -99,10 +81,8 @@ public class PlayLevelScreen extends Screen {
 
         winScreen = new WinScreen(this);
         pauseMenu = new PauseMenu(screenCoordinator, this);
-        healthMenu = new HealthStatsScreen(screenCoordinator);
         battleScreen = new BattleScreen(screenCoordinator);
         gameOverScreen = new GameOverScreen(screenCoordinator);
-        healthMenu.addGameLevel(this);
         battleScreen.addGameLevel(this);
         gameOverScreen.addGameLevel(this);
 
@@ -116,32 +96,48 @@ public class PlayLevelScreen extends Screen {
         // Universal Level
         level = 1;
         // Player Stats
-        hpStat = 100;
-        currentHp = 100;
-        attackStat = 20;
-        magicStat = 30;
-        currentMagic = 30;
-        speedStat = 15;
+        PartyStats.PLAYER.hpStat = 100;
+        PartyStats.PLAYER.currentHp = 100;
+        PartyStats.PLAYER.attackStat = 20;
+        PartyStats.PLAYER.magicStat = 30;
+        PartyStats.PLAYER.currentMagic = 30;
+        PartyStats.PLAYER.speedStat = 15;
         // Maya Stats
-        mayaHpStat = 150;
-        mayaCurrentHp = 150;
-        mayaAttackStat = 15;
-        mayaMagicStat = 40;
-        mayaCurrentMagic = 40;
-        mayaSpeedStat = 13;
+        PartyStats.MAYA.hpStat = 150;
+        PartyStats.MAYA.currentHp = 150;
+        PartyStats.MAYA.attackStat = 15;
+        PartyStats.MAYA.magicStat = 40;
+        PartyStats.MAYA.currentMagic = 40;
+        PartyStats.MAYA.speedStat = 13;
         // Damion Stats
-        damionHpStat = 90;
-        damionCurrentHp = 90;
-        damionAttackStat = 30;
-        damionMagicStat = 25;
-        damionCurrentMagic = 25;
-        damionSpeedStat = 18;
+        PartyStats.DAMION.hpStat = 90;
+        PartyStats.DAMION.currentHp = 90;
+        PartyStats.DAMION.attackStat = 30;
+        PartyStats.DAMION.magicStat = 25;
+        PartyStats.DAMION.currentMagic = 25;
+        PartyStats.DAMION.speedStat = 18;
+    }
+
+    public void releaseKeyLockGuard(Key key) {
+        if (Keyboard.isKeyUp(key)) {
+            keyLocker.unlockKey(key);
+        }
     }
 
     public void update() {
+        releaseKeyLockGuard(Key.SPACE);
+        releaseKeyLockGuard(Key.ESC);
+        releaseKeyLockGuard(Key.B);
+        releaseKeyLockGuard(Key.UP);
+        releaseKeyLockGuard(Key.DOWN);
+
         if (paused) {
             this.pauseMenu.update();
             return;
+        } else if (!keyLocker.isKeyLocked(Key.ESC) && Keyboard.isKeyDown(Key.ESC)) {
+            keyLocker.lockKey(Key.ESC);
+
+            pauseMenu();
         }
 
         // based on screen state, perform specific actions
@@ -203,15 +199,11 @@ public class PlayLevelScreen extends Screen {
             case PAUSE_MENU:
                 pauseMenu.update();
                 break;
-            case STATS:
-                healthMenu.update();
-                break;
             // if level has been completed, bring up level cleared screen
             case LEVEL_COMPLETED:
                 winScreen.update();
                 break;
             case ENTERING_BATTLE:
-                System.out.println("\nThe");
                 battleScreen.initialize();
                 playLevelScreenState = PlayLevelScreenState.BATTLING;
                 // fallthrough to next case
@@ -252,11 +244,6 @@ public class PlayLevelScreen extends Screen {
             System.out.println(obtainableItems);
         }
 
-        if (Keyboard.isKeyDown(Key.M))  {
-            
-            pauseMenu();
-        }
-
         // if flag is set at any point during gameplay, game is "won"
         if (map.getFlagManager().isFlagSet("hasFoundBall") || map.getFlagManager().isFlagSet("hasFoughtNPC")) {
             playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
@@ -294,9 +281,6 @@ public class PlayLevelScreen extends Screen {
         switch (playLevelScreenState) {
             case RUNNING:
                 map.draw(player, graphicsHandler);
-                break;
-            case STATS:
-                healthMenu.draw(graphicsHandler);
                 break;
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);

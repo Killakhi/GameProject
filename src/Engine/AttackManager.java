@@ -86,16 +86,16 @@ public class AttackManager {
             hit = ((int)(Math.random() * (10))) + (20 + (attack));
         }
         else if(attackType == 4) {
-            hit = ((int)(Math.random() * (10))) + (20 + (attack));
+            hit = ((int)(Math.random() * (5))) + (15 + (attack));
         }
         else if(attackType == 5) {
-            hit = ((int)(Math.random() * (10))) + (20 + (attack));
+            hit = ((int)(Math.random() * (20))) + (10 + (attack));
         }
         else if(attackType == 6) {
-            hit = ((int)(Math.random() * (10))) + (20 + (attack));
+            hit = ((int)(Math.random() * (40))) + (10 + (attack));
         }
         else if(attackType == 7) {
-            hit = ((int)(Math.random() * (10))) + (20 + (attack));
+            hit = ((int)(Math.random() * (20))) + (30 + (attack));
         }
         return hit;
     }

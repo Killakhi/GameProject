@@ -1,17 +1,17 @@
 package Engine.Navigation;
 
 import java.awt.Color;
-import java.util.ArrayList;
 
 import Engine.GraphicsHandler;
 import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
 import Engine.Screen;
+import Screens.PlayLevelScreen;
 
 public abstract class ScrollableMenuScreen<T> extends Screen {
     protected int keyPressTimer = 0;
-    protected KeyLocker keyLocker = new KeyLocker();
+    public static KeyLocker keyLocker = PlayLevelScreen.keyLocker;
     protected ScrollableMenu<T> menu;
 
     public ScrollableMenuScreen() {
@@ -27,10 +27,6 @@ public abstract class ScrollableMenuScreen<T> extends Screen {
 
     @Override
     public void update() {
-        if (Keyboard.isKeyUp(Key.SPACE)) {
-            keyLocker.unlockKey(Key.SPACE);
-        }
-
         if (keyPressTimer <= 0) {
             if (Keyboard.isKeyDown(Key.DOWN)) {
                 keyPressTimer = 14;
