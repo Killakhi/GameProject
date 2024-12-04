@@ -1,11 +1,12 @@
 package Screens;
 
+import Engine.Battle.PartyStats;
 import Engine.GraphicsHandler;
 import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
 import Engine.Screen;
-import Engine.Battle.PartyStats;
+import Engine.SoundHandler;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import GameObject.Money;
@@ -66,6 +67,7 @@ public class PlayLevelScreen extends Screen {
         player.setFacingDirection(Direction.LEFT);
 
         map.setPlayer(player);
+        SoundHandler.RunMusic("Resources/GameMusic.wav");
 
         // let pieces of map know which button to listen for as the "interact" button
         map.getTextbox().setInteractKey(player.getInteractKey());
@@ -152,6 +154,8 @@ public class PlayLevelScreen extends Screen {
                 break;
             case ENTERING_BATTLE:
             battleScreen.initialize();
+            SoundHandler.StopMusic("Resources/GameMusic.wav");
+            SoundHandler.RunMusic("Resources/BattleMusic30sec.wav");
             playLevelScreenState = PlayLevelScreenState.BATTLING;
                 // fallthrough to next case
             case BATTLING:
@@ -200,8 +204,33 @@ public class PlayLevelScreen extends Screen {
         }
     }
 
+    public void setPlayLevelScreenState(){
+
+
+        playLevelScreenState = PlayLevelScreenState.RUNNING;
+ 
+ 
+        if (true) {
+          
+         SoundHandler.RunMusic("Resources/GameMusic.wav");
+        }
+ 
+ 
+        playLevelScreenState = PlayLevelScreenState.ENTERING_BATTLE;
+ 
+ 
+        if(true){
+ 
+ 
+            SoundHandler.RunMusic("Resources/BattleMusic30sec.wav");
+        }
+        }
+ 
+
     public void stopBattle() {
         playLevelScreenState = PlayLevelScreenState.RUNNING;
+        SoundHandler.StopMusic("Resources/BattleMusic30sec.wav");
+        SoundHandler.RunMusic("Resources/GameMusic.wav");
     }
 
     public void pauseMenu(){

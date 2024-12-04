@@ -12,31 +12,54 @@ public class TownGuy2Script extends Script {
     public ArrayList<ScriptAction> loadScriptActions() {
         ArrayList<ScriptAction> scriptActions = new ArrayList<>();
         scriptActions.add(new LockPlayerScriptAction());
-
+ 
+ 
         scriptActions.add(new NPCFacePlayerScriptAction());
-
-        scriptActions.add(new ConditionalScriptAction() {{
-            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToTownGuy2", false));
-                addScriptAction(new TextboxScriptAction() {{
-                    addText("Mysterious person: What happened?");
-                    addText("Luke: You look like a ghost...\n what's the last thing you remember?");
-                    addText("MP: I was walking through the woods like I always do.\n I heard rustling and the next thing I knew I was here.");
-                    addText("Luke: Don't worry Ill find a way to help you");
-                    
-                    
-                }});
-                addScriptAction(new ChangeFlagScriptAction("hasTalkedToTownGuy2", true));
-            }});
-
-            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToTownGuy2", true));
-                addScriptAction(new TextboxScriptAction("Go away"));
-            }});
-        }});
-
+ 
+ 
+        scriptActions.add(new ConditionalScriptAction() {
+            {
+                // To do, make conditonal script for if you haven't talked to the woman to the mysterious person
+ 
+ 
+                addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {
+                    {
+                        addRequirement(new FlagRequirement("hasTalkedtoMysteryQuest", false));
+                        addRequirement(new FlagRequirement("hasTalkedToMP", false));
+                        addScriptAction(new TextboxScriptAction() {
+                            {
+                                addText("Luke: Hi, this person was looking \nfor something to remember you by.");
+                                addText("MP: You must be talking about my friend. \nHere, let me give you something.");
+                                addText("Luke: Thank you! I will give it to her.");
+ 
+ 
+                            }
+                        });
+                        addScriptAction(new ChangeFlagScriptAction("hasTalkedToMP", true));
+                    }
+                });
+ 
+ 
+ 
+ 
+ 
+ 
+                addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {
+                    {
+                        addRequirement(new FlagRequirement("hasTalkedToMP", true));
+                        addScriptAction(new TextboxScriptAction("Make sure you give her the thing."));
+                    }
+                });
+            }
+        });
+ 
+ 
         scriptActions.add(new UnlockPlayerScriptAction());
-
+ 
+ 
         return scriptActions;
     }
-}
+ }
+ 
+ 
+ 
