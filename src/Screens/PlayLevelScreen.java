@@ -68,6 +68,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("talkedtoSusCat", false);
         flagManager.addFlag("talkedtoNormalCat1", false);
         flagManager.addFlag("talkedtoNormalGuy", false);
+        flagManager.addFlag("goingOut", false);
 
         // define/setup map
         map = new TestMap();
@@ -189,10 +190,10 @@ public class PlayLevelScreen extends Screen {
                     flagManager.unsetFlag("YestoBoss");
                 }
 
-                if (flagManager.isFlagSet("talkedtoInnGuy")) {
+                if (flagManager.isFlagSet("goingOut")) {
                     map = new TestMap();
                     map.setFlagManager(flagManager);
-                    player.setLocation(550,950);
+                    player.setLocation(200,900);
                     player.unlock();
                     player.setMap(map);
                     playLevelScreenState = PlayLevelScreenState.RUNNING;
@@ -201,8 +202,9 @@ public class PlayLevelScreen extends Screen {
                     map.setPlayer(player);
                     map.getTextbox().setInteractKey(player.getInteractKey());
 
-                    flagManager.unsetFlag("talkedtoInnGuy");
 
+                    
+                    flagManager.unsetFlag("goingOut");
                 }
                 break;
             // if game is paused

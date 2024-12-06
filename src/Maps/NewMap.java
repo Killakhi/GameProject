@@ -38,7 +38,7 @@ public class NewMap extends Map {
         NPC3 npc3 = new NPC3(5, getMapTile(0, 3).getLocation().subtractY(40));
         npc3.setInteractScript(new NormalGuyScript());
         npcs.add(npc3);
-       
+
         return npcs;
     }
     
