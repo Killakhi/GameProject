@@ -43,6 +43,7 @@ public class CatScript extends Script {
 
                 addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("talkedtoPatches", true));
+                addRequirement(new FlagRequirement("talkedEvenMoreToPatches", false));
                 addScriptAction(new TextboxScriptAction(){{
                     addText("Oh hello again!");
                     addText("Hmmmm...");
@@ -52,7 +53,7 @@ public class CatScript extends Script {
                     addText("*blinks*");
                     addText("The hell you talkin bout?????");
                     addText("Do you even know what ya talkin bout weird guy?...");
-                    addText("Jake: Weren't you a infamous CSC111 final project character?");
+                    addText("Jake: Weren't you a infamous CSC110 character?");
                     addText("*Loudly blinks*");
                     addText("I'm not going to talk to you anymore");
                     addText("Jake: I-");
@@ -62,7 +63,49 @@ public class CatScript extends Script {
             }});
         }});
 
-        
+        scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup(){{
+            addRequirement(new FlagRequirement("talkedEvenMoreToPatches", true));
+            addRequirement(new FlagRequirement("talkedtoSusCat", false));
+            addScriptAction(new TextboxScriptAction(){{
+                    addText(">:3");
+                    addText("Shes giving on big ol mean side eye");
+                }});
+            }});
+        }});
+
+        scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup(){{
+            addRequirement(new FlagRequirement("talkedtoSusCat", true));
+            addRequirement(new FlagRequirement("HappyPatches", false));
+            addScriptAction(new TextboxScriptAction(){{
+                    addText("Sniff...");
+                    addText("Sniff....");
+                    addText("What you got there...");
+                    addText("Jake: Uh, that interesting cat over there gave to me");
+                    addText("Jake: Do you want it?..");
+                    addText("GIMMIE");
+                    addText("She puts it in the drawer behind her");
+                    addText("Thank you stranger! I'll forgive you this time heheheh~");
+                    addText("Enjoy your time here!");
+                }});
+                addScriptAction(new ChangeFlagScriptAction("HappyPatches", true));
+            }});
+        }});
+
+        scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup(){{
+            addRequirement(new FlagRequirement("HappyPatches", true));
+            addRequirement(new FlagRequirement("talkedtoSusCat", true));
+            addScriptAction(new TextboxScriptAction(){{
+                    addText(":3");
+                    addText("She looks really happy!");
+                }});
+            }});
+        }});
+
+
+    
         scriptActions.add(new NPCUnlockScriptAction());
         scriptActions.add(new UnlockPlayerScriptAction());
 
