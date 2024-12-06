@@ -82,7 +82,7 @@ public class CatScript extends Script {
                     addText("Sniff...");
                     addText("Sniff....");
                     addText("What you got there...");
-                    addText("Jake: Uh, that interesting cat over there gave to me");
+                    addText("Jake: Uh, that interesting cat that left gave to me");
                     addText("Jake: Do you want it?..");
                     addText("GIMMIE");
                     addText("She puts it in the drawer behind her");
