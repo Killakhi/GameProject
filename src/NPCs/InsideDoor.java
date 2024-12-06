@@ -11,10 +11,10 @@ import Utils.Point;
 
 import java.util.HashMap;
 
-public class SusCat extends NPC{
+public class InsideDoor extends NPC{
     
-    public SusCat(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Sus Cat.png"), 32, 32), "STAND_LEFT");
+    public InsideDoor(int id, Point location) {
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("LittleGuy_2.png"), 30, 30), "STAND_LEFT");
     }
 
     @Override

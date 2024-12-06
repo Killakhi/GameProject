@@ -4,7 +4,7 @@ import Level.Script;
 import ScriptActions.*;
 import java.util.ArrayList;
 
-public class NormalCatScript extends Script {
+public class DoorScript extends Script {
     
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
@@ -16,6 +16,9 @@ public class NormalCatScript extends Script {
                 addScriptAction(new TextboxScriptAction() {{
                     addText("Hello!");
                     addText("You seem like a weird nice fella! :3");
+                    addText("Don't mind that weird guy over there, he's alwa")
+                    
+                    
                 }});
             }});
 

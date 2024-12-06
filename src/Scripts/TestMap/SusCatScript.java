@@ -31,7 +31,7 @@ public class SusCatScript extends Script {
 
         scriptActions.add(new TextboxScriptAction() {{
             addText("Hey there~");
-            addText("You want some goods?")
+            addText("You want some goods?");
             addText("I promise you won't regret it!", new String[] { "Yes", "No" });
         }});
 
@@ -47,11 +47,14 @@ public class SusCatScript extends Script {
                 });
 
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("Hehehe");
+                    addText("Hehehe!");
                     addText("You won't regret it!");
                     addText("Most cats love this stuff!");
+                    addText("Jake: Hmm thanks I guess...");
+                    addText("The catnip dealing cat leaves the tavern...");
                 }});
 
+                addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
                 addScriptAction(new ChangeFlagScriptAction("talkedtoSusCat", true));
             }});
 
@@ -65,7 +68,7 @@ public class SusCatScript extends Script {
                 });
                 
                 addScriptAction(new TextboxScriptAction("Alright then fine by me"));
-                addScriptAction(new TextboxScriptAction("But your missing out"));
+                addScriptAction(new TextboxScriptAction("Come back if you change your mind"));
                 addScriptAction(new ChangeFlagScriptAction("talkedtoSusCat", false));
             }});
         }});

@@ -58,42 +58,8 @@ public class CatScript extends Script {
                     addText("Jake: I-");
                     addText("NOPE NOT LISTENING >:[");
                 }});
-                addScripAction(new ChangeFlagScriptAction("talkedEvenMoreToPatches", true));
+                addScriptAction(new ChangeFlagScriptAction("talkedEvenMoreToPatches", true));
             }});
-
-                addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                    addRequirement(new FlagRequirement("talkedEvenMoreToPatches", true));
-                    addScriptAction(new TextboxScriptAction(){{
-                        addText(">:3");
-                        addText("She's giving one good side eye alright...");
-                    }});
-                }});
-
-                addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                    addRequirement(new FlagRequirement("talkedtoSusCat", true));
-                    addScriptAction(new TextboxScriptAction(){{
-                        addText("sniff...");
-                        addText("sniff.....");
-                        addText("What you got there...");
-                        addText("Jake: Uh, that interesting cat over there gave to me");
-                        addText("Jake: Do you want it?..")
-                        addText("GIMMIE");
-                        addText("She puts it in the drawer behind her");
-                        addText("Thank you stranger! I'll forgive you this time heheheh~");
-                        addText("Enjoy your time here!");
-                    }});
-                    addScriptAction(new ChangeFlagScriptAction("HappyPatches", true));
-                }});
-
-                
-                addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                    addRequirement(new FlagRequirement("HappyPatches", true));
-                    addScriptAction(new TextboxScriptAction(){{
-                        addText(":3");
-                        addText("She looks really happy!");
-                    }});
-                }});
-
         }});
 
         
