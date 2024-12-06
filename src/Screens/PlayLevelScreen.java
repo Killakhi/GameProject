@@ -67,6 +67,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("HappyPatches", false);
         flagManager.addFlag("talkedtoSusCat", false);
         flagManager.addFlag("talkedtoNormalCat1", false);
+        flagManager.addFlag("talkedtoNormalGuy", false);
 
         // define/setup map
         map = new TestMap();

@@ -4,7 +4,7 @@ import Level.Script;
 import ScriptActions.*;
 import java.util.ArrayList;
 
-public class NormalCatScript extends Script {
+public class NormalGuyScript extends Script {
     
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
@@ -13,27 +13,23 @@ public class NormalCatScript extends Script {
         scriptActions.add(new NPCFacePlayerScriptAction());
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("talkedtoNormalCat1", false));
+                addRequirement(new FlagRequirement("talkedtoNormalGuy", false));
                 addScriptAction(new TextboxScriptAction() {{
                     addText("Hello!");
-                    addText("You seem like a weird nice fella! :3");
-                    addText("Jake: Uh Hello-");
-                    addText("Man why does patches get to move");
-                    addText("While I'm just :<");
-                    addText("Jake: Uh are you ok?");
-                    addText(":<");
-                    addText("Jake: Ok....?");
-                    addText("Jake: I'm just going to go away now...");
+                    addText("You noticed that this place is runned by cats!");
+                    addText("Mann...I wonder if they allow humans to work here");
+                    addText("You notice a cat pin on his shirt as you walk away");
+                    
                     
                     
                 }});
-                addScriptAction(new ChangeFlagScriptAction("talkedtoNormalCat1", true));
+                addScriptAction(new ChangeFlagScriptAction("talkedtoNormalGuy", true));
             }});
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("talkedtoNormalCat1", true));
+                addRequirement(new FlagRequirement("talkedtoNormalGuy", true));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText(":<");
-                    addText("They're still like that...");
+                    addText(":]");
+                    addText("He seems to be day dreaming");
                 }});
             }});
         }});

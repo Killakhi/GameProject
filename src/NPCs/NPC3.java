@@ -8,13 +8,13 @@ import GameObject.ImageEffect;
 import GameObject.SpriteSheet;
 import Level.NPC;
 import Utils.Point;
-
 import java.util.HashMap;
 
-public class Taverncat extends NPC{
-    
-    public Taverncat (int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Normal Cat.png"), 32, 32), "STAND_LEFT");
+// This class is for the new custom NPC
+public class NPC3 extends NPC {
+
+    public NPC3(int id, Point location) {
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Npc 3.png"), 32, 40), "STAND_LEFT");
     }
 
     @Override
@@ -23,14 +23,14 @@ public class Taverncat extends NPC{
             put("STAND_LEFT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
                             .withScale(3)
-                            .withBounds(7, 13, 11, 7)
+                            .withBounds(10, 13, 11, 7)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .build()
             });
             put("STAND_RIGHT", new Frame[] {
                    new FrameBuilder(spriteSheet.getSprite(0, 0))
                            .withScale(3)
-                           .withBounds(7, 13, 11, 7)
+                           .withBounds(10, 13, 11, 7)
                            .build()
            });
         }};
