@@ -1,22 +1,17 @@
 package Scripts.TestMap;
 
-import java.util.ArrayList;
-
 import Level.Script;
 import ScriptActions.ChangeFlagScriptAction;
 import ScriptActions.ConditionalScriptAction;
 import ScriptActions.ConditionalScriptActionGroup;
-import ScriptActions.CustomRequirement;
 import ScriptActions.FlagRequirement;
 import ScriptActions.LockPlayerScriptAction;
-import ScriptActions.NPCChangeVisibilityScriptAction;
 import ScriptActions.NPCFacePlayerScriptAction;
-import ScriptActions.NPCLockScriptAction;
 import ScriptActions.NPCUnlockScriptAction;
 import ScriptActions.ScriptAction;
 import ScriptActions.TextboxScriptAction;
 import ScriptActions.UnlockPlayerScriptAction;
-import Utils.Visibility;
+import java.util.ArrayList;
 
 public class CatScript extends Script {
     
@@ -77,6 +72,7 @@ public class CatScript extends Script {
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup(){{
             addRequirement(new FlagRequirement("talkedtoSusCat", true));
+            addRequirement(new FlagRequirement("talkedEvenMoreToPatches", true));
             addRequirement(new FlagRequirement("HappyPatches", false));
             addScriptAction(new TextboxScriptAction(){{
                     addText("Sniff...");

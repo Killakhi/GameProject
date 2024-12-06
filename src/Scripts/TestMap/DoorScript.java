@@ -15,7 +15,7 @@ public class DoorScript extends Script {
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasOpenDoor", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("Enter the Inn?");
+                    addText("Entering the Inn");
                     
                     
                 }});

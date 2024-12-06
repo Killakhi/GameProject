@@ -193,7 +193,7 @@ public class PlayLevelScreen extends Screen {
                 if (flagManager.isFlagSet("goingOut")) {
                     map = new TestMap();
                     map.setFlagManager(flagManager);
-                    player.setLocation(200,900);
+                    player.setLocation(200,1700);
                     player.unlock();
                     player.setMap(map);
                     playLevelScreenState = PlayLevelScreenState.RUNNING;
