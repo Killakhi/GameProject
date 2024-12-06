@@ -62,7 +62,11 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasFoughtNPC", false);
         flagManager.addFlag("hasOpenDoor", false);
         flagManager.addFlag("YestoBoss", false);
-        flagManager.addFlag("talkedtoInnGuy", false);
+        flagManager.addFlag("talkedtoPatches", false);
+        flagManager.addFlag("talkedEvenMoreToPatches", false);
+        flagManager.addFlag("HappyPatches", false);
+        flagManager.addFlag("talkedtoSusCat", false);
+        flagManager.addFlag("talkedtoNormalCat1", false);
 
         // define/setup map
         map = new TestMap();

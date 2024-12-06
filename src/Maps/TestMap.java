@@ -87,8 +87,7 @@ public class TestMap extends Map {
         npcs.add(damion);
         this.damion.add(damion);
 
-        Cat cat = new Cat(4, getMapTile(8, 10).getLocation().subtractY(40));
-        npcs.add(cat);
+      
         
         
         
@@ -129,6 +128,9 @@ public class TestMap extends Map {
         bossCultist.setInteractScript(new BossCultistScript());
         npcs.add(bossCultist);
 
+        Door door = new Door(16, getMapTile(2, 17).getLocation().subtractY(40));
+        door.setInteractScript(new DoorScript());
+        npcs.add(door);
 
 
 
